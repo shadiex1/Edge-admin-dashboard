@@ -9,7 +9,7 @@ class Orders extends Component{
         return(
         <div className={styles.Orders}>
             <Menu/>
-            <OrderFilter/>
+            {/* <OrderFilter/> */}
             <OrdersTable orders={this.props.orders}/>
             
             hooo hooo hoooo

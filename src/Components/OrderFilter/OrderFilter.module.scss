@@ -1,0 +1,14 @@
+.OrderFilter{
+display: flex;
+justify-content: center;
+.Filters{
+    display: flex;
+    button{
+        margin: 50px;
+        width: 150px;
+        height: 50px;
+        cursor: pointer;
+        border: none;
+    }
+}
+}

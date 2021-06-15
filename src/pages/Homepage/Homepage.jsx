@@ -12,7 +12,7 @@ const Homepage = (props)=>{
                 <h1>Admin Dashboard</h1>
             </div>
             <div className={styles.categories}>
-            <Link  to={process.env.PUBLIC_URL+"/Orders"}>
+            <Link  to={process.env.PUBLIC_URL+"/Orders/"}>
                 <button className={styles.btn}>Orders</button>
                 </Link>
 

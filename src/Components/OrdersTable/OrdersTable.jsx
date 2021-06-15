@@ -2,7 +2,8 @@ import React from 'react'
 import styles from "./OrdersTable.module.scss"
 import { useTable,usePagination, useSortBy,useFilters,useGroupBy, useGlobalFilter,useRowSelect ,useAsyncDebounce,useExpanded } from 'react-table'
 import {matchSorter} from 'match-sorter'
-
+import { Link} from "react-router-dom"
+ 
 
 
 const OrdersTable =(props)=> {
@@ -424,7 +425,7 @@ function Table({ columns, data, renderRowSubComponent }) {
                           table instance. But for this example, we'll just
                           pass the row
                         */}
-                      {renderRowSubComponent({ row })}
+                      {/* {renderRowSubComponent({ row })} */}
                     </td>
                   </tr>
                 ) : null}
@@ -493,34 +494,34 @@ function filterGreaterThan(rows, id, filterValue) {
 // This is a custom aggregator that
 // takes in an array of leaf values and
 // returns the rounded median
-function roundedMedian(leafValues) {
-    let min = leafValues[0] || 0
-    let max = leafValues[0] || 0
+// function roundedMedian(leafValues) {
+//     let min = leafValues[0] || 0
+//     let max = leafValues[0] || 0
   
-    leafValues.forEach(value => {
-      min = Math.min(min, value)
-      max = Math.max(max, value)
-    })
+//     leafValues.forEach(value => {
+//       min = Math.min(min, value)
+//       max = Math.max(max, value)
+//     })
   
-    return Math.round((min + max) / 2)
-  }
+//     return Math.round((min + max) / 2)
+//   }
   
-  const IndeterminateCheckbox = React.forwardRef(
-    ({ indeterminate, ...rest }, ref) => {
-      const defaultRef = React.useRef()
-      const resolvedRef = ref || defaultRef
+  // const IndeterminateCheckbox = React.forwardRef(
+  //   ({ indeterminate, ...rest }, ref) => {
+  //     const defaultRef = React.useRef()
+  //     const resolvedRef = ref || defaultRef
   
-      React.useEffect(() => {
-        resolvedRef.current.indeterminate = indeterminate
-      }, [resolvedRef, indeterminate])
+  //     React.useEffect(() => {
+  //       resolvedRef.current.indeterminate = indeterminate
+  //     }, [resolvedRef, indeterminate])
   
-      return (
-        <>
-          <input type="checkbox" ref={resolvedRef} {...rest} />
-        </>
-      )
-    }
-  )
+  //     return (
+  //       <>
+  //         <input type="checkbox" ref={resolvedRef} {...rest} />
+  //       </>
+  //     )
+  //   }
+  // )
   const columns = React.useMemo(
     () => [
     //   {
@@ -603,13 +604,18 @@ function roundedMedian(leafValues) {
         // Make an expander cell
         Header: () => null, // No header
         id: 'expander', // It needs an ID
+        
         Cell: ({ row }) => (
           // Use Cell to render an expander for each row.
           // We can use the getToggleRowExpandedProps prop-getter
           // to build the expander.
-          <span onClick={()=>console.log(row.original.id)} >
+          
+         row.original? <Link  to={`/Orders/SingleOrder/${row.original && row.original.id}`} >
+          <span  >
             details
           </span>
+          </Link>:null
+
         ),
       }
     ],
@@ -619,18 +625,18 @@ function roundedMedian(leafValues) {
   const data = React.useMemo(() => makeData(10), [])
 
   // Create a function that will render our row sub components
-//   const renderRowSubComponent = React.useCallback(
-//     ({ row }) => (
-//       <pre
-//         style={{
-//           fontSize: '10px',
-//         }}
-//       >
-//         <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
-//       </pre>
-//     ),
-//     []
-//   )
+  const renderRowSubComponent = React.useCallback(
+    ({ row }) => (
+      <pre
+        style={{
+          fontSize: '10px',
+        }}
+      >
+        <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
+      </pre>
+    ),
+    []
+  )
 
   return (
     <div className={styles.OrdersTable}>
@@ -643,10 +649,9 @@ function roundedMedian(leafValues) {
         // ourselves
         // renderRowSubComponent={renderRowSubComponent}
       />
-      {console.log(data)}
 
     </div>
   )
 }
 
-export default OrdersTable
+export default OrdersTable ;

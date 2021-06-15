@@ -12,7 +12,6 @@ class Orders extends Component{
             {/* <OrderFilter/> */}
             <OrdersTable orders={this.props.orders}/>
             
-            hooo hooo hoooo
             {/* <Order/> */}
         </div>
     )

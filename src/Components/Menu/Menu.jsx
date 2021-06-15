@@ -13,7 +13,9 @@ const Menu = (props)=>{
                 </Link>
             </div>
             <ul className={styles.Links}>
+            <Link  to={process.env.PUBLIC_URL+"/Orders"}>
                 <li className={styles.Link}>Orders</li>
+                </Link>
                 <li className={styles.Link}>Products Catalog</li>
                 <li className={styles.Link}>Reports</li>
             </ul>

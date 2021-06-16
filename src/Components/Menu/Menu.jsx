@@ -17,7 +17,9 @@ const Menu = (props)=>{
                 <li className={styles.Link}>Orders</li>
                 </Link>
                 <li className={styles.Link}>Products Catalog</li>
-                <li className={styles.Link}>Reports</li>
+                <Link  to={process.env.PUBLIC_URL+"/Showcase"}>
+                <li className={styles.Link}>Showcase</li>
+                </Link>
             </ul>
         </div>
     )

@@ -5,8 +5,15 @@ import { Route } from "react-router-dom";
 import Homepage from "./pages/Homepage/Homepage";
 import Orders from "./pages/Orders/Orders";
 import SingleOrder from './pages/SingleOrder/SingleOrder';
+import Showcase from "./pages/Showcase/Showcase";
+import CarouselImg1 from "./assets/New folder/greg-rakozy-oMpAz-DN-9I-unsplash.png"
+import CarouselImg2 from "./assets/New folder/Image 5@3x.png"
+import CarouselImg3 from "./assets/New folder/Image 7@2x.png"
+import CarouselImg4 from "./assets/New folder/Mask Group 3.png"
 class App extends Component {
   state={
+    imgs:[CarouselImg1,CarouselImg2,CarouselImg3,CarouselImg4],
+
     shipmentOptions:["ready for shipping","shipped","delivered"],
     paymentOptions:["pay on delivery","pending","approved"],
     orders:[{id:1,date:"2021/11/06",productprice:250,shipmentPrice:450,totalPrice:290,shipmentStatus:"deliverd",paymentMethod:"credit card",paymentStatus:"paid",
@@ -126,12 +133,21 @@ class App extends Component {
 
 ]
   }
+  updateShowcaseImgs=(updatedSliderImgs)=>{
+    // URL.createObjectURL(updatedSliderImgs)
+    console.log(updatedSliderImgs)  
+    ////////////////////////////////////////////// to be continued in api integration 
+    // this.setState({
+    //   imgs:updatedSliderImgs
+    // })
+  }
   render(){
     return (
     <React.Fragment>
 
    <Route exact path={process.env.PUBLIC_URL + '/'} component={() => <Homepage />}/>
    <Route exact path={process.env.PUBLIC_URL + '/Orders'} component={() => <Orders orders={this.state.orders} />}/>
+   <Route exact path={process.env.PUBLIC_URL + '/Showcase'} component={() => <Showcase changeSliderImgs={(updatedSliderImgs)=>this.updateShowcaseImgs(updatedSliderImgs)} imgs={this.state.imgs} orders={this.state.orders} />}/>
    <Route exact path={process.env.PUBLIC_URL +`/Orders/SingleOrder/:id`} component={() => <SingleOrder orders={this.state.orders} paymentOptions={this.state.paymentOptions}  shipmentOptions={this.state.shipmentOptions}/>}/>    {/* //////// to be refactored */}
 
 

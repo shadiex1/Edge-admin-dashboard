@@ -543,8 +543,6 @@ function filterGreaterThan(rows, id, filterValue) {
           {
             Header: 'ID',
             accessor: 'id',
-            Filter: NumberRangeColumnFilter,
-            filter: 'between',
           },
         //   /////////////////////////////////// ast5dm al fuzzy text dah
         //   {

@@ -608,7 +608,7 @@ function filterGreaterThan(rows, id, filterValue) {
           // We can use the getToggleRowExpandedProps prop-getter
           // to build the expander.
           
-         row.original? <Link  to={`/Orders/SingleOrder/${row.original && row.original.id}`} >
+         row.original? <Link  to={process.env.PUBLIC_URL+`/Orders/SingleOrder/${row.original && row.original.id}`} >
           <span  >
             details
           </span>

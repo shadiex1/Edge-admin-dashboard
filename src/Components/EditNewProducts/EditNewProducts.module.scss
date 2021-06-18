@@ -1,0 +1,30 @@
+.header{
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    width: 80%;
+    margin: 2rem auto;
+}
+.newProducts{
+    box-shadow: rgb(60, 64, 67) 0px 1px 4px 0px;
+
+
+ padding: 20px;
+    width: 80%;
+    margin: auto;
+    .add{
+       display: flex;
+       justify-content: center;
+       button{
+           border: none;
+           width: 80px;
+           height: 30px;
+           margin-left: 20px;
+           cursor: pointer;
+           &:hover{
+               color: #fff;
+               background-color: #d5293f;
+           }
+       }
+    }
+}

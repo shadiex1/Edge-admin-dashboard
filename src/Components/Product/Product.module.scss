@@ -1,0 +1,56 @@
+.Product{
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    margin: 1.5rem auto;
+    box-shadow:
+ inset 0 0 0.5em rgba(0,0,0,0.1),
+ 0.2em 0.2em 0.5em rgba(0,0,0,0.2);
+height: 200px;
+border-radius: 15px;
+.closeIcon{
+   
+        position: absolute;
+        top: 12px;
+        right: 20px;
+        svg {
+          width: .7rem;
+        }
+        &:hover {
+          svg {
+            path {
+              fill: #d5293f;
+            }
+          }
+      }
+}
+    img{
+        width: 10rem;
+        height: 10rem;
+        object-fit: contain;
+    }
+    .img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30%;
+    }
+    .details{
+        width: 60%;
+        p{
+            color: #948b8b;
+            font-weight: bold;
+            span{
+                color: #000;
+                font-weight: normal;
+            }
+        }
+        .group{
+            display: flex;
+            justify-content: space-between;
+            
+        }
+    }
+}

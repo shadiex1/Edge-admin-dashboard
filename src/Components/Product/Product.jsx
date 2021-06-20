@@ -21,6 +21,10 @@ const Product=props=>{
                    
                 
                 <p>Price : <span>{props.price}</span></p>
+                <div className={styles.group}>
+                     <p>Category : <span>{props.category}</span></p>
+                <p >Filter : <span>{props.filter}</span></p>
+                </div>
             </div>
         </div>
     )

@@ -15,8 +15,11 @@ const Homepage = (props)=>{
             <Link  to={process.env.PUBLIC_URL+"/Orders/"}>
                 <button className={styles.btn}>Orders</button>
                 </Link>
+                
+                <Link  to={process.env.PUBLIC_URL+"/Products/"}>
 
-                <button className={styles.btn}>Products Catalog</button>
+                <button className={styles.btn}>Products </button>
+                </Link>
                 <Link  to={process.env.PUBLIC_URL+"/Showcase/"}>
 
                 <button className={styles.btn}>Showcase</button>

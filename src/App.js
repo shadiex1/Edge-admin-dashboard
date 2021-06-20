@@ -6,6 +6,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import Orders from "./pages/Orders/Orders";
 import SingleOrder from './pages/SingleOrder/SingleOrder';
 import Showcase from "./pages/Showcase/Showcase";
+import Products from './pages/Products/Products';
 import CarouselImg1 from "./assets/New folder/greg-rakozy-oMpAz-DN-9I-unsplash.png"
 import CarouselImg2 from "./assets/New folder/Image 5@3x.png"
 import CarouselImg3 from "./assets/New folder/Image 7@2x.png"
@@ -20,36 +21,107 @@ class App extends Component {
 
     shipmentOptions:["ready for shipping","shipped","delivered"],
     paymentOptions:["pay on delivery","pending","approved"],
+    categories:["men","women","kids"],
+    filters:[
+      {
+        id:1,
+        category:"men",
+        englishName:"shirt",
+        arabicName:"تيشرت",
+        
+      },
+      {
+        id:2,
+        category:"women",
+        englishName:"shirt",
+        arabicName:"تيشرت",
+        
+      },
+      {
+        id:3,
+        category:"kids",
+        englishName:"shirt",
+        arabicName:"تيشرت",
+        
+      },
+      {
+        id:4,
+        category:"women",
+        englishName:"dress",
+        arabicName:"فستان",
+        
+      },
+      {
+        id:5,
+        category:"women",
+        englishName:"jeep",
+        arabicName:"جيبة",
+        
+      },
+      {
+        id:6,
+        category:"kids",
+        englishName:"sneaker",
+        arabicName:"كوتشي",
+        
+      },
+      {
+        id:7,
+        category:"men",
+        englishName:"pants",
+        arabicName:"بنطلون",
+        
+      },
+      {
+        id:8,
+        category:"men",
+        englishName:"jacket",
+        arabicName:"جاكيت",
+        
+      },
+    ],
     newProducts:[{
       code:"M_B_J_121",
-      img:ProductImg1,
-      englishName:"Blue Jacket",
-      arabicName:"جاكيت ازرق مفتوح",
-      price:300
+img:ProductImg1,
+category:"men",
+filter:"jacket",
+englishName:"Blue Jacket",
+arabicName:"جاكيت ازرق مفتوح",
+price:300
     },{
       code:"W_B_J_145",
-      img:ProductImg2,
-      englishName:"Jeep Max",
-      arabicName:" جيب ماكس ",
-      price:230
+img:ProductImg2,
+englishName:"Jeep Max",
+arabicName:" جيب ماكس ",
+category:"women",
+filter:"jeep",
+price:230
     }],
     products:[
 {  code:"M_B_J_121",
 img:ProductImg1,
+category:"men",
+filter:"jacket",
 englishName:"Blue Jacket",
 arabicName:"جاكيت ازرق مفتوح",
 price:300},{code:"W_B_J_145",
 img:ProductImg2,
 englishName:"Jeep Max",
 arabicName:" جيب ماكس ",
+category:"women",
+filter:"jeep",
 price:230},{code:"123",
 img:ProductImg1,
-englishName:"Blue Jacket",
-arabicName:"جاكيت ازرق مفتوح",
+englishName:"Red Tshirt",
+arabicName:" تشيرت احمر ",
+category:"men",
+filter:"shirt",
 price:300},{code:"55555",
 img:ProductImg2,
-englishName:"Jeep Max",
-arabicName:" جيب ماكس ",
+englishName:"Orange sneaker",
+arabicName:" كوتشي برتقالي ",
+category:"kids",
+filter:"sneaker",
 price:230}
 
 
@@ -213,6 +285,7 @@ this.setState({
 
    <Route exact path={process.env.PUBLIC_URL + '/'} component={() => <Homepage />}/>
    <Route exact path={process.env.PUBLIC_URL + '/Orders'} component={() => <Orders orders={this.state.orders} />}/>
+   <Route exact path={process.env.PUBLIC_URL + '/Products'} component={() => <Products products={this.state.products} filters={this.state.filters} categories={this.state.categories}/>}/>
    <Route exact path={process.env.PUBLIC_URL + '/Showcase'} component={() => <Showcase AddNewProducts={(id=>this.AddNewProduct(id))} DeleteNewProduct={(id)=>this.DeleteNewProduct(id)} newProducts={this.state.newProducts} changeSliderImgs={(updatedSliderImgs)=>this.updateShowcaseImgs(updatedSliderImgs)} imgs={this.state.imgs} orders={this.state.orders} />}/>
    <Route exact path={process.env.PUBLIC_URL +`/Orders/SingleOrder/:id`} component={() => <SingleOrder orders={this.state.orders} paymentOptions={this.state.paymentOptions}  shipmentOptions={this.state.shipmentOptions}/>}/>    {/* //////// to be refactored */}
 

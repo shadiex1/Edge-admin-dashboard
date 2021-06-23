@@ -7,6 +7,7 @@ import Orders from "./pages/Orders/Orders";
 import SingleOrder from './pages/SingleOrder/SingleOrder';
 import Showcase from "./pages/Showcase/Showcase";
 import Products from './pages/Products/Products';
+import Categories from './pages/Categories/Categories';
 import CarouselImg1 from "./assets/New folder/greg-rakozy-oMpAz-DN-9I-unsplash.png"
 import CarouselImg2 from "./assets/New folder/Image 5@3x.png"
 import CarouselImg3 from "./assets/New folder/Image 7@2x.png"
@@ -286,6 +287,7 @@ this.setState({
    <Route exact path={process.env.PUBLIC_URL + '/'} component={() => <Homepage />}/>
    <Route exact path={process.env.PUBLIC_URL + '/Orders'} component={() => <Orders orders={this.state.orders} />}/>
    <Route exact path={process.env.PUBLIC_URL + '/Products'} component={() => <Products products={this.state.products} filters={this.state.filters} categories={this.state.categories}/>}/>
+   <Route exact path={process.env.PUBLIC_URL + '/Categories'} component={() => <Categories categories={this.state.categories}filters={this.state.filters}/>} />
    <Route exact path={process.env.PUBLIC_URL + '/Showcase'} component={() => <Showcase AddNewProducts={(id=>this.AddNewProduct(id))} DeleteNewProduct={(id)=>this.DeleteNewProduct(id)} newProducts={this.state.newProducts} changeSliderImgs={(updatedSliderImgs)=>this.updateShowcaseImgs(updatedSliderImgs)} imgs={this.state.imgs} orders={this.state.orders} />}/>
    <Route exact path={process.env.PUBLIC_URL +`/Orders/SingleOrder/:id`} component={() => <SingleOrder orders={this.state.orders} paymentOptions={this.state.paymentOptions}  shipmentOptions={this.state.shipmentOptions}/>}/>    {/* //////// to be refactored */}
 

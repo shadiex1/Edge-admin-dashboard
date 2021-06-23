@@ -20,6 +20,10 @@ const Menu = (props)=>{
 
                 <li className={styles.Link}>Products</li>
                 </Link>
+                <Link  to={process.env.PUBLIC_URL+"/Categories/"}>
+
+                <li className={styles.Link}>Categories</li>
+                </Link>
                 <Link  to={process.env.PUBLIC_URL+"/Showcase"}>
                 <li className={styles.Link}>Showcase</li>
                 </Link>

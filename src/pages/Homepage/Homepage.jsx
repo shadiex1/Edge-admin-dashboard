@@ -20,6 +20,10 @@ const Homepage = (props)=>{
 
                 <button className={styles.btn}>Products </button>
                 </Link>
+                <Link  to={process.env.PUBLIC_URL+"/Categories/"}>
+
+                <button className={styles.btn}>Categories</button>
+                </Link>
                 <Link  to={process.env.PUBLIC_URL+"/Showcase/"}>
 
                 <button className={styles.btn}>Showcase</button>

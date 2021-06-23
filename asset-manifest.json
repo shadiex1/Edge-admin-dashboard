@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Edge-admin-dashboard/static/css/main.e7a5aa03.chunk.css",
-    "main.js": "/Edge-admin-dashboard/static/js/main.8f841a1c.chunk.js",
-    "main.js.map": "/Edge-admin-dashboard/static/js/main.8f841a1c.chunk.js.map",
-    "runtime-main.js": "/Edge-admin-dashboard/static/js/runtime-main.30babe53.js",
-    "runtime-main.js.map": "/Edge-admin-dashboard/static/js/runtime-main.30babe53.js.map",
-    "static/js/2.c29c0a85.chunk.js": "/Edge-admin-dashboard/static/js/2.c29c0a85.chunk.js",
-    "static/js/2.c29c0a85.chunk.js.map": "/Edge-admin-dashboard/static/js/2.c29c0a85.chunk.js.map",
-    "static/js/3.0362bbe2.chunk.js": "/Edge-admin-dashboard/static/js/3.0362bbe2.chunk.js",
-    "static/js/3.0362bbe2.chunk.js.map": "/Edge-admin-dashboard/static/js/3.0362bbe2.chunk.js.map",
+    "main.css": "/Edge-admin-dashboard/static/css/main.b21b5268.chunk.css",
+    "main.js": "/Edge-admin-dashboard/static/js/main.5adf2fbf.chunk.js",
+    "main.js.map": "/Edge-admin-dashboard/static/js/main.5adf2fbf.chunk.js.map",
+    "runtime-main.js": "/Edge-admin-dashboard/static/js/runtime-main.56212703.js",
+    "runtime-main.js.map": "/Edge-admin-dashboard/static/js/runtime-main.56212703.js.map",
+    "static/js/2.94ffaa6a.chunk.js": "/Edge-admin-dashboard/static/js/2.94ffaa6a.chunk.js",
+    "static/js/2.94ffaa6a.chunk.js.map": "/Edge-admin-dashboard/static/js/2.94ffaa6a.chunk.js.map",
+    "static/js/3.52856377.chunk.js": "/Edge-admin-dashboard/static/js/3.52856377.chunk.js",
+    "static/js/3.52856377.chunk.js.map": "/Edge-admin-dashboard/static/js/3.52856377.chunk.js.map",
     "index.html": "/Edge-admin-dashboard/index.html",
-    "static/css/main.e7a5aa03.chunk.css.map": "/Edge-admin-dashboard/static/css/main.e7a5aa03.chunk.css.map",
-    "static/js/2.c29c0a85.chunk.js.LICENSE.txt": "/Edge-admin-dashboard/static/js/2.c29c0a85.chunk.js.LICENSE.txt",
+    "static/css/main.b21b5268.chunk.css.map": "/Edge-admin-dashboard/static/css/main.b21b5268.chunk.css.map",
+    "static/js/2.94ffaa6a.chunk.js.LICENSE.txt": "/Edge-admin-dashboard/static/js/2.94ffaa6a.chunk.js.LICENSE.txt",
     "static/media/Image 5@3x.9b07d3a0.png": "/Edge-admin-dashboard/static/media/Image 5@3x.9b07d3a0.png",
     "static/media/Image 7@2x.f227fc2e.png": "/Edge-admin-dashboard/static/media/Image 7@2x.f227fc2e.png",
     "static/media/Image 87@3x.4abfa200.png": "/Edge-admin-dashboard/static/media/Image 87@3x.4abfa200.png",
@@ -22,9 +22,9 @@
     "static/media/greg-rakozy-oMpAz-DN-9I-unsplash.8bfdac0a.png": "/Edge-admin-dashboard/static/media/greg-rakozy-oMpAz-DN-9I-unsplash.8bfdac0a.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.30babe53.js",
-    "static/js/2.c29c0a85.chunk.js",
-    "static/css/main.e7a5aa03.chunk.css",
-    "static/js/main.8f841a1c.chunk.js"
+    "static/js/runtime-main.56212703.js",
+    "static/js/2.94ffaa6a.chunk.js",
+    "static/css/main.b21b5268.chunk.css",
+    "static/js/main.5adf2fbf.chunk.js"
   ]
 }

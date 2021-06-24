@@ -1,10 +1,13 @@
 .Categories{
     // background: #e0e0e0;
     // min-height: 100%;
+      a{
+               text-decoration: none;
+           }
     .categoriesFilter{
         display: flex;
         justify-content: center;
-        
+         
             button{
                 font-size: 20px;
                 font-weight: bold;

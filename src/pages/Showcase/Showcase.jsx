@@ -3,7 +3,6 @@ import styles from "./Showcase.module.scss";
 import Menu from "../../Components/Menu/Menu";
 import EditSliderImgs from "../../Components/EditSliderImgs/EditSliderImgs";
 import EditNewProducts from "../../Components/EditNewProducts/EditNewProducts";
-
 class Showcase extends Component {
     state = {
         files: [],
@@ -55,7 +54,6 @@ class Showcase extends Component {
         </div>
        {this.state.showSlider && <EditSliderImgs imgs={this.props.imgs}/>}
        {this.state.showNewProducts && <EditNewProducts AddNewProducts={(id)=>this.props.AddNewProducts(id)} DeleteNewProduct={this.props.DeleteNewProduct} newProducts={this.props.newProducts}/>}
-       
 
             </div>
         )

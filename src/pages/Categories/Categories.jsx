@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styles from "./Categories.module.scss";
 import Menu from "../../Components/Menu/Menu"
 import FiltersContainer from "../../Components/FiltersContainer/FiltersContainer";
+import {Link} from "react-router-dom"
 class Categories extends Component {
     state={
         showFirstCategory:false,
@@ -71,9 +72,10 @@ class Categories extends Component {
         </div>     
                
                {this.state.filters &&  <FiltersContainer filters={this.state.filters}/>}
-              
-               <button className={styles.add}>Add Filter</button>
+               <Link to={process.env.PUBLIC_URL+"/AddNewFilter"}>
 
+               <button className={styles.add}>Add Filter</button>
+</Link>
             </div>
         )
     }

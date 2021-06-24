@@ -3,6 +3,7 @@ import styles from "./Products.module.scss";
 import Menu from "../../Components/Menu/Menu";
 import ProductsFilter from "../../Components/ProductsFilter/ProductsFilter";
 import Product from "../../Components/Product/Product";
+import {Link} from "react-router-dom"
 class Products extends Component{
     state={
         category:"",
@@ -53,7 +54,15 @@ const filtred=products.filter(item=>item.category == category)
                 {this.state.products ? this.state.products.map(item=><Product filter={item.filter} category={item.category} img={item.img} code={item.code} englishName={item.englishName} arabicName={item.arabicName} price={item.price}/>): this.props.products.map(item=><Product filter={item.filter} category={item.category} img={item.img} code={item.code} englishName={item.englishName} arabicName={item.arabicName} price={item.price}/>)}
 
                 </div>
+                {/* <Link 
+    to={{ 
+    pathname:process.env.PUBLIC_URL+"/Addnew", 
+    state: { type: 'Product' } 
+  }}>                                         */}
+  {/* ////////////////////////// use this for specific filter or product */}
+  <Link to={process.env.PUBLIC_URL+"/AddNewProduct"}>
                 <button className={styles.add}>Add Product</button>
+                </Link>
             </div>
         )
     }

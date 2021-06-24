@@ -8,6 +8,7 @@ import SingleOrder from './pages/SingleOrder/SingleOrder';
 import Showcase from "./pages/Showcase/Showcase";
 import Products from './pages/Products/Products';
 import Categories from './pages/Categories/Categories';
+import Form from "./pages/Form/Form";
 import CarouselImg1 from "./assets/New folder/greg-rakozy-oMpAz-DN-9I-unsplash.png"
 import CarouselImg2 from "./assets/New folder/Image 5@3x.png"
 import CarouselImg3 from "./assets/New folder/Image 7@2x.png"
@@ -19,6 +20,9 @@ import ProductImg4 from "./assets/New folder/Image 94@3x.png"
 class App extends Component {
   state={
     imgs:[CarouselImg1,CarouselImg2,CarouselImg3,CarouselImg4],
+    colors:["red","green","yellow","blue","white","black","pink","violet","grey","maroon","brown"],
+    sizes:["S","M","L","XL","XXL"],
+    washings:[1,2,3],
 
     shipmentOptions:["ready for shipping","shipped","delivered"],
     paymentOptions:["pay on delivery","pending","approved"],
@@ -290,6 +294,8 @@ this.setState({
    <Route exact path={process.env.PUBLIC_URL + '/Categories'} component={() => <Categories categories={this.state.categories}filters={this.state.filters}/>} />
    <Route exact path={process.env.PUBLIC_URL + '/Showcase'} component={() => <Showcase AddNewProducts={(id=>this.AddNewProduct(id))} DeleteNewProduct={(id)=>this.DeleteNewProduct(id)} newProducts={this.state.newProducts} changeSliderImgs={(updatedSliderImgs)=>this.updateShowcaseImgs(updatedSliderImgs)} imgs={this.state.imgs} orders={this.state.orders} />}/>
    <Route exact path={process.env.PUBLIC_URL +`/Orders/SingleOrder/:id`} component={() => <SingleOrder orders={this.state.orders} paymentOptions={this.state.paymentOptions}  shipmentOptions={this.state.shipmentOptions}/>}/>    {/* //////// to be refactored */}
+   <Route exact path={process.env.PUBLIC_URL +`/AddNewProduct`} component={() => <Form type="Product" colors={this.state.colors} sizes={this.state.sizes} washings={this.state.washings} categories={this.state.categories} filters={this.state.filters} />}/> 
+   <Route exact path={process.env.PUBLIC_URL +`/AddNewFilter`} component={() => <Form type="Filter" filters={this.state.filters} categories={this.state.categories}/>}/>  
 
 
 

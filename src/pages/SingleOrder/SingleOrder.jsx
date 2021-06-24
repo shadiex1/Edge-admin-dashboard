@@ -15,7 +15,7 @@ class SingleOrder extends Component{
     let order=null
     if (this.props.match.params && this.props.match.params.id) {
        order=this.props.orders.find(order=> order.id == this.props.match.params.id) 
-
+      console.log(this.props.location.query,"shooof")
       }      
       const editShipmentHandler=()=>{
         this.setState({

@@ -1,12 +1,22 @@
 import React from "react";
 import styles from "./Product.module.scss";
-import { CloseIcon } from "../../Components/svg";
-
+import { CloseIcon,EditIcon } from "../../Components/svg";
+import {Link} from "react-router-dom"
 
 const Product=props=>{
+    const {code}=props
     return(
         <div className={styles.Product}>  
-         {props.deletable && <span onClick={props.DeleteNewProduct} className={styles.closeIcon}><CloseIcon/></span>   }  
+        <div className={styles.icons}>  
+         {props.editable &&    <Link 
+    to={{ 
+    pathname:process.env.PUBLIC_URL+"/AddnewProduct", 
+    state: { type: 'Product',id:code } 
+  }}>  <span className={styles.editIcon}><EditIcon/></span></Link>   }  
+                     {props.deletable && <span onClick={props.DeleteProduct} className={styles.closeIcon}><CloseIcon/></span>   }  
+      
+        </div>
+
                    <div className={styles.img}>
 
             <img src={props.img}/>  

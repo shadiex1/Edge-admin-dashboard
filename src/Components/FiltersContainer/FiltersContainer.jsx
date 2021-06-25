@@ -6,7 +6,7 @@ const FiltersContainer = (props)=>{
     return(
         <div className={styles.FiltersContainer}>
 
-           {props.filters.map(filter=> <Filter name={filter.englishName}/>)}
+           {props.filters.map(filter=> <Filter DeleteFilter={()=>props.DeleteFilter(filter.id)} id={filter.id} name={filter.englishName}/>)}
         </div>
     )
 }

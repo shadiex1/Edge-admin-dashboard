@@ -60,6 +60,12 @@
                 border: 1px solid #948b8b;
                 // width: 100%;
             }
+            input:disabled{
+                background: lemonchiffon;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+            }
         }
     }
     .btns{

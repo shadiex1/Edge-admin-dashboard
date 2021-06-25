@@ -67,4 +67,19 @@
             margin: auto;
             width: 73%;
         }
-    }}
+    }
+  .details{
+    text-decoration: none;
+    display: block;
+    width: 80px;
+    cursor: pointer;
+    text-align: center;
+    text-transform: capitalize;
+    color: #000;
+    font-weight: bold;
+    &:hover{
+      background-color: #d5293f;
+      color: #fff;
+    }
+  }
+  }

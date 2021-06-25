@@ -16,16 +16,50 @@ class Form extends Component {
     description: "",
     category: "",
     filter: "",
-    availbleFilters:""
+    availbleFilters:"",
+    edit:null
   };
-    //  setShipStatus=(e)=>{
-    //       this.setState({
-    //         color:e.target.value,
-    //       })
-    //   }
+
+  componentDidMount() {
+ this.editFormHandler()
+}
+
+editFormHandler=()=>{
+
+           if(this.props.location.state && this.props.location.state.type=="Filter"){
+           const receivedID=this.props.location.state.id
+           let filter=[...this.props.filters].find(item=>item.id==receivedID)
+           this.setState({
+             id:filter.id,
+             eName:filter.englishName,
+             aName:filter.arabicName,
+             category:filter.category,
+             edit:true
+           })
+           }else if (this.props.location.state && this.props.location.state.type=="Product"){
+            const receivedID=this.props.location.state.id
+            let product=[...this.props.products].find(item=>item.code==receivedID)
+
+                     this.setState({
+             id:product.code,
+             eName:product.englishName,
+             aName:product.arabicName,
+             category:product.category,
+             price:product.price,
+             filter:product.filter,
+             img:product.img,
+             washings:product.washings,
+             color:product.color,
+             size:product.size,
+             edit:true
+           })
+           }
+
+}
+
   handleChange = (e) => {
          const availbleFilters=[...this.props.filters].filter(item=>item.category === this.state.category)
-
+this.editFormHandler()
     
     this.setState({
       [e.target.name]: e.target.value,
@@ -56,18 +90,20 @@ class Form extends Component {
     return (
       <div className={styles.Form}>
         <Menu />
-        <h1>Add New {type}</h1>
+        {this.state.edit ? <h1>Edit {type}</h1> : <h1>Add New {type}</h1> }
+      
         <div className={styles.formGroups}>
           <div className={styles.formGroup}>
             <div>
               <label for="id">{type} ID :</label>
 
               <input
-                type="number"
+                type="text"
                 name="id"
                 id="id"
                 onChange={this.handleChange}
                 value={this.state.id}
+                disabled={this.state.edit}
               />
             </div>
             <div className={styles.img}>
@@ -82,10 +118,9 @@ class Form extends Component {
                 id="img"
                 onChange={this.fileSelectedHandler}
               />
-            
-                {this.state.img &&
-                        <img src={URL.createObjectURL(this.state.img)} />         
-                        }
+            {this.state.edit ? <img src={this.state.img}/>:this.state.img &&
+                        <img src={URL.createObjectURL(this.state.img)} />   }
+                
             </div>
           </div>
           <div className={styles.formGroup}>
@@ -116,6 +151,7 @@ class Form extends Component {
           <div className={styles.formGroup}>
             <div>
               <label for="aName">Arabic name : </label>
+
               <input
                 type="text"
                 name="aName"
@@ -134,7 +170,7 @@ class Form extends Component {
           this.handleChange(e)
         }}
       >
-        <option value=""></option>
+        <option value="">{this.state.washings}</option>
         {this.props.washings.map((option, i) => (
           <option key={i} value={option}>
             {option}
@@ -156,7 +192,7 @@ class Form extends Component {
           this.handleChange(e)
         }}
       >
-        <option value=""></option>
+        <option value="">{this.state.size}</option>
         {this.props.sizes.map((option, i) => (
           <option key={i} value={option}>
             {option}
@@ -177,7 +213,7 @@ name="color"
           this.handleChange(e)
         }}
       >
-        <option value=""></option>
+        <option value="">{this.state.color}</option>
         {this.props.colors.map((option, i) => (
           <option key={i} value={option}>
             {option}
@@ -224,7 +260,7 @@ name="color"
           this.handleChange(e)
         }}
       >
-        <option value=""></option>
+        <option value="">{this.state.category}</option>
         {this.props.categories.map((option, i) => (
           <option key={i} value={option}>
             {option}
@@ -253,8 +289,8 @@ name="color"
           </div>
         </div>
         <div className={styles.btns}>
-          <button>Accept</button>
-          <button>Cancel</button>
+          <button onClick={type==="Product" ?()=>this.props.submitProduct(this.state):()=>this.props.submitFilter(this.state)}>Accept</button>
+          <button onClick={()=>this.props.history.goBack()}>Cancel</button>
         </div>
       </div>
     );

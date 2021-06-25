@@ -609,10 +609,10 @@ function filterGreaterThan(rows, id, filterValue) {
           // to build the expander.
           
         //  row.original? <Link  to={process.env.PUBLIC_URL+`/Orders/SingleOrder/${row.original && row.original.id}`} >
-         row.original? <Link  to={process.env.PUBLIC_URL+`/Orders/SingleOrder/${row.original && row.original.id}`} >
+         row.original? <Link className={styles.details} to={process.env.PUBLIC_URL+`/Orders/SingleOrder/${row.original && row.original.id}`} >
 
 
-          <span  >
+          <span   >
             details
           </span>
           </Link>:null

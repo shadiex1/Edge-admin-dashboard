@@ -7,7 +7,7 @@ class Showcase extends Component {
     state = {
         files: [],
         showSlider:false,
-        showNewProducts:false
+        showNewProducts:true
       };
   
     // fileSelectedHandler = (e) => {
@@ -47,13 +47,14 @@ class Showcase extends Component {
     
 
 <div className={styles.OrderFilter}>
-            
+                            <button style={this.state.showNewProducts ?{backgroundColor:"#d5293f",color:"#fff"}: null} onClick={()=>this.showNewProductsHandler()} >New Products</button>
+
                 <button style={this.state.showSlider ?{backgroundColor:"#d5293f",color:"#fff"}: null} onClick={()=>this.showSliderHandler()}>Slider Images</button>
-                <button style={this.state.showNewProducts ?{backgroundColor:"#d5293f",color:"#fff"}: null} onClick={()=>this.showNewProductsHandler()} >New Products</button>
             
-        </div>
+        </div>      
+         {this.state.showNewProducts && <EditNewProducts AddNewProducts={(id)=>this.props.AddNewProducts(id)} DeleteProduct={(id)=>this.props.DeleteNewProduct(id)} newProducts={this.props.newProducts}/>}
+
        {this.state.showSlider && <EditSliderImgs imgs={this.props.imgs}/>}
-       {this.state.showNewProducts && <EditNewProducts AddNewProducts={(id)=>this.props.AddNewProducts(id)} DeleteNewProduct={this.props.DeleteNewProduct} newProducts={this.props.newProducts}/>}
 
             </div>
         )

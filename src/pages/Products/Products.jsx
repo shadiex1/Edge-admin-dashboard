@@ -3,6 +3,8 @@ import styles from "./Products.module.scss";
 import Menu from "../../Components/Menu/Menu";
 import ProductsFilter from "../../Components/ProductsFilter/ProductsFilter";
 import Product from "../../Components/Product/Product";
+import ReactPaginate from 'react-paginate';
+
 import {Link} from "react-router-dom"
 class Products extends Component{
     state={
@@ -51,7 +53,7 @@ const filtred=products.filter(item=>item.category == category)
                 <Menu/>
                 <ProductsFilter changeFilter={(category,filter)=>this.changeFilter(category,filter)} filters={this.props.filters} categories={this.props.categories}/>
                 <div className={styles.productsContainer}>
-                {this.state.products ? this.state.products.map(item=><Product filter={item.filter} category={item.category} img={item.img} code={item.code} englishName={item.englishName} arabicName={item.arabicName} price={item.price}/>): this.props.products.map(item=><Product filter={item.filter} category={item.category} img={item.img} code={item.code} englishName={item.englishName} arabicName={item.arabicName} price={item.price}/>)}
+                {this.state.products ? this.state.products.map(item=><Product DeleteProduct={()=>this.props.DeleteProduct(item.code)} editable deletable filter={item.filter} category={item.category} img={item.img} code={item.code} englishName={item.englishName} arabicName={item.arabicName} price={item.price}/>): this.props.products.map(item=><Product DeleteProduct={()=>this.props.DeleteProduct(item.code)}  editable deletable filter={item.filter} category={item.category} img={item.img} code={item.code} englishName={item.englishName} arabicName={item.arabicName} price={item.price}/>)}
 
                 </div>
                 {/* <Link 
@@ -60,6 +62,18 @@ const filtred=products.filter(item=>item.category == category)
     state: { type: 'Product' } 
   }}>                                         */}
   {/* ////////////////////////// use this for specific filter or product */}
+   <ReactPaginate
+          previousLabel={'previous'}
+          nextLabel={'next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={this.state.pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={this.handlePageClick}
+          containerClassName={'pagination'}
+          activeClassName={'active'}
+        />
   <Link to={process.env.PUBLIC_URL+"/AddNewProduct"}>
                 <button className={styles.add}>Add Product</button>
                 </Link>

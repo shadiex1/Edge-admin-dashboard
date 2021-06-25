@@ -92,6 +92,9 @@ category:"men",
 filter:"jacket",
 englishName:"Blue Jacket",
 arabicName:"جاكيت ازرق مفتوح",
+washings:2,
+color:"red",
+size:"L",
 price:300
     },{
       code:"W_B_J_145",
@@ -100,6 +103,9 @@ englishName:"Jeep Max",
 arabicName:" جيب ماكس ",
 category:"women",
 filter:"jeep",
+washings:3,
+color:"green",
+size:"XL",
 price:230
     }],
     products:[
@@ -108,6 +114,9 @@ img:ProductImg1,
 category:"men",
 filter:"jacket",
 englishName:"Blue Jacket",
+washings:3,
+color:"green",
+size:"XL",
 arabicName:"جاكيت ازرق مفتوح",
 price:300},{code:"W_B_J_145",
 img:ProductImg2,
@@ -125,6 +134,9 @@ price:300},{code:"55555",
 img:ProductImg2,
 englishName:"Orange sneaker",
 arabicName:" كوتشي برتقالي ",
+washings:3,
+color:"orange",
+size:"s",
 category:"kids",
 filter:"sneaker",
 price:230}
@@ -282,7 +294,66 @@ this.setState({
   newProducts:requestedProduct
 })
 }
+  DeleteProduct=(id)=>{
+    const newProducts=[...this.state.products]
+    // const index = newProducts.find(item.code==id).indexOf(img);
+    const requestedProduct = newProducts.filter(item=> item.code != id)
+   
+console.log(id)
 
+this.setState({
+  products:requestedProduct
+})
+}
+  DeleteFilter=(id)=>{
+    const filters=[...this.state.filters]
+    const requestedFilter = filters.filter(item=> item.id != id)
+   
+console.log(requestedFilter,id)
+this.setState({
+  filters:requestedFilter
+})
+}
+
+submitProduct=(item)=>{
+  const products=[...this.state.products]
+  const filterd=products.filter(product=>product.code != item.id)
+  const newItem={
+    
+    code:item.id,
+    img:item.img,
+    englishName:item.eName,
+    arabicName:item.aName,
+    washings:item.washings,
+    price:item.price,
+    color:item.color,
+    size:item.size,
+    category:item.category,
+    filter:item.filter
+
+  }
+  filterd.push(newItem)
+  this.setState({
+    products:filterd
+  })
+}
+submitFilter=(item)=>{
+  const filters=[...this.state.filters]
+  const filterd=filters.filter(filter=>filter.id != item.id)
+  const newItem={
+    
+    id:item.id,
+    img:item.img,
+    englishName:item.eName,
+    arabicName:item.aName,
+    category:item.category,
+
+  }
+  filterd.push(newItem)
+  this.setState({
+    filters:filterd
+  })
+}
   
   render(){
     return (
@@ -290,12 +361,12 @@ this.setState({
 
    <Route exact path={process.env.PUBLIC_URL + '/'} component={() => <Homepage />}/>
    <Route exact path={process.env.PUBLIC_URL + '/Orders'} component={() => <Orders orders={this.state.orders} />}/>
-   <Route exact path={process.env.PUBLIC_URL + '/Products'} component={() => <Products products={this.state.products} filters={this.state.filters} categories={this.state.categories}/>}/>
-   <Route exact path={process.env.PUBLIC_URL + '/Categories'} component={() => <Categories categories={this.state.categories}filters={this.state.filters}/>} />
+   <Route exact path={process.env.PUBLIC_URL + '/Products'} component={() => <Products DeleteProduct={(id)=>this.DeleteProduct(id)} products={this.state.products} filters={this.state.filters} categories={this.state.categories}/>}/>
+   <Route exact path={process.env.PUBLIC_URL + '/Categories'} component={() => <Categories DeleteFilter={(id)=>this.DeleteFilter(id)} categories={this.state.categories}filters={this.state.filters}/>} />
    <Route exact path={process.env.PUBLIC_URL + '/Showcase'} component={() => <Showcase AddNewProducts={(id=>this.AddNewProduct(id))} DeleteNewProduct={(id)=>this.DeleteNewProduct(id)} newProducts={this.state.newProducts} changeSliderImgs={(updatedSliderImgs)=>this.updateShowcaseImgs(updatedSliderImgs)} imgs={this.state.imgs} orders={this.state.orders} />}/>
    <Route exact path={process.env.PUBLIC_URL +`/Orders/SingleOrder/:id`} component={() => <SingleOrder orders={this.state.orders} paymentOptions={this.state.paymentOptions}  shipmentOptions={this.state.shipmentOptions}/>}/>    {/* //////// to be refactored */}
-   <Route exact path={process.env.PUBLIC_URL +`/AddNewProduct`} component={() => <Form type="Product" colors={this.state.colors} sizes={this.state.sizes} washings={this.state.washings} categories={this.state.categories} filters={this.state.filters} />}/> 
-   <Route exact path={process.env.PUBLIC_URL +`/AddNewFilter`} component={() => <Form type="Filter" filters={this.state.filters} categories={this.state.categories}/>}/>  
+   <Route exact path={process.env.PUBLIC_URL +`/AddNewProduct`} component={() => <Form submitProduct={item=>this.submitProduct(item)} type="Product" colors={this.state.colors} sizes={this.state.sizes} washings={this.state.washings} categories={this.state.categories} filters={this.state.filters} products={this.state.products}/>}/> 
+   <Route exact path={process.env.PUBLIC_URL +`/AddNewFilter`} component={() => <Form submitFilter={item=>this.submitFilter(item)}type="Filter" filters={this.state.filters} categories={this.state.categories}/>}/>  
 
 
 

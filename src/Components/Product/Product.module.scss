@@ -11,11 +11,22 @@
 height: 200px;
 border-radius: 15px;
 padding: 20px;
-.closeIcon{
-   
+&:hover{
+    .icons{
+        display: block;
+    }
+}
+ .icons{
+        display: flex;
         position: absolute;
-        top: 12px;
-        right: 20px;
+        // right: 13px;
+        left: 95%;
+        top: 13px;
+        justify-content: flex-end;
+        width: 100%;
+         display: none;
+         .closeIcon,.editIcon{
+        cursor: pointer;
         svg {
           width: .7rem;
         }
@@ -26,7 +37,41 @@ padding: 20px;
             }
           }
       }
-}
+    } 
+    .closeIcon{
+        svg{
+            height: 1rem;
+        }
+    }
+    .editIcon{
+        // top: 0;
+        // right: 30;
+        margin-right: .5rem;
+      
+        svg{  height: 1.1rem;
+            path{
+                fill: rgb(107, 107, 107);
+            }
+        }
+    }
+ 
+    }
+// .closeIcon{
+   
+//         position: absolute;
+//         top: 12px;
+//         right: 20px;
+//         svg {
+//           width: .7rem;
+//         }
+//         &:hover {
+//           svg {
+//             path {
+//               fill: #d5293f;
+//             }
+//           }
+//       }
+// }
     img{
         width: 10rem;
         height: 10rem;

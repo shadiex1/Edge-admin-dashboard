@@ -62,7 +62,7 @@ const filtred=products.filter(item=>item.category == category)
     state: { type: 'Product' } 
   }}>                                         */}
   {/* ////////////////////////// use this for specific filter or product */}
-   <ReactPaginate
+   {/* <ReactPaginate
           previousLabel={'previous'}
           nextLabel={'next'}
           breakLabel={'...'}
@@ -73,7 +73,7 @@ const filtred=products.filter(item=>item.category == category)
           onPageChange={this.handlePageClick}
           containerClassName={'pagination'}
           activeClassName={'active'}
-        />
+        /> */}
   <Link to={process.env.PUBLIC_URL+"/AddNewProduct"}>
                 <button className={styles.add}>Add Product</button>
                 </Link>

@@ -1,0 +1,50 @@
+.WarningPopup{
+    position: fixed;
+    top: 40%;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    width: 100%;
+    height: 100%;
+
+    .warning{
+        // position: relative;
+        z-index: 2;
+        background-color: #fff;
+        width: 500px;
+        height: 250px;
+        border-radius: 20px;
+        h2{
+            text-align: center;
+            margin: 3rem ;
+        }
+        .btns{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            // margin: 2.5rem auto;
+            button{
+                display: inline-block;
+                margin: 1.2rem;
+                width: 200px;
+                height: 50px;
+                border: none;
+                border-radius: 20px;
+                font-weight: bold;
+                &:hoveR{
+                background-color: #d5293f;
+                color: #fff;
+
+                }
+                cursor: pointer;
+        }
+        .accept{
+
+        }
+        }
+        
+    }
+}

@@ -4,6 +4,7 @@ import Menu from "../../Components/Menu/Menu";
 import ProductsFilter from "../../Components/ProductsFilter/ProductsFilter";
 import Product from "../../Components/Product/Product";
 import ReactPaginate from 'react-paginate';
+import WarningPopup from "../../Components/WarningPopup/WarningPopup";
 
 import {Link} from "react-router-dom"
 class Products extends Component{
@@ -50,9 +51,11 @@ const filtred=products.filter(item=>item.category == category)
     render(){
         return(
             <div className={styles.Products}>
+
                 <Menu/>
                 <ProductsFilter changeFilter={(category,filter)=>this.changeFilter(category,filter)} filters={this.props.filters} categories={this.props.categories}/>
-                <div className={styles.productsContainer}>
+                                        {/* <WarningPopup header={"are you sure you want to delete this product"} show/> */}
+<div className={styles.productsContainer}>
                 {this.state.products ? this.state.products.map(item=><Product DeleteProduct={()=>this.props.DeleteProduct(item.code)} editable deletable filter={item.filter} category={item.category} img={item.img} code={item.code} englishName={item.englishName} arabicName={item.arabicName} price={item.price}/>): this.props.products.map(item=><Product DeleteProduct={()=>this.props.DeleteProduct(item.code)}  editable deletable filter={item.filter} category={item.category} img={item.img} code={item.code} englishName={item.englishName} arabicName={item.arabicName} price={item.price}/>)}
 
                 </div>

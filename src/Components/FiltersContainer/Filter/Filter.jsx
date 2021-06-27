@@ -1,36 +1,56 @@
-import react from "react";
+import react, { Component } from "react";
 import styles from "./Filter.module.scss";
-import { CloseIcon,EditIcon } from "../../svg";
+import WarningPopup from "../../WarningPopup/WarningPopup";
+import { CloseIcon, EditIcon } from "../../svg";
 import { Link } from "react-router-dom";
 
-const Filter = (props)=>{
-    const {id,name}=props
-    return(
-        <div className={styles.container}>
-            <div className={styles.icons}>  
-                            <Link 
-    to={{ 
-    pathname:process.env.PUBLIC_URL+"/AddnewFilter", 
-    state: { type: 'Filter',id:id } 
-  }}>  
-
-
-                          <span className={styles.editIcon}><EditIcon/></span>    
-</Link>
-                <span onClick={props.DeleteFilter} className={styles.closeIcon}><CloseIcon/></span>    
-            </div>
-                     
-
-            <div className={styles.Filter}>
-            {name}
+class Filter extends Component {
+  state = {
+    showPopup: false,
+  };
+  render() {
+    const { name, id,DeleteFilter } = this.props;
+    return (
+      <div className={styles.container}>
+        {this.state.showPopup && (
+          <WarningPopup
+            accept={DeleteFilter}
+            cancel={() =>
+              this.setState({
+                showPopup: false,
+              })
+            }
+            show
+            header="Are you sure you want to delete this filter"
+          />
+        )}
+        <div className={styles.icons}>
+          <Link
+            to={{
+              pathname: process.env.PUBLIC_URL + "/AddnewFilter",
+              state: { type: "Filter", id: id },
+            }}
+          >
+            <span className={styles.editIcon}>
+              <EditIcon />
+            </span>
+          </Link>
+          <span
+            onClick={() =>
+              this.setState({
+                showPopup: true,
+              })
+            }
+            className={styles.closeIcon}
+          >
+            <CloseIcon />
+          </span>
         </div>
-        </div>
-        
-    )
+
+        <div className={styles.Filter}>{name}</div>
+      </div>
+    );
+  }
 }
 
-export default Filter
-
-
-
-            
+export default Filter;

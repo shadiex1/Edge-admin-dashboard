@@ -18,5 +18,21 @@
             margin: 30px;
             font-weight: bold;
         }
-    }
+        
+    }.publish{
+                margin: 30px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1de9b6;
+            color: white;
+            text-align: center;
+            width: 170px;
+            height: 50px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.3rem;
+
+        }
 }

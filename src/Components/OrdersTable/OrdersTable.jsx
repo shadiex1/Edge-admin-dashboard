@@ -524,104 +524,120 @@ function filterGreaterThan(rows, id, filterValue) {
   // )
   const columns = React.useMemo(
     () => [
-    //   {
-    //     // Make an expander cell
-    //     Header: () => null, // No header
-    //     id: 'expander', // It needs an ID
-    //     Cell: ({ row }) => (
-    //       // Use Cell to render an expander for each row.
-    //       // We can use the getToggleRowExpandedProps prop-getter
-    //       // to build the expander.
-    //       <span {...row.getToggleRowExpandedProps()}>
-    //         details
-    //       </span>
-    //     ),
-    //   },
-      {
-        Header: '#',
-        columns: [
-          {
-            Header: 'ID',
-            accessor: 'id',
-          },
-        //   /////////////////////////////////// ast5dm al fuzzy text dah
-        //   {
-        //     Header: 'Last Name',
-        //     accessor: 'lastName',
-        //     // Use our custom `fuzzyText` filter on this column
-        //     filter: 'fuzzyText',
-        //   },
-        ],
-        
-      },
-      {
-          Header:"Date",
-          columns:[{
-              Header:"Date",
-              accessor:"date"
-          }]
-      },
-      {
-        Header: 'Price',
-        columns: [
-          {
-            Header: 'Product price',
-            accessor: 'productprice',
-            Filter: NumberRangeColumnFilter,
-            filter: 'between',
-          },
-          {
-            Header: 'Shipment price',
-            accessor: 'shipmentPrice',
-            Filter: NumberRangeColumnFilter,
-            filter: 'between',
-            
-          },
-          {
-            Header: 'Total price',
-            accessor: 'totalPrice',
-            Filter: NumberRangeColumnFilter,
-            filter: 'between',
-          }
-        ],
-      },{
-          Header:"Status",
-          columns:[
-              {Header:"Shipment",
-            accessor:"shipmentStatus",
-        Filter:SelectColumnFilter,
-    filter:"includes"}
-            ,
-              {Header:"Payment",
-            accessor:"paymentMethod", Filter: SelectColumnFilter,
-            filter: 'includes',}
-          ]
+      //   {
+      //     // Make an expander cell
+      //     Header: () => null, // No header
+      //     id: 'expander', // It needs an ID
+      //     Cell: ({ row }) => (
+      //       // Use Cell to render an expander for each row.
+      //       // We can use the getToggleRowExpandedProps prop-getter
+      //       // to build the expander.
+      //       <span {...row.getToggleRowExpandedProps()}>
+      //         details
+      //       </span>
+      //     ),
+      //   },
+      // {
+      //   Header: '#',
+      //   columns: [
+      //     {
+      //       Header: 'ID',
+      //       accessor: 'id',
+      //     },
+      //   //   /////////////////////////////////// ast5dm al fuzzy text dah
+      //   //   {
+      //   //     Header: 'Last Name',
+      //   //     accessor: 'lastName',
+      //   //     // Use our custom `fuzzyText` filter on this column
+      //   //     filter: 'fuzzyText',
+      //   //   },
+      //   ],
 
+      // },
+      {
+        Header: "Date",
+        columns: [
+          {
+            Header: "Date",
+            accessor: "orderDate",
+          },
+        ],
+      },
+      {
+        Header: "Price",
+        columns: [
+          {
+            Header: "Product price",
+            accessor: "productsPrice",
+            Filter: NumberRangeColumnFilter,
+            filter: "between",
+          },
+          {
+            Header: "Shipment price",
+            accessor: "shippmentPrice",
+            Filter: NumberRangeColumnFilter,
+            filter: "between",
+          },
+          {
+            Header: "Total price",
+            accessor: "totalPrice",
+            Filter: NumberRangeColumnFilter,
+            filter: "between",
+          },
+        ],
+      },
+      {
+        Header: "Status",
+        columns: [
+          {
+            Header: "Shipment",
+            accessor: "shippmentState",
+            Filter: SelectColumnFilter,
+            filter: "includes",
+          },
+        ],
       },
       {
         // Make an expander cell
         Header: () => null, // No header
-        id: 'expander', // It needs an ID
-        
-        Cell: ({ row }) => (
+        id: "expander", // It needs an ID
+
+        Cell: ({ row }) =>
           // Use Cell to render an expander for each row.
           // We can use the getToggleRowExpandedProps prop-getter
           // to build the expander.
-          
-        //  row.original? <Link  to={process.env.PUBLIC_URL+`/Orders/SingleOrder/${row.original && row.original.id}`} >
-         row.original? <Link className={styles.details} to={process.env.PUBLIC_URL+`/Orders/SingleOrder/${row.original && row.original.id}`} >
 
-
-          <span   >
-            details
-          </span>
-          </Link>:null
-
-        ),
-      }
+          //  row.original? <Link  to={process.env.PUBLIC_URL+`/Orders/SingleOrder/${row.original && row.original.id}`} >
+          row.original ? (
+            // <Link
+            //   className={styles.details}
+            //   to={
+            //     process.env.PUBLIC_URL +
+            //     `/Orders/SingleOrder/`
+            //   }
+            // >
+            <Link
+              className={styles.details}
+              to={{
+                pathname:
+                  process.env.PUBLIC_URL +
+                  `/Orders/SingleOrder/${row.original && row.original.ID}`,
+                state: {
+                  ID: row.original.ID,
+                  productsDetails: row.original.productsDetails,
+                  shippmentDetails: row.original.shippmentDetails,
+                  shippmentState:row.original.shippmentState
+                },
+              }}
+            >
+              {console.log(row.original, "al single bayen")}
+              <span>details</span>
+            </Link>
+          ) : null,
+      },
     ],
     []
-  )
+  );
 
   const data = React.useMemo(() => makeData(10), [])
 

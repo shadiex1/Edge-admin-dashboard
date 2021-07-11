@@ -22,7 +22,7 @@ class EditNewProducts extends Component{
             <p className={styles.header}>Showcase New Products</p>
 
         <div className={styles.newProducts}>
-            {this.props.newProducts? <div className={styles.products}>  { this.props.newProducts.map(product=><Product deletable DeleteProduct={()=>this.props.DeleteProduct(product.code)}  code={product.code} img={product.img} englishName={product.englishName} arabicName={product.arabicName} price={product.price} category={product.category} filter={product.filter} />) }
+            {this.props.newProducts? <div className={styles.products}>  { this.props.newProducts.map(product=><Product deletable DeleteProduct={()=>this.props.DeleteProduct(product.code)}  code={product.productID} img={product.imageURL} englishName={product.engName} arabicName={product.araName} price={product.price} category={product.categoryID} key={product.productID} filter={product.filterID} />) }
             </div>: <div>No Products Availble</div>}
             
             <div className={styles.add}>

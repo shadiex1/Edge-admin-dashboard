@@ -17,74 +17,78 @@ import ProductImg1 from "./assets/New folder/Image 87@3x.png"
 import ProductImg2 from "./assets/New folder/Image 89@3x.png"
 import ProductImg3 from "./assets/New folder/Image 90@3x.png"
 import ProductImg4 from "./assets/New folder/Image 94@3x.png"
+import axios from "axios"
+
 class App extends Component {
   state={
     imgs:[CarouselImg1,CarouselImg2,CarouselImg3,CarouselImg4],
-    colors:["red","green","yellow","blue","white","black","pink","violet","grey","maroon","brown"],
+    colors:["Blue","White","Black"],
     sizes:["S","M","L","XL","XXL"],
     washings:[1,2,3],
-
+    sizeType:["C","N"],
     shipmentOptions:["ready for shipping","shipped","delivered"],
     paymentOptions:["pay on delivery","pending","approved"],
     categories:["men","women","kids"],
-    filters:[
-      {
-        id:1,
-        category:"men",
-        englishName:"shirt",
-        arabicName:"تيشرت",
+    // filters:[
+    //   {
+    //     id:1,
+    //     category:"men",
+    //     englishName:"shirt",
+    //     arabicName:"تيشرت",
+    //     img:""
         
-      },
-      {
-        id:2,
-        category:"women",
-        englishName:"shirt",
-        arabicName:"تيشرت",
+    //   },
+    //   {
+    //     id:2,
+    //     category:"women",
+    //     englishName:"shirt",
+    //     arabicName:"تيشرت",
         
-      },
-      {
-        id:3,
-        category:"kids",
-        englishName:"shirt",
-        arabicName:"تيشرت",
+    //   },
+    //   {
+    //     id:3,
+    //     category:"kids",
+    //     englishName:"shirt",
+    //     arabicName:"تيشرت",
         
-      },
-      {
-        id:4,
-        category:"women",
-        englishName:"dress",
-        arabicName:"فستان",
+    //   },
+    //   {
+    //     id:4,
+    //     category:"women",
+    //     englishName:"dress",
+    //     arabicName:"فستان",
         
-      },
-      {
-        id:5,
-        category:"women",
-        englishName:"jeep",
-        arabicName:"جيبة",
+    //   },
+    //   {
+    //     id:5,
+    //     category:"women",
+    //     englishName:"jeep",
+    //     arabicName:"جيبة",
         
-      },
-      {
-        id:6,
-        category:"kids",
-        englishName:"sneaker",
-        arabicName:"كوتشي",
+    //   },
+    //   {
+    //     id:6,
+    //     category:"kids",
+    //     englishName:"sneaker",
+    //     arabicName:"كوتشي",
         
-      },
-      {
-        id:7,
-        category:"men",
-        englishName:"pants",
-        arabicName:"بنطلون",
+    //   },
+    //   {
+    //     id:7,
+    //     category:"men",
+    //     englishName:"pants",
+    //     arabicName:"بنطلون",
         
-      },
-      {
-        id:8,
-        category:"men",
-        englishName:"jacket",
-        arabicName:"جاكيت",
+    //   },
+    //   {
+    //     id:8,
+    //     category:"men",
+    //     englishName:"jacket",
+    //     arabicName:"جاكيت",
         
-      },
-    ],
+    //   },
+    // ]
+    
     newProducts:[{
       code:"M_B_J_121",
 img:ProductImg1,
@@ -284,6 +288,34 @@ price:230}
    
   }
 
+  componentDidMount(){
+      const fetchCategories = () => {
+      return  axios
+        .get("http://18.221.156.111:3001/admin/mobile/category/list")
+        .then((categories) =>
+          this.setState({
+            categories: categories.data.data,
+          })
+        );
+ 
+    
+        }   
+        const fetchFilters = () => {
+      return  axios
+        .get("http://18.221.156.111:3001/admin/mobile/filter/list")
+        .then((filter) =>
+          this.setState({
+            filters: filter.data.data,
+          })
+        );
+ 
+    
+        }   
+
+         fetchCategories();
+         fetchFilters();
+    }
+
   DeleteNewProduct=(id)=>{
     const newProducts=[...this.state.newProducts]
     // const index = newProducts.find(item.code==id).indexOf(img);
@@ -365,7 +397,7 @@ submitFilter=(item)=>{
    <Route exact path={process.env.PUBLIC_URL + '/Categories'} component={() => <Categories DeleteFilter={(id)=>this.DeleteFilter(id)} categories={this.state.categories}filters={this.state.filters}/>} />
    <Route exact path={process.env.PUBLIC_URL + '/Showcase'} component={() => <Showcase AddNewProducts={(id=>this.AddNewProduct(id))} DeleteNewProduct={(id)=>this.DeleteNewProduct(id)} newProducts={this.state.newProducts} changeSliderImgs={(updatedSliderImgs)=>this.updateShowcaseImgs(updatedSliderImgs)} imgs={this.state.imgs} orders={this.state.orders} />}/>
    <Route exact path={process.env.PUBLIC_URL +`/Orders/SingleOrder/:id`} component={() => <SingleOrder orders={this.state.orders} paymentOptions={this.state.paymentOptions}  shipmentOptions={this.state.shipmentOptions}/>}/>    {/* //////// to be refactored */}
-   <Route exact path={process.env.PUBLIC_URL +`/AddNewProduct`} component={() => <Form submitProduct={item=>this.submitProduct(item)} type="Product" colors={this.state.colors} sizes={this.state.sizes} washings={this.state.washings} categories={this.state.categories} filters={this.state.filters} products={this.state.products}/>}/> 
+   <Route exact path={process.env.PUBLIC_URL +`/AddNewProduct`} component={() => <Form sizeType={this.state.sizeType} submitProduct={item=>this.submitProduct(item)} type="Product" colors={this.state.colors} sizes={this.state.sizes} washings={this.state.washings} categories={this.state.categories} filters={this.state.filters} products={this.state.products}/>}/> 
    <Route exact path={process.env.PUBLIC_URL +`/AddNewFilter`} component={() => <Form submitFilter={item=>this.submitFilter(item)}type="Filter" filters={this.state.filters} categories={this.state.categories}/>}/>  
 
 

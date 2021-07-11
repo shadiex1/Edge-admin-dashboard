@@ -4,17 +4,35 @@ import Order from "../../Components/Order/Order";
 import Menu from "../../Components/Menu/Menu";
 import OrderFilter from "../../Components/OrderFilter/OrderFilter";
 import OrdersTable from "../../Components/OrdersTable/OrdersTable"
+import {fetchOrders} from "../../Data"
 class Orders extends Component{
+    state={
+        orders:null
+    }
+
+    componentDidMount(){
+        fetchOrders().then((fetchedOrders) =>this.setState({
+            orders:fetchedOrders.data
+        }))
+    }
+//     fetchProducts(category, 0, 6).then((fetchedProducts) =>
+//   this.setState({
+//     products: fetchedProducts.data,
+//   })
+        componentDidUpdate(){
+        console.log(this.state);
+
+        }
     render(){
-        return(
-        <div className={styles.Orders}>
-            <Menu/>
+        return (
+          <div className={styles.Orders}>
+            <Menu />
             {/* <OrderFilter/> */}
-            <OrdersTable orders={this.props.orders}/>
-            
+            {this.state.orders && <OrdersTable orders={this.state.orders} />}
+
             {/* <Order/> */}
-        </div>
-    )
+          </div>
+        );
     }
     
 }

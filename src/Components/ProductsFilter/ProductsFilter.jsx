@@ -38,7 +38,7 @@ class ProductsFilter extends Component{
                 category:e.target.value
             })   
             this.props.changeFilter(e.target.value)
-
+            // console.log(this.state.category)
                 
 
         }}
@@ -48,8 +48,8 @@ class ProductsFilter extends Component{
     return <li key={igKey}><span style={{textTransfrom:"capitalize"}}>{igKey}</span>: {this.props.ingredients[igKey]}</li> */}
         <option value="All">All</option>
         {this.props.categories.map((option, i) => (
-          <option key={i} value={option}>
-            {option}
+          <option key={i} value={option.ID}>
+            {option.engName}
           </option>
         ))}
       </select></div>
@@ -67,9 +67,9 @@ class ProductsFilter extends Component{
 {/* const ingredientSummary = Object.keys(this.props.ingredients).map(igKey=>{
     return <li key={igKey}><span style={{textTransfrom:"capitalize"}}>{igKey}</span>: {this.props.ingredients[igKey]}</li> */}
         <option value="All">All</option>
-        {this.props.filters.filter(item=>item.category==this.state.category).map((option, i) => (
-          <option key={i} value={option.englishName}>
-            {option.englishName}
+        {this.props.filters.filter(item=>item.categoryID==this.state.category).map((option, i) => (
+          <option key={i} value={option.ID}>
+            {option.engName}
           </option>
         ))}
       </select></div> }

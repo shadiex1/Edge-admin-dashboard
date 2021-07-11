@@ -3,16 +3,28 @@ import styles from "./Showcase.module.scss";
 import Menu from "../../Components/Menu/Menu";
 import EditSliderImgs from "../../Components/EditSliderImgs/EditSliderImgs";
 import EditNewProducts from "../../Components/EditNewProducts/EditNewProducts";
+import { fetchNewProducts } from "../../Data";
 class Showcase extends Component {
     state = {
-        files: [],
+        imgs: [],
         showSlider:false,
-        showNewProducts:true
+        showNewProducts:true,
+        newProducts:null
       };
   
-    // fileSelectedHandler = (e) => {
-    //     this.setState({ files: [...this.state.files, ...e.target.files] })
-    //   }
+    componentDidMount(){
+      fetchNewProducts().then((fetchedData) =>
+        this.setState({
+          imgs: fetchedData.data.slides,
+          newProducts:fetchedData.data.newProducts
+        })
+        // console.log(fetchedData,"al data aheeeeeee")
+      );      
+    }
+    componentDidUpdate(){
+            console.log(this.state, "state al showcase");
+
+    }
       showSliderHandler=()=>{
         this.setState({
           showSlider:true,
@@ -52,9 +64,9 @@ class Showcase extends Component {
                 <button style={this.state.showSlider ?{backgroundColor:"#d5293f",color:"#fff"}: null} onClick={()=>this.showSliderHandler()}>Slider Images</button>
             
         </div>      
-         {this.state.showNewProducts && <EditNewProducts AddNewProducts={(id)=>this.props.AddNewProducts(id)} DeleteProduct={(id)=>this.props.DeleteNewProduct(id)} newProducts={this.props.newProducts}/>}
+         {this.state.newProducts && this.state.showNewProducts && <EditNewProducts AddNewProducts={(id)=>this.props.AddNewProducts(id)} DeleteProduct={(id)=>this.props.DeleteNewProduct(id)} newProducts={this.state.newProducts}/>}
 
-       {this.state.showSlider && <EditSliderImgs imgs={this.props.imgs}/>}
+       {this.state.showSlider && <EditSliderImgs imgs={this.state.imgs}/>}
 
             </div>
         )

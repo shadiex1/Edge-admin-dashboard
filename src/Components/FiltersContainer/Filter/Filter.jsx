@@ -1,6 +1,7 @@
 import react, { Component } from "react";
 import styles from "./Filter.module.scss";
 import WarningPopup from "../../WarningPopup/WarningPopup";
+import {deleteFilter} from "../../../Data"
 import { CloseIcon, EditIcon } from "../../svg";
 import { Link } from "react-router-dom";
 
@@ -14,7 +15,7 @@ class Filter extends Component {
       <div className={styles.container}>
         {this.state.showPopup && (
           <WarningPopup
-            accept={DeleteFilter}
+            accept={()=>deleteFilter(id) && this.setState({showPopup:false})}
             cancel={() =>
               this.setState({
                 showPopup: false,

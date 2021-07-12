@@ -19,6 +19,24 @@
             width: 100%;
             // justify-content: space-between;
             align-items: center;
+            .checkboxContainer{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 60%;
+                flex-wrap: wrap;
+                label{
+                    // width: 60%;
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    justify-content: center;
+               
+                    input{
+                        width: 40px;
+                    }
+                }
+            }
             .img{
 
                 display: flex;

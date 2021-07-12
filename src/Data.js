@@ -120,7 +120,7 @@ axios({
   
 }).then(function (response) {
     //handle success
-    console.log(response);
+    console.log(response,"kolh tmam");
   })
   .catch(function (response) {
     //handle error
@@ -134,6 +134,23 @@ axios({
 
 
         }  
+    export const modifyShowcase=(showcaseOBJ)=>{
+axios({
+  method: 'post',
+  url: "http://18.221.156.111:3001/admin/mobile/Home/upd",
+  headers: {}, 
+  data: 
+    showcaseOBJ
+  
+}).then(function (response) {
+    //handle success
+    console.log(response);
+  })
+  .catch(function (response) {
+    //handle error
+    console.log("laaaaa");
+  });;
+        } 
   export const fetchOrders=(productID)=>{
 
         return axios.get("http://18.221.156.111:3001/admin/order/list").then(response => response.data)

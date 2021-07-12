@@ -30,9 +30,9 @@ class Menu extends Component{
             <li className={styles.Link}>Showcase</li>
           </Link>
         </ul>
-        <div onClick={()=>this.setState({
+        {/* <div onClick={()=>this.setState({
             showPopup:true
-        })} className={styles.publish}>Publish</div>
+        })} className={styles.publish}>Publish</div> */}
         {this.state.showPopup && <WarningPopup
         accept={()=>this.setState({
             showPopup:false

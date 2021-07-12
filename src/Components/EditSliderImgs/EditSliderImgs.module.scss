@@ -44,7 +44,7 @@
 
         // width: 20rem;
         height: 30rem;
-        // object-fit: cover;
+        object-fit: cover;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -52,7 +52,7 @@
           // height: 25rem;
           
           width: 100%;
-          object-fit: cover;
+          object-fit: contain;
         }
     }
 

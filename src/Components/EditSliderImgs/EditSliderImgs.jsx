@@ -43,7 +43,7 @@ class EditSliderImgs extends Component{
               >
                 {this.props.imgs.map((img) => (
                   <div className={styles.carouselImg}>
-                    <img src={`http://18.221.156.111:3001/${img}.png`} />
+                    <img src={`http://18.221.156.111:3001/${img}`} />
                     {console.log(img,"kol wahed lew7do")}
                   </div>
                 ))}

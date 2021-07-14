@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styles from "./SingleOrder.module.scss";
 import {withRouter} from "react-router-dom";
 import logo from "../../assets/logo.png";
+import {modifyShippment} from "../../Data"
 import Menu from "../../Components/Menu/Menu"
 class SingleOrder extends Component{
   state={
@@ -150,7 +151,12 @@ class SingleOrder extends Component{
                     >
                       Edit
                     </button>
-                    {this.state.shipStatus && <button>submit</button>}
+                    {this.state.shipStatus && (
+                      <button onClick={() => modifyShippment(order.ID,this.state.shipStatus)}>
+                        submit
+                      </button>
+                    )}
+                    {console.log(this.state, "al single state")}
                   </div>
                 </div>
               ) : null}

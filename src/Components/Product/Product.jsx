@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import styles from "./Product.module.scss";
 import WarningPopup from "../WarningPopup/WarningPopup";
 import { CloseIcon,EditIcon } from "../../Components/svg";
-import { deleteProduct } from "../../Data";
+import { deleteProduct, fetchFilter } from "../../Data";
 import {Link} from "react-router-dom"
 
 class Product extends Component{
     state={
         showPopup:false,
-        category:""
+        category:"",
+        filter:""
     }
     // if props = 1 category = men
     componentDidMount(){
@@ -25,10 +26,17 @@ class Product extends Component{
           category:"Kids"
         })
       }
+
+      fetchFilter(this.props.filter).then(filter=>
+        this.setState({
+          filter:filter.data.engName
+        })
+        )
+
     }
 
     DeleteProduct=(id)=>{
-      deleteProduct(id)
+      this.props.DeleteProduct(id);
       this.setState({
         showPopup:false
       })
@@ -104,7 +112,8 @@ class Product extends Component{
               Category : <span>{this.state.category}</span>
             </p>
             <p>
-              Filter : <span>{this.props.filter}</span>
+              Filter : <span>{this.state.filter}</span>
+              {console.log(this.props,"al prod")}
             </p>
           </div>
         </div>

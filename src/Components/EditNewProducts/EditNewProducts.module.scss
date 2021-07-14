@@ -17,14 +17,20 @@
        justify-content: center;
        button{
            border: none;
-           width: 80px;
-           height: 30px;
+           width: 100px;
+           height: 40px;
            margin-left: 20px;
            cursor: pointer;
            &:hover{
                color: #fff;
                background-color: #d5293f;
            }
-       }
+       } 
+       .submit{
+       background: #8BC34A;
+               color: #fff;
+
     }
+    }
+   
 }

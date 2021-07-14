@@ -39,18 +39,18 @@ class Showcase extends Component {
      
       imgs.forEach(item=>this.uploadImg(item))
       this.setState({
-        currentImgs:namesArr
+        imgs:namesArr
       })
     modifyShowcase({
-      newProducts:[1234],
+      // newProducts:this.state.newProducts,
       slides:namesArr
     })
   }
-  submitNewProducts=(id)=>{
+  submitNewProducts=(IDS)=>{
 
     modifyShowcase({
-      newProducts: [...id],
-      slides: this.state.currentImgs
+      newProducts: IDS,
+      slides: this.state.imgs
     });
 
   }
@@ -111,8 +111,10 @@ class Showcase extends Component {
             AddNewProducts={(id) => this.submitNewProducts(id)}
             DeleteProduct={(id) => this.props.DeleteNewProduct(id)}
             newProducts={this.state.newProducts}
+            submit={(IDS) => this.submitNewProducts(IDS)}
           />
         )}
+        {console.log(this.state, "bara")}
 
         {this.state.showSlider && (
           <EditSliderImgs

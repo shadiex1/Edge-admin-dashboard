@@ -9,6 +9,7 @@ import {
   modifyFilter,
   AddProduct,
   fetchProduct,
+  modifyProduct,
 } from "../../Data";
 import axios from "axios";
 class Form extends Component {
@@ -254,6 +255,23 @@ class Form extends Component {
     if (this.props.type === "Product") {
       if (this.state.edit) {
         ///edit
+        modifyProduct({
+          productID: this.state.id,
+          engName: this.state.eName,
+          araName: this.state.aName,
+          imageURL: this.state.img.name,
+          price: this.state.price,
+          categoryID: this.state.category,
+          filterID: this.state.filter,
+          details: {
+            sizeType: this.state.sizeType,
+            availableSizes: this.state.sizes,
+            color: this.state.color,
+            washings: this.state.washings,
+            engDesc: this.state.engDescription,
+            araDesc: this.state.araDescription,
+          },
+        });
       } else {
         AddProduct({
           productID: this.state.id,
@@ -548,7 +566,7 @@ class Form extends Component {
                   this.handleChange(e);
                 }}
               >
-                <option value="">{this.state.categoryName}</option>
+                <option value="">{this.state.category}</option>
                 {this.state.categories.map((option, i) => (
                   <option key={i} value={option.ID}>
                     {option.engName}

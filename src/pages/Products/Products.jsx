@@ -7,7 +7,8 @@ import ReactPaginate from 'react-paginate';
 import WarningPopup from "../../Components/WarningPopup/WarningPopup";
 import Axios from "axios"
 import {Link} from "react-router-dom";
-import { fetchProducts } from "../../Data";
+import { fetchProducts,      deleteProduct
+ } from "../../Data";
 import axios from "axios";
 class Products extends Component {
   state = {
@@ -68,8 +69,8 @@ fetchProducts(category, 0, 6).then((fetchedProducts) =>
       return axios
         .get("http://18.221.156.111:3001/admin/mobile/product/list", {
           params:{
-              categoryID:1,
-              // pageIndex:1,
+              // categoryID:1,
+              pageIndex:0,
               // pageSize:5
           }        })
         .then((products) =>
@@ -83,24 +84,24 @@ fetchProducts(category, 0, 6).then((fetchedProducts) =>
          fetchData();
 
   }
-  componentDidUpdate(){
-    const fetchData = () => {
-      return axios
-        .get("http://18.221.156.111:3001/admin/mobile/product/list", {
-          params: {
-            categoryID: 1,
-            // pageIndex:1,
-            // pageSize:5
-          },
-        })
-        .then((products) =>
-          this.setState({
-            products: products.data.data,
-          })
-        );
-    };
-    fetchData();
-  }
+  // componentDidUpdate(){
+  //   const fetchData = () => {
+  //     return axios
+  //       .get("http://18.221.156.111:3001/admin/mobile/product/list", {
+  //         params: {
+  //           categoryID: 1,
+  //           // pageIndex:1,
+  //           // pageSize:5
+  //         },
+  //       })
+  //       .then((products) =>
+  //         this.setState({
+  //           products: products.data.data,
+  //         })
+  //       );
+  //   };
+  //   fetchData();
+  // }
   render() {
     return (
       <div className={styles.Products}>
@@ -114,10 +115,10 @@ fetchProducts(category, 0, 6).then((fetchedProducts) =>
         />
         {/* <WarningPopup header={"are you sure you want to delete this product"} show/> */}
         <div className={styles.productsContainer}>
-          {this.state.products
+          {this.state.products && this.state.products.length
             ? this.state.products.map((item) => (
                 <Product
-                  DeleteProduct={() => this.props.DeleteProduct(item.code)}
+                  DeleteProduct={() => deleteProduct(item.productID)}
                   editable
                   deletable
                   filter={item.filterID}
@@ -130,20 +131,8 @@ fetchProducts(category, 0, 6).then((fetchedProducts) =>
                   key={item.productID}
                 />
               ))
-            : this.props.products.map((item) => (
-                <Product
-                  DeleteProduct={() => this.props.DeleteProduct(item.code)}
-                  editable
-                  deletable
-                  filter={item.filter}
-                  category={item.category}
-                  img={item.img}
-                  code={item.code}
-                  englishName={item.englishName}
-                  arabicName={item.arabicName}
-                  price={item.price}
-                />
-              ))}
+            : <p>No products Availble </p>
+              }
         </div>
         {/* <Link 
     to={{ 

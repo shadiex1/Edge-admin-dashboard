@@ -559,7 +559,7 @@ function filterGreaterThan(rows, id, filterValue) {
         columns: [
           {
             Header: "Date",
-            accessor: "orderDate",
+            accessor: "formatedDate",
           },
         ],
       },
@@ -598,6 +598,17 @@ function filterGreaterThan(rows, id, filterValue) {
         ],
       },
       {
+        Header: "Governorate",
+        columns: [
+          {
+            Header: "Governorate",
+            accessor: "governorate",
+            Filter: SelectColumnFilter,
+            filter: "includes",
+          },
+        ],
+      },
+      {
         // Make an expander cell
         Header: () => null, // No header
         id: "expander", // It needs an ID
@@ -626,7 +637,7 @@ function filterGreaterThan(rows, id, filterValue) {
                   ID: row.original.ID,
                   productsDetails: row.original.productsDetails,
                   shippmentDetails: row.original.shippmentDetails,
-                  shippmentState:row.original.shippmentState
+                  shippmentState: row.original.shippmentState,
                 },
               }}
             >
@@ -650,6 +661,7 @@ function filterGreaterThan(rows, id, filterValue) {
         }}
       >
         <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
+        {console.log(row.values,"gggh")}
       </pre>
     ),
     []

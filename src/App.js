@@ -26,68 +26,8 @@ class App extends Component {
     sizes:["S","M","L","XL","XXL"],
     washings:[1,2,3],
     sizeType:["C","N"],
-    shipmentOptions:["ready for shipping","shipped","delivered"],
-    paymentOptions:["pay on delivery","pending","approved"],
+    shipmentOptions:["Confirmed","Ready for shipping","Shipped","Received","Rejected"],
     categories:["men","women","kids"],
-    // filters:[
-    //   {
-    //     id:1,
-    //     category:"men",
-    //     englishName:"shirt",
-    //     arabicName:"تيشرت",
-    //     img:""
-        
-    //   },
-    //   {
-    //     id:2,
-    //     category:"women",
-    //     englishName:"shirt",
-    //     arabicName:"تيشرت",
-        
-    //   },
-    //   {
-    //     id:3,
-    //     category:"kids",
-    //     englishName:"shirt",
-    //     arabicName:"تيشرت",
-        
-    //   },
-    //   {
-    //     id:4,
-    //     category:"women",
-    //     englishName:"dress",
-    //     arabicName:"فستان",
-        
-    //   },
-    //   {
-    //     id:5,
-    //     category:"women",
-    //     englishName:"jeep",
-    //     arabicName:"جيبة",
-        
-    //   },
-    //   {
-    //     id:6,
-    //     category:"kids",
-    //     englishName:"sneaker",
-    //     arabicName:"كوتشي",
-        
-    //   },
-    //   {
-    //     id:7,
-    //     category:"men",
-    //     englishName:"pants",
-    //     arabicName:"بنطلون",
-        
-    //   },
-    //   {
-    //     id:8,
-    //     category:"men",
-    //     englishName:"jacket",
-    //     arabicName:"جاكيت",
-        
-    //   },
-    // ]
     
     newProducts:[{
       code:"M_B_J_121",

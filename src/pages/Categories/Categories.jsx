@@ -154,7 +154,12 @@ class Categories extends Component {
         
           </div>
         )}
-        <Link to={process.env.PUBLIC_URL + "/AddNewFilter"}>
+            <Link to=
+        {{
+          pathname: process.env.PUBLIC_URL + `/Add/Filter`,
+
+        }}
+        >
           <button className={styles.add}>Add Filter</button>
         </Link>
       </div>

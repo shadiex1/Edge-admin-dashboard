@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import styles from "./SingleOrder.module.scss";
 import {withRouter} from "react-router-dom";
 import logo from "../../assets/logo.png";
-import {modifyShippment} from "../../Data"
-import Menu from "../../Components/Menu/Menu"
+import { modifyShippment, fetchOrder } from "../../Data";
+import Menu from "../../Components/Menu/Menu";
+import axios from "axios"
 class SingleOrder extends Component{
   state={
     editPaymentClicked:false,
@@ -15,14 +16,34 @@ class SingleOrder extends Component{
 
   componentDidMount(){
   if (this.props.match.params && this.props.match.params.id) {
-    if (this.props.location.state) {
-      this.setState({
-        order:this.props.location.state
-      })
-    
-    }
+    fetchOrder(this.props.match.params.id ).then(res=>this.setState({
+      order:res.data
+    }))
+    // console.log(this.props.match.params.id,"fdf")
+    // if (this.props.location.state) {
+    //   this.setState({
+    //     order:this.props.location.state
+    //   })
+    // console.log(this.props.location.state,"ass")
+    // }
   } 
   }
+   editShipmentState = (id, state) => {
+         axios({
+           method: "post",
+           url: "http://18.221.156.111:3001/admin/order/state/upd",
+           headers: {},
+           data: {
+             ID: id,
+             shippmentState: state,
+           },
+         }).then(function (response) {
+           //handle success
+           if(response.data.status.engError){
+             alert(response.data.status.engError);
+           }else alert("shippment status updated successfully");
+         });
+       };
   render(){
     // let order=null
     const {order}=this.state
@@ -109,7 +130,8 @@ class SingleOrder extends Component{
                     Tel : <span>{order.shippmentDetails.mobileNo}</span>
                   </div>
                   <div className={styles.detail}>
-                    City : <span>{order.shippmentDetails.governorate}</span>
+                    City : <span>{order.governorate}</span>
+                    {console.log(order)}
                   </div>
                   <div className={styles.detail}>
                     Address : <span>{order.shippmentDetails.address}</span>
@@ -147,7 +169,7 @@ class SingleOrder extends Component{
                       Edit
                     </button>
                     {this.state.shipStatus && (
-                      <button onClick={() => modifyShippment(order.ID,this.state.shipStatus)}>
+                      <button onClick={() => this.editShipmentState(order.ID,this.state.shipStatus)}>
                         submit
                       </button>
                     )}
@@ -183,7 +205,11 @@ class SingleOrder extends Component{
                 </p>
               </div> */}
           </div>
-        )}
+        )}       <div className={styles.back}>
+                         <button  onClick={()=>this.props.history.goBack()}>Back</button>
+
+        </div>
+
       </div>
     );
   }

@@ -15,7 +15,9 @@ class Filter extends Component {
       <div className={styles.container}>
         {this.state.showPopup && (
           <WarningPopup
-            accept={()=>deleteFilter(id) && this.setState({showPopup:false})}
+            accept={() =>
+              deleteFilter(id) && this.setState({ showPopup: false })
+            }
             cancel={() =>
               this.setState({
                 showPopup: false,
@@ -28,8 +30,8 @@ class Filter extends Component {
         <div className={styles.icons}>
           <Link
             to={{
-              pathname: process.env.PUBLIC_URL + "/AddnewFilter",
-              state: { type: "Filter", id: id },
+              pathname: process.env.PUBLIC_URL + `/Edit/Filter/${id}`,
+              // state: { type: "Filter", id: id },
             }}
           >
             <span className={styles.editIcon}>

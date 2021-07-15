@@ -63,17 +63,29 @@
             .shippingAddress{
                 font-size: 40px;
                 font-weight: bold;
+                margin: 2rem 0;
             }
             .shipmentDetails{
                 // display: flex;
                 // flex-wrap: wrap;
                 // flex-direction: column;
+                button{
+                       border: 1px solid #948b8b;
+                    width: 80px;
+                    height: 30px;
+                    cursor: pointer;
+                    // font-weight: bold;
+                    border-radius: 5px;
+                    margin-left: 30px;
+                    margin-left: auto 20px;
+                }
                 width: 50%;
                 .group{
                     display: flex;
+                    align-items: center;
                 }
                 .detail{
-                    margin: .3rem;
+                    margin: .7rem .3rem;
                     color: #948b8b;
                     font-size: 1.1rem;
                     span{
@@ -91,6 +103,27 @@
                         color: black;
                         font-weight: italic;
                     }
+        }
+    }
+    .back{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        button{
+            width: 150px;
+            height: 50px;
+            font-size: 1.2rem;
+          border: 1px solid #948b8b;
+          border-radius: 10px;
+          cursor: pointer;  
+                margin:2rem ;
+
+          &:hover{
+              background-color: #d5293f;
+              color: white;
+          }
+
         }
     }
 }

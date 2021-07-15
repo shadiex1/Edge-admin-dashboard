@@ -102,14 +102,15 @@ fetchProducts(category, 0, 6).then((fetchedProducts) =>
     return (
       <div className={styles.Products}>
         <Menu />
-        {this.state.categories &&<ProductsFilter
-          changeFilter={(category, filter) =>
-            this.changeFilter(category, filter)
-          }
-          filters={this.state.filters}
-          categories={this.state.categories}
-        /> }
-        
+        {this.state.categories && (
+          <ProductsFilter
+            changeFilter={(category, filter) =>
+              this.changeFilter(category, filter)
+            }
+            filters={this.state.filters}
+            categories={this.state.categories}
+          />
+        )}
         {/* <WarningPopup header={"are you sure you want to delete this product"} show/> */}
         {this.state.fetching ? (
           <Loading />
@@ -118,7 +119,9 @@ fetchProducts(category, 0, 6).then((fetchedProducts) =>
             {this.state.products && this.state.products.length ? (
               this.state.products.map((item) => (
                 <Product
-                  DeleteProduct={() => deleteProduct(item.productID)}
+                  DeleteProduct={() =>
+                    deleteProduct(item.productID)
+                  }
                   editable
                   deletable
                   filter={item.filterID}
@@ -136,7 +139,6 @@ fetchProducts(category, 0, 6).then((fetchedProducts) =>
             )}
           </div>
         )}
-
         {/* <Link 
     to={{ 
     pathname:process.env.PUBLIC_URL+"/Addnew", 
@@ -155,7 +157,14 @@ fetchProducts(category, 0, 6).then((fetchedProducts) =>
           containerClassName={'pagination'}
           activeClassName={'active'}
         /> */}
-        <Link to={process.env.PUBLIC_URL + "/AddNewProduct"}>
+        <Link
+          to={{
+            pathname: process.env.PUBLIC_URL + `/Add/Product`,
+
+            // state: { type: "Product", id: code },
+          }}
+        >
+          {/* <Link to={process.env.PUBLIC_URL + "/AddNewProduct"}> */}
           <button className={styles.add}>Add Product</button>
         </Link>
       </div>

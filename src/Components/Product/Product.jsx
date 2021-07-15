@@ -3,7 +3,7 @@ import styles from "./Product.module.scss";
 import WarningPopup from "../WarningPopup/WarningPopup";
 import { CloseIcon,EditIcon } from "../../Components/svg";
 import { deleteProduct, fetchFilter } from "../../Data";
-import {Link} from "react-router-dom"
+import {Link,withRouter} from "react-router-dom"
 
 class Product extends Component{
     state={
@@ -40,7 +40,9 @@ class Product extends Component{
       this.setState({
         showPopup:false
       })
-          // window.location.reload(true);
+                  // this.props.history.push(`${process.env.PUBLIC_URL}/Products`);
+
+          // window.location.reload();
 
     }
     render(){
@@ -49,7 +51,7 @@ class Product extends Component{
       <div className={styles.Product}>
         {this.state.showPopup && (
           <WarningPopup
-            accept={()=>this.DeleteProduct(code)}
+            accept={() => this.DeleteProduct(code)}
             cancel={() =>
               this.setState({
                 showPopup: false,
@@ -63,8 +65,11 @@ class Product extends Component{
           {this.props.editable && (
             <Link
               to={{
-                pathname: process.env.PUBLIC_URL + "/AddnewProduct",
-                state: { type: "Product", id: code },
+                pathname:
+                  process.env.PUBLIC_URL +
+                  `/Edit/Product/${code}`,
+
+                // state: { type: "Product", id: code },
               }}
             >
               {" "}
@@ -113,7 +118,7 @@ class Product extends Component{
             </p>
             <p>
               Filter : <span>{this.state.filter}</span>
-              {console.log(this.props,"al prod")}
+              {/* {console.log(this.props, "al prod")} */}
             </p>
           </div>
         </div>
@@ -123,4 +128,4 @@ class Product extends Component{
     
 }
 
-export default Product
+export default withRouter(Product); 

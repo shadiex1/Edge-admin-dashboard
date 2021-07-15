@@ -29,6 +29,7 @@ class Orders extends Component{
             <Menu />
             {/* <OrderFilter/> */}
               {this.state.fetching ? <Loading/> : this.state.orders && <OrdersTable orders={this.state.orders} />}
+              {console.log(this.state.orders,"ordersss")}
 
             {/* <Order/> */}
           </div>

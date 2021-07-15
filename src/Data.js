@@ -113,12 +113,13 @@ axios({
   
 }).then(function (response) {
     //handle success
-    console.log(response);
+    alert("Filter deleted successfully")
+          window.location.reload();
   })
-  .catch(function (response) {
-    //handle error
-    console.log("laaaaa");
-  });;
+  // .catch(function (response) {
+  //   //handle error
+  //   console.log("laaaaa");
+  // });;
 
         }   
         export const AddProduct=(product)=>{
@@ -171,7 +172,8 @@ axios({
   
 }).then(function (response) {
     //handle success
-    console.log(response,"kolh tmam");
+    alert("Product deleted successfully")
+          window.location.reload();
   })
   .catch(function (response) {
     //handle error
@@ -210,21 +212,39 @@ axios({
         }  
   
 
-export const modifyShippment=(id,state)=>{
-axios({
-  method: 'post',
-  url: "http://18.221.156.111:3001/admin/order/state/upd",
-  headers: {}, 
-  data: {
-    ID:id,
-    shippmentState:state
-  }
-}).then(function (response) {
-    //handle success
-    console.log(response);
-  })
-  .catch(function (response) {
-    //handle error
-    console.log("laaaaa");
-  });;
+// export const modifyShippment=(id,state)=>{
+// axios({
+//   method: 'post',
+//   url: "http://18.221.156.111:3001/admin/order/state/upd",
+//   headers: {}, 
+//   data: {
+//     ID:id,
+//     shippmentState:state
+//   }
+// }).then(function (response) {
+//     //handle success
+//     console.log(response);
+//   })
+
+//         } 
+export const fetchOrder=(id)=>{
+// axios({
+//   method: 'get',
+//   url: "http://18.221.156.111:3001/admin/order/ByID",
+//   headers: {}, 
+//   data: {
+//         ID:id
+
+//   }
+  
+// }).then(function (response) {
+//     //handle success
+//     console.log(response);
+//   })
+        return axios.get("http://18.221.156.111:3001/admin/order/ByID/",{params: {
+                   ID:id       
+                 }}).then(response => response.data)
+
+
+
         } 

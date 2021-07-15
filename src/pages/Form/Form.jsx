@@ -25,7 +25,10 @@ class Form extends Component {
     categories: [],
     edit: null,
     categoryName: null,
+    filterName:null,
     editImg: false,
+    editWashings:true,
+    editSizes:true
   };
 
   componentDidMount() {
@@ -41,6 +44,7 @@ class Form extends Component {
         })
       )
       .then(this.editFormHandler);
+
   }
 
   fetchFiltersFromCategory = () => {
@@ -53,16 +57,16 @@ class Form extends Component {
   };
   editFormHandler = () => {
     if (
-      this.props.location.state &&
-      this.props.location.state.type == "Filter"
+      this.props.match.params.id &&
+      this.props.match.params.type == "Filter"
     ) {
-      const receivedID = this.props.location.state.id;
-
+      const receivedID = this.props.match.params.id;
+      {
+        console.log(this.props.match, "propsatk");
+      }
       let filter = this.state.allFilters.find((item) => item.ID == receivedID);
-      console.log(filter, "al fff");
       switch (filter.categoryID) {
         case 1:
-          // code block
           this.setState({
             id: filter.ID,
             eName: filter.engName,
@@ -96,32 +100,50 @@ class Form extends Component {
         default:
       }
     } else if (
-      this.props.location.state &&
-      this.props.location.state.type == "Product"
+      this.props.match.params.id &&
+      this.props.match.params.type == "Product"
     ) {
-      const receivedID = this.props.location.state.id;
-      let product = [...this.props.products].find(
-        (item) => item.code == receivedID
-      );
+      const receivedID = this.props.match.params.id;
+      // let product = [...this.props.products].find(
+      //   (item) => item.code == receivedID
+      // );
+      console.log(this.props.match.params.type, "al id");
 
       fetchProduct(receivedID).then((product) =>
-        this.setState({
-          id: product.data.productID,
-          eName: product.data.engName,
-          aName: product.data.araName,
-          category: product.data.categoryID,
-          price: product.data.price,
-          filter: product.data.filterID,
-          img: product.data.imageURL,
-          washings: product.data.details.washings,
-          color: product.data.details.color,
-          sizes: product.data.details.availableSizes,
-          engDescription: product.data.details.engDesc,
-          araDescription: product.data.details.araDesc,
-          sizeType: product.data.details.sizeType,
-          edit: true,
-          editImg: true,
-        })
+        this.setState(
+          {
+            id: product.data.productID,
+            eName: product.data.engName,
+            aName: product.data.araName,
+            category: product.data.categoryID,
+            categoryName:product.data.categoryName,
+            filterName:product.data.filterName,
+            price: product.data.price,
+            filter: product.data.filterID,
+            img: product.data.imageURL,
+            washings: product.data.details.washings,
+            color: product.data.details.color,
+            sizes: product.data.details.availableSizes,
+            engDescription: product.data.details.engDesc,
+            araDescription: product.data.details.araDesc,
+            sizeType: product.data.details.sizeType,
+            edit: true,
+            editImg: true,
+            editWashings: false,
+            editSizes:false
+          },
+          () => {
+            if (this.state.sizeType == "N") {
+              this.setState({
+                availableSizes: [34, 36, 38, 40, 42, 44, 46, 48],
+              });
+            } else {
+              this.setState({
+                availableSizes: ["S", "M", "L", "XL", "XXL"],
+              });
+            }
+          }
+        )
       );
     }
   };
@@ -198,7 +220,7 @@ class Form extends Component {
   };
 
   submit = () => {
-    if (this.props.type === "Product") {
+    if (this.props.match.params.type == "Product") {
       if (this.state.edit) {
         ///edit
         axios({
@@ -209,7 +231,7 @@ class Form extends Component {
             productID: this.state.id,
             engName: this.state.eName,
             araName: this.state.aName,
-            imageURL: this.state.img.name,
+            imageURL: this.state.img.name? this.state.img.name : this.state.img,
             price: this.state.price,
             categoryID: this.state.category,
             filterID: this.state.filter,
@@ -227,7 +249,7 @@ class Form extends Component {
           if (response.data.status.engError) {
             alert(response.data.status.engError);
           } else {
-            alert("product added succesfully");
+            alert("product updated succesfully");
             this.props.history.push(`${process.env.PUBLIC_URL}/Products`);
           }
         });
@@ -269,7 +291,7 @@ class Form extends Component {
           this.onFileUpload();
         }
       }
-    } else if (this.props.type === "Filter") {
+    } else if (this.props.match.params.type == "Filter") {
       if (this.state.edit) {
         axios({
           method: "post",
@@ -313,7 +335,7 @@ class Form extends Component {
     }
   };
   render() {
-    const { type } = this.props;
+    const { type } = this.props.match.params;
     return (
       <div className={styles.Form}>
         <Menu />
@@ -380,25 +402,47 @@ class Form extends Component {
               />
             </div>
 
-            {console.log(this.state, "al state")}
+            {console.log(this.state,this.props, "al state")}
           </div>
           <div className={styles.formGroup}>
             {type == "Product" && (
               <div className={styles.checkboxContainer}>
                 <label for="washings">Washings : </label>
-                {this.props.washings.map((item, i) => {
-                  return (
-                    <label key={item}>
-                      <span>{item}</span>
+                {/* {this.state.washings ? } */}
+                {this.state.editWashings
+                  ? this.props.washings.map((item, i) => {
+                      return (
+                        <label key={item}>
+                          <span>{item}</span>
 
-                      <input
-                        onChange={() => this.washingsOnChange(item)}
-                        selected={this.state.washings.includes(item)}
-                        type="checkbox"
-                      ></input>
-                    </label>
-                  );
-                })}
+                          <input
+                            onChange={() => this.washingsOnChange(item)}
+                            selected={this.state.washings.includes(item)}
+                            type="checkbox"
+                          ></input>
+                        </label>
+                      );
+                    })
+                  : this.state.washings.map((item) => (
+                      <p className={styles.checkContainer}>
+                        <span>{item}</span>{" "}
+                        <span className={styles.check}></span>
+                      </p>
+                    ))}
+                {}
+                {!this.state.editWashings && (
+                  <button
+                    className={styles.reset}
+                    onClick={() =>
+                      this.setState({
+                        editWashings: true,
+                        washings: [],
+                      })
+                    }
+                  >
+                    Reset
+                  </button>
+                )}
               </div>
             )}
           </div>
@@ -426,26 +470,49 @@ class Form extends Component {
               <div className={styles.formGroup}>
                 {this.state.sizeType && (
                   <div
-                    style={{
-                      width: "100%",
+                     style={{
+                      width: this.state.editSizes&& "100%",
                     }}
                     className={styles.checkboxContainer}
                   >
                     <label for="availableSizes">Available sizes : </label>
-                    {this.state.availableSizes.map((item, i) => {
-                      return (
-                        <label key={item}>
-                          <input
-                            onChange={() => this.availbleSizesOnChange(item)}
-                            selected={this.state.sizes.includes(item)}
-                            type="checkbox"
-                          ></input>
-                          <span>{item}</span>
-                        </label>
-                      );
-                    })}
+                    {this.state.editSizes
+                      ? this.state.availableSizes.map((item, i) => {
+                          return (
+                            <label key={item}>
+                              <input
+                                onChange={() =>
+                                  this.availbleSizesOnChange(item)
+                                }
+                                selected={this.state.sizes.includes(item)}
+                                type="checkbox"
+                              ></input>
+                              <span>{item}</span>
+                            </label>
+                          );
+                        })
+                      : this.state.sizes.map((item) => (
+                          <p className={styles.checkContainer}>
+                            <span>{item}</span>{" "}
+                            <span className={styles.check}></span>
+                          </p>
+                        ))}
+                    {} {!this.state.editSizes && (
+                  <button
+                    className={styles.reset}
+                    onClick={() =>
+                      this.setState({
+                        editSizes: true,
+                        sizes: [],
+                      })
+                    }
+                  >
+                    Reset
+                  </button>
+                )}
                   </div>
                 )}
+               
               </div>
               <div className={styles.formGroup}>
                 <div>
@@ -513,7 +580,7 @@ class Form extends Component {
                   this.handleChange(e);
                 }}
               >
-                <option value="">{this.state.category}</option>
+                <option value="">{this.state.categoryName}</option>
                 {this.state.categories.map((option, i) => (
                   <option key={i} value={option.ID}>
                     {option.engName}
@@ -531,7 +598,7 @@ class Form extends Component {
                         this.handleChange(e);
                       }}
                     >
-                      <option value="">{this.state.filter}</option>
+                      <option value="">{this.state.filterName}</option>
                       {this.state.allFilters.map((option, i) => (
                         <option key={i} value={option.ID}>
                           {option.engName}

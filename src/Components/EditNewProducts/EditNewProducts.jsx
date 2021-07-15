@@ -19,7 +19,7 @@ class EditNewProducts extends Component {
   createProductsFromIds = (id) => {
     let newProducts = [...this.state.newProducts];
     fetchProduct(id)
-      .then((product) => newProducts.push(product.data))
+      .then((product) => product.status.engError? alert(product.status.engError):newProducts.push(product.data))
       .then((response) => {
         console.log(response);
         this.setState({ newProducts });

@@ -204,14 +204,7 @@ price:230}
 
 ]
   }
-  updateShowcaseImgs=(updatedSliderImgs)=>{
-    // URL.createObjectURL(updatedSliderImgs)
-    console.log(updatedSliderImgs)  
-    ////////////////////////////////////////////// to be continued in api integration 
-    // this.setState({
-    //   imgs:updatedSliderImgs
-    // })
-  }
+
 
   AddNewProduct=(id)=>{
     const newProducts = [...this.state.newProducts]
@@ -229,31 +222,10 @@ price:230}
   }
 
   componentDidMount(){
-      const fetchCategories = () => {
-      return  axios
-        .get("http://18.221.156.111:3001/admin/mobile/category/list")
-        .then((categories) =>
-          this.setState({
-            categories: categories.data.data,
-          })
-        );
- 
-    
-        }   
-        const fetchFilters = () => {
-      return  axios
-        .get("http://18.221.156.111:3001/admin/mobile/filter/list")
-        .then((filter) =>
-          this.setState({
-            filters: filter.data.data,
-          })
-        );
- 
-    
-        }   
+     
 
-         fetchCategories();
-         fetchFilters();
+        //  fetchCategories();
+        //  fetchFilters();
     }
 
   DeleteNewProduct=(id)=>{

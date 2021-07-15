@@ -15,14 +15,11 @@ class SingleOrder extends Component{
 
   componentDidMount(){
   if (this.props.match.params && this.props.match.params.id) {
-    //  order=this.props.orders.find(order=> order.id == this.props.match.params.id)
     if (this.props.location.state) {
       this.setState({
         order:this.props.location.state
       })
-      // {
-      //   console.log(this.props.location.state, "hagtk");
-      // }
+    
     }
   } 
   }
@@ -41,16 +38,14 @@ class SingleOrder extends Component{
         })
       }
       const setShipStatus=(e)=>{
-          // order.shipmentStatus=e.target.value
-          // console.log(e.target.value)
+
           this.setState({
             shipStatus:e.target.value,
             editShipmentClicked:false
           })
       }
       const setPaymentStatus=(e)=>{
-          // order.shipmentStatus=e.target.value
-          // console.log(e.target.value)
+         
           this.setState({
             paymentStatus:e.target.value,
             editPaymentClicked:false

@@ -2,22 +2,13 @@ import React, { Component } from "react";
 import styles from "./Form.module.scss";
 import Menu from "../../Components/Menu/Menu";
 import { withRouter } from "react-router-dom";
-import {
-  fetchFilters,
-  fetchCategories,
-  addFilter,
-  modifyFilter,
-  AddProduct,
-  fetchProduct,
-  modifyProduct,
-} from "../../Data";
+import { fetchFilters, fetchCategories, fetchProduct } from "../../Data";
 import axios from "axios";
 class Form extends Component {
   state = {
     id: "",
     eName: "",
     aName: "",
-    // size: "",
     img: "",
     price: "",
     washings: [],
@@ -34,51 +25,40 @@ class Form extends Component {
     categories: [],
     edit: null,
     categoryName: null,
+    editImg: false,
   };
 
   componentDidMount() {
-    fetchCategories().then(
-      (fetchedCategories) =>
-        this.setState({
-          categories: fetchedCategories.data,
-        })
-      // console.log(fetchedCategories.data,"al cats")
+    fetchCategories().then((fetchedCategories) =>
+      this.setState({
+        categories: fetchedCategories.data.data,
+      })
     );
     fetchFilters()
       .then((fetchedFilters) =>
         this.setState({
-          allFilters: fetchedFilters.data,
+          allFilters: fetchedFilters.data.data,
         })
       )
-      .then(this.editFormHandler)
-      ;
+      .then(this.editFormHandler);
   }
 
-  componentDidUpdate() {
-    // console.log(this.state.availbleFilters,"al fitched filters")
-    //  if (this.state.availbleFilters) {
-    //    this.editFormHandler();
-    //  }
-  }
-  fetchFiltersFromCategory=()=>{
-      const filters = [...this.state.allFilters].filter(
-        (item) => item.categoryID == parseInt(this.state.category.ID)
-      );
-      this.setState({
-        availbleFilters: filters,
-      });
-    
-  }
+  fetchFiltersFromCategory = () => {
+    const filters = [...this.state.allFilters].filter(
+      (item) => item.categoryID == parseInt(this.state.category.ID)
+    );
+    this.setState({
+      availbleFilters: filters,
+    });
+  };
   editFormHandler = () => {
     if (
       this.props.location.state &&
       this.props.location.state.type == "Filter"
     ) {
       const receivedID = this.props.location.state.id;
-      
-      let filter = this.state.allFilters.find(
-        (item) => item.ID == receivedID
-      );
+
+      let filter = this.state.allFilters.find((item) => item.ID == receivedID);
       console.log(filter, "al fff");
       switch (filter.categoryID) {
         case 1:
@@ -114,15 +94,7 @@ class Form extends Component {
             edit: true,
           });
         default:
-        // code block
       }
-      // this.setState({
-      //   id: filter.ID,
-      //   eName: filter.engName,
-      //   aName: filter.araName,
-      //   category: filter.categoryID,
-      //   edit: true,
-      // });
     } else if (
       this.props.location.state &&
       this.props.location.state.type == "Product"
@@ -132,43 +104,29 @@ class Form extends Component {
         (item) => item.code == receivedID
       );
 
-      fetchProduct(receivedID).then(product=>this.setState({
-        id:product.data.productID,
-        eName:product.data.engName,
-        aName:product.data.araName,
-        category:product.data.categoryID,
-        price:product.data.price,
-        filter:product.data.filterID,
-        img:product.data.imageURL,
-        washings:product.data.details.washings,
-        color:product.data.details.color,
-        sizes:product.data.details.availableSizes,
-        engDescription:product.data.details.engDesc,
-        araDescription:product.data.details.araDesc,
-        sizeType:product.data.details.sizeType,
-        edit:true
-      }))
-      // this.setState({
-      //   id: product.code,
-      //   eName: product.englishName,
-      //   aName: product.arabicName,
-      //   category: product.category,
-      //   price: product.price,
-      //   filter: product.filter,
-      //   img: product.img,
-      //   washings: product.washings,
-      //   color: product.color,
-      //   size: product.size,
-      //   edit: true,
-      // });
+      fetchProduct(receivedID).then((product) =>
+        this.setState({
+          id: product.data.productID,
+          eName: product.data.engName,
+          aName: product.data.araName,
+          category: product.data.categoryID,
+          price: product.data.price,
+          filter: product.data.filterID,
+          img: product.data.imageURL,
+          washings: product.data.details.washings,
+          color: product.data.details.color,
+          sizes: product.data.details.availableSizes,
+          engDescription: product.data.details.engDesc,
+          araDescription: product.data.details.araDesc,
+          sizeType: product.data.details.sizeType,
+          edit: true,
+          editImg: true,
+        })
+      );
     }
   };
 
   handleChange = (e) => {
-    // const availbleFilters = [...this.props.filters].filter(
-    //   (item) => item.category === this.state.category
-    // );
-    // this.editFormHandler();
     if (e.target.name == "category") {
       const filters = [...this.state.allFilters].filter(
         (item) => item.categoryID == parseInt(e.target.value)
@@ -224,30 +182,18 @@ class Form extends Component {
   }
 
   fileSelectedHandler = (e) => {
-    // this.setState({ img : e.target.file })
     this.setState({
       [e.target.name]: e.target.files[0],
+      editImg: false,
     });
     console.log(e.target.files);
   };
 
-
   onFileUpload = () => {
-    // Create an object of formData
     const formData = new FormData();
 
-    // Update the formData object
-    formData.append(
-      "sampleFile",
-      this.state.img,
-      this.state.img.name
-    );
+    formData.append("sampleFile", this.state.img, this.state.img.name);
 
-    // Details of the uploaded file
-    console.log(this.state.img);
-
-    // Request made to the backend api
-    // Send formData object
     axios.post("http://18.221.156.111:3001/admin/mobile/upload", formData);
   };
 
@@ -255,78 +201,116 @@ class Form extends Component {
     if (this.props.type === "Product") {
       if (this.state.edit) {
         ///edit
-        modifyProduct({
-          productID: this.state.id,
-          engName: this.state.eName,
-          araName: this.state.aName,
-          imageURL: this.state.img.name,
-          price: this.state.price,
-          categoryID: this.state.category,
-          filterID: this.state.filter,
-          details: {
-            sizeType: this.state.sizeType,
-            availableSizes: this.state.sizes,
-            color: this.state.color,
-            washings: this.state.washings,
-            engDesc: this.state.engDescription,
-            araDesc: this.state.araDescription,
+        axios({
+          method: "post",
+          url: "http://18.221.156.111:3001/admin/mobile/product/upd",
+          headers: {},
+          data: {
+            productID: this.state.id,
+            engName: this.state.eName,
+            araName: this.state.aName,
+            imageURL: this.state.img.name,
+            price: this.state.price,
+            categoryID: this.state.category,
+            filterID: this.state.filter,
+            details: {
+              sizeType: this.state.sizeType,
+              availableSizes: this.state.sizes,
+              color: this.state.color,
+              washings: this.state.washings,
+              engDesc: this.state.engDescription,
+              araDesc: this.state.araDescription,
+            },
           },
+        }).then((response) => {
+          //handle success
+          if (response.data.status.engError) {
+            alert(response.data.status.engError);
+          } else {
+            alert("product added succesfully");
+            this.props.history.push(`${process.env.PUBLIC_URL}/Products`);
+          }
         });
+        if (this.state.img.editImg) {
+          this.onFileUpload();
+        }
       } else {
-        AddProduct({
-          productID: this.state.id,
-          engName: this.state.eName,
-          araName: this.state.aName,
-          imageURL:this.state.img.name,
-          price: this.state.price,
-          categoryID: this.state.category,
-          filterID: this.state.filter,
-          details: {
-            sizeType: this.state.sizeType,
-            availableSizes: this.state.sizes, 
-            color: this.state.color,
-            washings: this.state.washings, 
-            engDesc: this.state.engDescription,
-            araDesc: this.state.araDescription,
+        axios({
+          method: "post",
+          url: "http://18.221.156.111:3001/admin/mobile/product/add",
+          headers: {},
+          data: {
+            productID: this.state.id,
+            engName: this.state.eName,
+            araName: this.state.aName,
+            imageURL: this.state.img.name,
+            price: this.state.price,
+            categoryID: this.state.category,
+            filterID: this.state.filter,
+            details: {
+              sizeType: this.state.sizeType,
+              availableSizes: this.state.sizes,
+              color: this.state.color,
+              washings: this.state.washings,
+              engDesc: this.state.engDescription,
+              araDesc: this.state.araDescription,
+            },
           },
-        })
-        this.onFileUpload();
+        }).then((response) => {
+          //handle success
+          if (response.data.status.engError) {
+            alert(response.data.status.engError);
+          } else {
+            alert("product added succesfully");
+            this.props.history.push(`${process.env.PUBLIC_URL}/Products`);
+          }
+        });
+        if (this.state.img) {
+          this.onFileUpload();
+        }
       }
     } else if (this.props.type === "Filter") {
       if (this.state.edit) {
-        modifyFilter({
-          ID: this.state.id,
-          categoryID: parseInt(this.state.category),
-          engName: this.state.eName,
-          araName: this.state.aName,
-        });
-        console.log(
-          {
+        axios({
+          method: "post",
+          url: "http://18.221.156.111:3001/admin/mobile/filter/upd",
+          headers: {},
+          data: {
             ID: this.state.id,
-            categoryID: parseInt(this.state.category),
             engName: this.state.eName,
             araName: this.state.aName,
+            categoryID: this.state.category,
           },
-          "sss"
-        );
-        // this.props.history.goBack()
-      } else {
-        addFilter({
-          categoryID: parseInt(this.state.category),
-          engName: this.state.eName,
-          araName: this.state.aName,
+        }).then((response) => {
+          //handle success
+          if (response.data.status.engError) {
+            alert(response.data.status.engError);
+          } else {
+            alert("Filter updated successfully");
+            this.props.history.push(`${process.env.PUBLIC_URL}/Categories`);
+          }
         });
-        this.props.history.goBack();
+      } else {
+        axios({
+          method: "post",
+          url: "http://18.221.156.111:3001/admin/mobile/filter/add",
+          headers: {},
+          data: {
+            engName: this.state.eName,
+            araName: this.state.aName,
+            categoryID: this.state.category,
+          },
+        }).then((response) => {
+          //handle success
+          if (response.data.status.engError) {
+            alert(response.data.status.engError);
+          } else {
+            alert("Filter added successfully");
+            this.props.history.push(`${process.env.PUBLIC_URL}/Categories`);
+          }
+        });
       }
     }
-    //  type === "Product"
-    //    ? () => this.props.submitProduct(this.state)
-    //    : () =>
-    //        addFilter({
-    //          categoryID: parseInt(this.state.category),
-    //          engName: this.state.eName,
-    //          araName: this.state.aName,
-    //        }) && this.props.goBack();
   };
   render() {
     const { type } = this.props;
@@ -336,20 +320,20 @@ class Form extends Component {
         {this.state.edit ? <h1>Edit {type}</h1> : <h1>Add New {type}</h1>}
 
         <div className={styles.formGroups}>
-          <div className={styles.formGroup}>
-            <div>
-              <label for="id">{type} ID :</label>
+          {type == "Product" && (
+            <div className={styles.formGroup}>
+              <div>
+                <label for="id">{type} ID :</label>
 
-              <input
-                type="text"
-                name="id"
-                id="id"
-                onChange={this.handleChange}
-                value={this.state.id}
-                disabled={this.state.edit}
-              />
-            </div>
-            {type == "Product" && (
+                <input
+                  type="text"
+                  name="id"
+                  id="id"
+                  onChange={this.handleChange}
+                  value={this.state.id}
+                  disabled={this.state.edit}
+                />
+              </div>
               <div className={styles.img}>
                 <label for="img">{type} image:</label>
                 {/* {
@@ -362,7 +346,7 @@ class Form extends Component {
                   id="img"
                   onChange={this.fileSelectedHandler}
                 />
-                {this.state.edit ? (
+                {this.state.editImg ? (
                   <img src={`http://18.221.156.111:3001/${this.state.img}`} />
                 ) : (
                   this.state.img && (
@@ -370,8 +354,8 @@ class Form extends Component {
                   )
                 )}
               </div>
-            )}
-          </div>
+            </div>
+          )}
           <div className={styles.formGroup}>
             <div>
               <label for="eName">English Name: </label>
@@ -400,24 +384,6 @@ class Form extends Component {
           </div>
           <div className={styles.formGroup}>
             {type == "Product" && (
-              // <div>
-              // <label for="washings">Washings : </label>
-
-              //   <select
-              //     name="washings"
-              //     onChange={(e) => {
-              //       this.handleChange(e);
-              //     }}
-              //   >
-              //     <option value="">{this.state.washings}</option>
-              //     {this.props.washings.map((option, i) => (
-              //       <option key={i} value={option}>
-              //         {option}
-              //       </option>
-              //     ))}
-              //   </select>
-              // </div> {type == "Product" && (
-
               <div className={styles.checkboxContainer}>
                 <label for="washings">Washings : </label>
                 {this.props.washings.map((item, i) => {
@@ -458,46 +424,28 @@ class Form extends Component {
                 </div>
               </div>
               <div className={styles.formGroup}>
-                {
-                  this.state.sizeType && (
-                    <div
-                      style={{
-                        width: "100%",
-                      }}
-                      className={styles.checkboxContainer}
-                    >
-                      <label for="availableSizes">Available sizes : </label>
-                      {this.state.availableSizes.map((item, i) => {
-                        return (
-                          <label key={item}>
-                            <input
-                              onChange={() => this.availbleSizesOnChange(item)}
-                              selected={this.state.sizes.includes(item)}
-                              type="checkbox"
-                            ></input>
-                            <span>{item}</span>
-                          </label>
-                        );
-                      })}
-                    </div>
-                  )
-                  // <div>
-
-                  //   <select
-                  //     name="sizes"
-                  //     onChange={(e) => {
-                  //       this.handleChange(e);
-                  //     }}
-                  //   >
-                  //     <option value=""></option>
-                  //     {this.state.availableSizes.map((option, i) => (
-                  //       <option key={i} value={option}>
-                  //         {option}
-                  //       </option>
-                  //     ))}
-                  //   </select>
-                  // </div>
-                }
+                {this.state.sizeType && (
+                  <div
+                    style={{
+                      width: "100%",
+                    }}
+                    className={styles.checkboxContainer}
+                  >
+                    <label for="availableSizes">Available sizes : </label>
+                    {this.state.availableSizes.map((item, i) => {
+                      return (
+                        <label key={item}>
+                          <input
+                            onChange={() => this.availbleSizesOnChange(item)}
+                            selected={this.state.sizes.includes(item)}
+                            type="checkbox"
+                          ></input>
+                          <span>{item}</span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
               <div className={styles.formGroup}>
                 <div>
@@ -556,7 +504,6 @@ class Form extends Component {
               </div>
             </>
           )}
-
           <div className={styles.formGroup}>
             <div>
               <label for="category">Category : </label>
@@ -597,18 +544,11 @@ class Form extends Component {
           </div>
         </div>
         <div className={styles.btns}>
-          <button
-            onClick={
-                 () => this.submit()
-            }
-          >
-            Accept
-          </button>
+          <button onClick={() => this.submit()}>Accept</button>
           <button onClick={() => this.props.history.goBack()}>Cancel</button>
         </div>
       </div>
     );
   }
 }
-
 export default withRouter(Form);

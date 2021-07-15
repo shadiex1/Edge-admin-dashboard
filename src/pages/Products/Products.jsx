@@ -3,11 +3,12 @@ import styles from "./Products.module.scss";
 import Menu from "../../Components/Menu/Menu";
 import ProductsFilter from "../../Components/ProductsFilter/ProductsFilter";
 import Product from "../../Components/Product/Product";
+import Loading from "../../Components/Loading/Loading"
 import ReactPaginate from 'react-paginate';
 import WarningPopup from "../../Components/WarningPopup/WarningPopup";
 import Axios from "axios"
 import {Link} from "react-router-dom";
-import { fetchProducts,      deleteProduct
+import { fetchProducts,      deleteProduct,fetchCategories,fetchFilters
  } from "../../Data";
 import axios from "axios";
 class Products extends Component {
@@ -15,6 +16,9 @@ class Products extends Component {
     category: "",
     filter: "",
     products: null,
+    filters:null,
+    fetching:true,
+    categories:null
   };
   changeFilter = (category, filter) => {
     // this.setState({
@@ -24,21 +28,27 @@ class Products extends Component {
     // let filterdProducts=this.props.products.filter((item)=>item.category==category)
     let products = [...this.state.products];
     // console.log(category,filter,"hagtk")
+    this.setState({
+      fetching:true
+    })
     if(category == "All"){
        fetchProducts().then((fetchedProducts) =>
   this.setState({
     products: fetchedProducts.data,
+    fetching:false
   }))
     }
     if (filter == undefined || filter == "All") {
       if (category == "All") {
         this.setState({
           products,
+          fetching: false,
         });
       } else {
 fetchProducts(category, 0, 6).then((fetchedProducts) =>
   this.setState({
     products: fetchedProducts.data,
+    fetching: false,
   })
 );   
         // const filtred = products.filter((item) => item.category.id == category.id);
@@ -46,9 +56,10 @@ fetchProducts(category, 0, 6).then((fetchedProducts) =>
       }
     } else {
       if (category == "All") {
-          fetchProducts(null,0.6).then((fetchedProducts) =>
+          fetchProducts(null, 0.6).then((fetchedProducts) =>
             this.setState({
               products: fetchedProducts.data,
+              fetching: false,
             })
           );
       } else {
@@ -56,67 +67,56 @@ fetchProducts(category, 0, 6).then((fetchedProducts) =>
         //   (item) => item.category == category && item.filter == filter
         // );
         // this.setState({ products: filtred });
-           fetchProducts(category,0,6,filter).then((fetchedProducts) =>
+           fetchProducts(category, 0, 6, filter).then((fetchedProducts) =>
              this.setState({
                products: fetchedProducts.data,
+               fetching: false,
              })
            );
       }
     }
   };
   componentDidMount() {
-    const fetchData = () => {
-      return axios
-        .get("http://18.221.156.111:3001/admin/mobile/product/list", {
-          params:{
-              // categoryID:1,
-              pageIndex:0,
-              // pageSize:5
-          }        })
+    // const fetchData = () => {
+      fetchProducts()
         .then((products) =>
           this.setState({
-            products: products.data.data,
+            products: products.data,
+            fetching: false,
           })
         );
  
-    
-        }   
-         fetchData();
+          fetchCategories().then((categories)=>this.setState({
+            categories:categories.data.data,
+            fetching:false
+          }))
+          fetchFilters().then((filters)=>this.setState({
+            filters:filters.data.data,
+            
+          }))
+        // }   
+        //  fetchData();
 
   }
-  // componentDidUpdate(){
-  //   const fetchData = () => {
-  //     return axios
-  //       .get("http://18.221.156.111:3001/admin/mobile/product/list", {
-  //         params: {
-  //           categoryID: 1,
-  //           // pageIndex:1,
-  //           // pageSize:5
-  //         },
-  //       })
-  //       .then((products) =>
-  //         this.setState({
-  //           products: products.data.data,
-  //         })
-  //       );
-  //   };
-  //   fetchData();
-  // }
   render() {
     return (
       <div className={styles.Products}>
         <Menu />
-        <ProductsFilter
+        {this.state.categories &&<ProductsFilter
           changeFilter={(category, filter) =>
             this.changeFilter(category, filter)
           }
-          filters={this.props.filters}
-          categories={this.props.categories}
-        />
+          filters={this.state.filters}
+          categories={this.state.categories}
+        /> }
+        
         {/* <WarningPopup header={"are you sure you want to delete this product"} show/> */}
-        <div className={styles.productsContainer}>
-          {this.state.products && this.state.products.length
-            ? this.state.products.map((item) => (
+        {this.state.fetching ? (
+          <Loading />
+        ) : (
+          <div className={styles.productsContainer}>
+            {this.state.products && this.state.products.length ? (
+              this.state.products.map((item) => (
                 <Product
                   DeleteProduct={() => deleteProduct(item.productID)}
                   editable
@@ -131,9 +131,12 @@ fetchProducts(category, 0, 6).then((fetchedProducts) =>
                   key={item.productID}
                 />
               ))
-            : <p>No products Availble </p>
-              }
-        </div>
+            ) : (
+              <p className={styles.empty}>No products Available </p>
+            )}
+          </div>
+        )}
+
         {/* <Link 
     to={{ 
     pathname:process.env.PUBLIC_URL+"/Addnew", 

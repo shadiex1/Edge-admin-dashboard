@@ -3,6 +3,9 @@ import styles from "./Showcase.module.scss";
 import Menu from "../../Components/Menu/Menu";
 import EditSliderImgs from "../../Components/EditSliderImgs/EditSliderImgs";
 import EditNewProducts from "../../Components/EditNewProducts/EditNewProducts";
+import Loading from "../../Components/Loading/Loading";
+import { withRouter } from "react-router-dom";
+
 import { fetchNewProducts, modifyShowcase } from "../../Data";
 import axios from "axios"
 class Showcase extends Component {
@@ -11,7 +14,9 @@ class Showcase extends Component {
     showSlider: false,
     showNewProducts: true,
     newProducts: null,
-    currentImgs:[]
+    productsIDs: [],
+    currentImgs: [],
+    fetching: true,
   };
 
   componentDidMount() {
@@ -20,40 +25,86 @@ class Showcase extends Component {
         this.setState({
           imgs: fetchedData.data.slides,
           newProducts: fetchedData.data.newProducts,
-        })
+          fetching: false,
+        },   ()=> this.pushNewProductsIDs()
+)
       // console.log(fetchedData,"al data aheeeeeee")
     );
   }
   // componentDidUpdate() {
   //   console.log(this.state, "state al showcase");
   // }
-  uploadImg=(img)=>{
+  pushNewProductsIDs = () => {
+    const productsIDs = [];
+    this.state.newProducts.forEach((product) =>
+      productsIDs.push(product.productID)
+    );
+    this.setState({ productsIDs });
+  };
+  uploadImg = (img) => {
     const formData = new FormData();
     // console.log(img,"soraaa")
     formData.append("sampleFile", img, img.name);
     axios.post("http://18.221.156.111:3001/admin/mobile/upload", formData);
-  }
-  submitImgsHandler=(imgs)=>{
-      const namesArr =[]
-      imgs.forEach(item=>namesArr.push(item.name))
-     
-      imgs.forEach(item=>this.uploadImg(item))
-      this.setState({
-        imgs:namesArr
-      })
-    modifyShowcase({
-      // newProducts:this.state.newProducts,
-      slides:namesArr
-    })
-  }
-  submitNewProducts=(IDS)=>{
+  };
+  submitImgsHandler = (imgs) => {
+    const namesArr = [];
+    imgs.forEach((item) => namesArr.push(item.name));
 
-    modifyShowcase({
-      newProducts: IDS,
-      slides: this.state.imgs
+    imgs.forEach((item) => this.uploadImg(item));
+    this.pushNewProductsIDs();
+    {
+      console.log(this.state, "state al show");
+    }
+    this.setState({
+      imgs: namesArr,
     });
 
-  }
+    // modifyShowcase({
+    //   // newProducts:this.state.newProducts,
+    //   slides:namesArr
+    // })
+    axios({
+      method: "post",
+      url: "http://18.221.156.111:3001/admin/mobile/Home/upd",
+      headers: {},
+      data: {
+         newProducts:this.state.productsIDs,
+
+        slides: namesArr,
+      },
+    }).then((response) => {
+      //handle success
+      if (response.data.status.engError) {
+        console.log(response.data.status.engError, this.state);
+      } else {
+        alert("Showcase updated successfully");
+      }
+    });
+  };
+  submitNewProducts = (IDS) => {
+    // modifyShowcase({
+    //   newProducts: IDS,
+    //   slides: this.state.imgs
+    // });
+    axios({
+      method: "post",
+      url: "http://18.221.156.111:3001/admin/mobile/Home/upd",
+      headers: {},
+      data: {
+        newProducts: IDS,
+        slides: this.state.imgs,
+      },
+    }).then((response) => {
+      //handle success
+      if (response.data.status.engError) {
+        alert(response.data.status.engError);
+      } else {
+        alert("Showcase updated successfully");
+      }
+    });
+    this.props.history.push(`${process.env.PUBLIC_URL}/Showcase`);
+  };
   showSliderHandler = () => {
     this.setState({
       showSlider: true,
@@ -106,25 +157,30 @@ class Showcase extends Component {
             Slider Images
           </button>
         </div>
-        {this.state.newProducts && this.state.showNewProducts && (
-          <EditNewProducts
-            AddNewProducts={(id) => this.submitNewProducts(id)}
-            DeleteProduct={(id) => this.props.DeleteNewProduct(id)}
-            newProducts={this.state.newProducts}
-            submit={(IDS) => this.submitNewProducts(IDS)}
-          />
-        )}
-        {console.log(this.state, "bara")}
+        {this.state.fetching ? (
+          <Loading />
+        ) : (
+          <div>
+            {this.state.newProducts && this.state.showNewProducts && (
+              <EditNewProducts
+                AddNewProducts={(id) => this.submitNewProducts(id)}
+                DeleteProduct={(id) => this.props.DeleteNewProduct(id)}
+                newProducts={this.state.newProducts}
+                submit={(IDS) => this.submitNewProducts(IDS)}
+              />
+            )}
 
-        {this.state.showSlider && (
-          <EditSliderImgs
-            changeSliderImgs={(imgs) => this.submitImgsHandler(imgs)}
-            imgs={this.state.imgs}
-          />
+            {this.state.showSlider && (
+              <EditSliderImgs
+                changeSliderImgs={(imgs) => this.submitImgsHandler(imgs)}
+                imgs={this.state.imgs}
+              />
+            )}
+          </div>
         )}
       </div>
     );
   }
 }
 
-export default Showcase
+export default withRouter(Showcase) 

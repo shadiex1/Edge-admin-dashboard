@@ -7,6 +7,12 @@
         height: 900px;
   overflow: auto;
         overflow-x: hidden;
+        .empty{
+            margin: 2rem auto;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+        }
     }
       a{
                text-decoration: none;

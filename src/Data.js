@@ -1,15 +1,33 @@
 import axios from "axios";
 
 
-export  const fetchFilters = (catID,pageIndex,pageSize) => {
-        return axios.get("http://18.221.156.111:3001/admin/mobile/filter/list",{params: {
-                   categoryID: catID,
-                   pageIndex:pageIndex,
-                pageSize:pageSize            
-                 }}).then(response => response.data)
-
-
+export const fetchCategories = () => {
+      return  axios
+        .get("http://18.221.156.111:3001/admin/mobile/category/list")
+        
+ 
+    
         }   
+  export      const fetchFilters = (ID) => {
+      return  axios
+        .get("http://18.221.156.111:3001/admin/mobile/filter/list",{params:{
+          categoryID:ID
+        }})
+        // .then((filter) =>
+        //   this.setState({
+        //     filters: filter.data.data,
+        //   })
+        // );
+ 
+    
+        }      
+
+
+
+  
+
+
+
 export  const fetchProducts = (catID,pageIndex,pageSize,filter) => {
         return axios.get("http://18.221.156.111:3001/admin/mobile/product/list",{params: {
                    categoryID: catID,
@@ -35,11 +53,11 @@ export  const fetchFilter = (filterID) => {
 
         } 
 
-export  const fetchCategories = () => {
-        return axios.get("http://18.221.156.111:3001/admin/mobile/category/list").then(response => response.data)
+// export  const fetchCategories = () => {
+//         return axios.get("http://18.221.156.111:3001/admin/mobile/category/list").then(response => response.data)
 
 
-        }   
+//         }   
 export  const addFilter = (filter) => {
 axios({
   method: 'post',
@@ -50,12 +68,18 @@ axios({
   
 }).then(function (response) {
     //handle success
-    console.log(response,filter);
+    if(response.data.status.engError){
+      alert(response.data.status.engError)
+    }else {
+          alert("filter added succesfully")
+
+    }
+
   })
-  .catch(function (response) {
+  .catch( (response)=> {
     //handle error
-    console.log("laaaaa");
-  });;
+// alert(response)
+});;
 
         }   
 export  const modifyFilter = (filter) => {
@@ -68,13 +92,14 @@ axios({
   
 }).then(function (response) {
     //handle success
-    console.log(response,filter);
-  })
-  .catch(function (response) {
-    //handle error
-    console.log("laaaaa");
-  });;
+    if(response.data.status.engError){
+      alert(response.data.status.engError)
+    }else {
+          alert("filter modified succesfully")
 
+    }
+
+  })
         }   
 export  const deleteFilter = (filterID) => {
 axios({
@@ -106,12 +131,14 @@ axios({
   
 }).then(function (response) {
     //handle success
-    console.log(response,product,"kolh tmam");
+    if(response.data.status.engError){
+      alert(response.data.status.engError)
+    }else {
+          alert("product added succesfully")
+
+    }
+
   })
-  .catch(function (response) {
-    //handle error
-    console.log("laaaaa");
-  });;
         }
         export const modifyProduct=(product)=>{
 axios({
@@ -123,12 +150,14 @@ axios({
   
 }).then(function (response) {
     //handle success
-    console.log(response,product,"kolh tmam");
+    if(response.data.status.engError){
+      alert(response.data.status.engError)
+    }else {
+          alert("product moodified succesfully")
+
+    }
+
   })
-  .catch(function (response) {
-    //handle error
-    console.log("laaaaa");
-  });;
         }
         export const deleteProduct=(productID)=>{
           axios({

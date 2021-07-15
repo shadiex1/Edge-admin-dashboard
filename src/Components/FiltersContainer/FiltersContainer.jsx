@@ -10,14 +10,19 @@ const FiltersContainer = (props)=>{
     }
     return (
       <div className={styles.FiltersContainer}>
-        {props.filters.map((filter) => (
-          <Filter
-            DeleteFilter={() => DeleteFilter(filter.ID)}
-            id={filter.ID}
-            name={filter.engName}
-          />
-        ))}
-        {console.log(close)}
+        {props.filters.data ? (
+          props.filters.data.map((filter) => (
+            <Filter
+              DeleteFilter={() => DeleteFilter(filter.ID)}
+              id={filter.ID}
+              name={filter.engName}
+            />
+          ))
+          // <div>{console.log(props.filters.data,"al ffff")}</div>
+        ) : (
+          <p className={styles.empty}>{console.log(props.filters)}No products Available </p>
+          
+        )}
       </div>
     );
 }

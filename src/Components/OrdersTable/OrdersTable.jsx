@@ -17,7 +17,6 @@ import { Link } from "react-router-dom";
 const OrdersTable = (props) => {
   const makeData = (...lens) => {
     const makeDataLevel = (depth = 0) => {
-      const len = lens[depth];
       return props.orders.map((order) => {
         return {
           ...order,
@@ -471,7 +470,6 @@ const OrdersTable = (props) => {
                 },
               }}
             >
-              {console.log(row.original, "al single bayen")}
               <span>details</span>
             </Link>
           ) : null,

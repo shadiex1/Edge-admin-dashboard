@@ -59,7 +59,7 @@ class SingleOrder extends Component {
         {this.state.order && (
           <div className={styles.receipt}>
             <div className={styles.orderID}>
-              <button># {order.ID} </button> <img src={logo} />
+              <button># {order.ID} </button> <img src={logo} alt="logo" />
             </div>
 
             <div className={styles.products}>
@@ -161,7 +161,6 @@ class SingleOrder extends Component {
                         submit
                       </button>
                     )}
-                    {console.log(this.state, "al single state")}
                   </div>
                 </div>
               ) : null}

@@ -48,7 +48,7 @@ class Form extends Component {
 
   fetchFiltersFromCategory = () => {
     const filters = [...this.state.allFilters].filter(
-      (item) => item.categoryID == parseInt(this.state.category.ID)
+      (item) => item.categoryID === parseInt(this.state.category.ID)
     );
     this.setState({
       availbleFilters: filters,
@@ -57,11 +57,11 @@ class Form extends Component {
   editFormHandler = () => {
     if (
       this.props.match.params.id &&
-      this.props.match.params.type == "Filter"
+      this.props.match.params.type === "Filter"
     ) {
       const receivedID = this.props.match.params.id;
       
-      let filter = this.state.allFilters.find((item) => item.ID == receivedID);
+      let filter = this.state.allFilters.find((item) => item.ID === receivedID);
       switch (filter.categoryID) {
         case 1:
           this.setState({
@@ -94,11 +94,12 @@ class Form extends Component {
 
             edit: true,
           });
+          break;
         default:
       }
     } else if (
       this.props.match.params.id &&
-      this.props.match.params.type == "Product"
+      this.props.match.params.type === "Product"
     ) {
       const receivedID = this.props.match.params.id;
 
@@ -126,7 +127,7 @@ class Form extends Component {
             editSizes: false,
           },
           () => {
-            if (this.state.sizeType == "N" && this.state.category) {
+            if (this.state.sizeType === "N" && this.state.category) {
                fetchFilters(this.state.category).then((fetchedFilters) =>
                  this.setState({
                    availbleFilters: fetchedFilters.data.data,
@@ -150,7 +151,7 @@ class Form extends Component {
   };
 
   handleChange = (e) => {
-    if (e.target.name == "category") { 
+    if (e.target.name === "category") { 
       // const filters = [...this.state.allFilters].filter(
       //   (item) => item.categoryID == parseInt(e.target.value)
       // );
@@ -162,8 +163,8 @@ class Form extends Component {
           availbleFilters: fetchedFilters.data.data,
         })
       );
-    } else if (e.target.name == "sizeType") {
-      if (e.target.value == "N") {
+    } else if (e.target.name === "sizeType") {
+      if (e.target.value === "N") {
         this.setState({
           availableSizes: [34, 36, 38, 40, 42, 44, 46, 48],
         });
@@ -172,7 +173,7 @@ class Form extends Component {
           availableSizes: ["S", "M", "L", "XL", "XXL"],
         });
       }
-    } else if (e.target.name == "sizes") {
+    } else if (e.target.name === "sizes") {
       let value = Array.from(
         e.target.selectedOptions,
         (option) => option.value
@@ -226,7 +227,7 @@ class Form extends Component {
   };
 
   submit = () => {
-    if (this.props.match.params.type == "Product") {
+    if (this.props.match.params.type === "Product") {
       if (this.state.edit) {
         ///edit
         axios({
@@ -299,7 +300,7 @@ class Form extends Component {
           this.onFileUpload();
         }
       }
-    } else if (this.props.match.params.type == "Filter") {
+    } else if (this.props.match.params.type === "Filter") {
       if (this.state.edit) {
         axios({
           method: "post",
@@ -351,7 +352,7 @@ class Form extends Component {
           {this.state.edit ? <h1>Edit {type}</h1> : <h1>Add New {type}</h1>}
 
           <div className={styles.formGroups}>
-            {type == "Product" && (
+            {type === "Product" && (
               <div className={styles.formGroup}>
                 <div>
                   <label for="id">{type} ID :</label>
@@ -375,10 +376,10 @@ class Form extends Component {
                     onChange={this.fileSelectedHandler}
                   />
                   {this.state.editImg ? (
-                    <img src={`http://18.221.156.111:3001/${this.state.img}`} />
+                    <img src={`http://18.221.156.111:3001/${this.state.img}`} alt="" />
                   ) : (
                     this.state.img && (
-                      <img src={URL.createObjectURL(this.state.img)} />
+                      <img src={URL.createObjectURL(this.state.img)} alt="" />
                     )
                   )}
                 </div>
@@ -408,10 +409,9 @@ class Form extends Component {
                 />
               </div>
 
-              {console.log(this.state, this.props, "al state")}
             </div>
             <div className={styles.formGroup}>
-              {type == "Product" && (
+              {type === "Product" && (
                 <div className={styles.checkboxContainer}>
                   <label for="washings">Washings : </label>
                   {/* {this.state.washings ? } */}
@@ -452,7 +452,7 @@ class Form extends Component {
                 </div>
               )}
             </div>
-            {type == "Product" && (
+            {type === "Product" && (
               <>
                 {" "}
                 <div className={styles.formGroup}>
@@ -594,7 +594,7 @@ class Form extends Component {
                   ))}
                 </select>
               </div>
-              {type == "Product"
+              {type === "Product"
                 ? this.state.category &&
                   this.state.availbleFilters && (
                     <div>

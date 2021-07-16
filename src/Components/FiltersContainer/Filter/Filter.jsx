@@ -1,4 +1,4 @@
-import react, { Component } from "react";
+import React, { Component } from "react";
 import styles from "./Filter.module.scss";
 import WarningPopup from "../../WarningPopup/WarningPopup";
 import { deleteFilter } from "../../../Data";
@@ -10,7 +10,7 @@ class Filter extends Component {
     showPopup: false,
   };
   render() {
-    const { name, id, DeleteFilter } = this.props;
+    const { name, id } = this.props;
     const { showPopup } = this.state;
     return (
       <div className={styles.container}>

@@ -26,7 +26,7 @@ class Products extends Component {
     this.setState({
       fetching: true,
     });
-    if (category == "All") {
+    if (category === "All") {
       fetchProducts().then((fetchedProducts) =>
         this.setState({
           products: fetchedProducts.data,
@@ -34,8 +34,8 @@ class Products extends Component {
         })
       );
     }
-    if (filter == undefined || filter == "All") {
-      if (category == "All") {
+    if (filter === undefined || filter === "All") {
+      if (category === "All") {
         this.setState({
           products,
           fetching: false,
@@ -49,7 +49,7 @@ class Products extends Component {
         );
       }
     } else {
-      if (category == "All") {
+      if (category === "All") {
         fetchProducts(null, 0.6).then((fetchedProducts) =>
           this.setState({
             products: fetchedProducts.data,

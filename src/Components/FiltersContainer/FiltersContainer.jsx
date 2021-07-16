@@ -7,11 +7,12 @@ const {filters}=props
   return (
     <div className={styles.FiltersContainer}>
       {filters.data ? (
-        filters.data.map((filter) => (
+        filters.data.map((filter,i) => (
           <Filter
             DeleteFilter={() => deleteFilter(filter.ID)}
             id={filter.ID}
             name={filter.engName}
+            key={i}
           />
         ))
       ) : (

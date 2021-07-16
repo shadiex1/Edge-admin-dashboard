@@ -44,7 +44,7 @@ class EditSliderImgs extends Component {
           >
             {imgs.map((img) => (
               <div className={styles.carouselImg}>
-                <img src={`http://18.221.156.111:3001/${img}`} />
+                <img src={`http://18.221.156.111:3001/${img}`} alt="" />
               </div>
             ))}
           </Carousel>
@@ -52,9 +52,9 @@ class EditSliderImgs extends Component {
         <div className={styles.Upload}>
           <h2>Upload images</h2>
           <div className={styles.imgs}>
-            {files.map((img) => (
-              <div className={styles.imgConatiner}>
-                <img src={URL.createObjectURL(img)} />{" "}
+            {files.map((img,i) => (
+              <div key={i} className={styles.imgConatiner}>
+                <img src={URL.createObjectURL(img)} alt=""/>
                 <span onClick={() => this.deleteImgHandler(img)}>
                   <CloseIcon />
                 </span>

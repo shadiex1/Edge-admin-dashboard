@@ -12,15 +12,15 @@ class Product extends Component {
     filter: "",
   };
   componentDidMount() {
-    if (this.props.category == 1) {
+    if (this.props.category === 1) {
       this.setState({
         category: "Men",
       });
-    } else if (this.props.category == 2) {
+    } else if (this.props.category === 2) {
       this.setState({
         category: "Women",
       });
-    } else if (this.props.category == 3) {
+    } else if (this.props.category === 3) {
       this.setState({
         category: "Kids",
       });
@@ -85,7 +85,7 @@ class Product extends Component {
         </div>
 
         <div className={styles.img}>
-          <img src={`http://18.221.156.111:3001/${img}`} />
+          <img src={`http://18.221.156.111:3001/${img}`} alt=""/>
         </div>
 
         <div className={styles.details}>

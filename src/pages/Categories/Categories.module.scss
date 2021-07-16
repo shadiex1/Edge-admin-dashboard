@@ -1,4 +1,6 @@
 .Categories {
+       background-color: #e0e0e0; 
+   min-height: 100vh;
   a {
     text-decoration: none;
   }
@@ -7,9 +9,10 @@
     justify-content: center;
 
     button {
+     background-color: #fff;
       font-size: 20px;
       font-weight: bold;
-      margin: 50px;
+      margin: 50px ;
       width: 300px;
       height: 110px;
       border-radius: 50px;
@@ -30,7 +33,7 @@
     font-size: 1.45em;
     font-weight: bold;
     cursor: pointer;
-    margin: 1rem auto;
+    margin: 2rem auto 0 auto;
     transition: background 0.5s;
     background: #1de9b6;
     border: 1px solid darken(#1de9b6, 5%);

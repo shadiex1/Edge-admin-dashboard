@@ -1,3 +1,7 @@
+.FormContainer{
+    background-color: #e0e0e0; 
+   min-height: 100vh;
+}
 .Form {
   width: 80%;
   margin: auto;
@@ -6,6 +10,8 @@
     text-align: center;
   }
   .formGroups {
+         border-radius: 20px;
+
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -14,6 +20,7 @@
     margin: auto;
     padding: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    background-color: white;
     .formGroup {
       display: flex;
       width: 100%;

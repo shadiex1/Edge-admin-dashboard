@@ -74,7 +74,14 @@ class App extends Component {
         <Route
           exact
           path={process.env.PUBLIC_URL + `/Edit/:type/:id`}
-          component={() => <Form sizeType={this.state.sizeType} />}
+          component={() => (
+            <Form
+              sizeType={this.state.sizeType}
+              colors={this.state.colors}
+              sizes={this.state.sizes}
+              washings={this.state.washings}
+            />
+          )}
         />
       </React.Fragment>
     );

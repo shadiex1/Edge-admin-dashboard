@@ -1,129 +1,120 @@
-.SingleOrder{
-    background-color: #e0e0e0;
-    width: 100%;
-    .receipt{
-        width: 60%;
-        margin: auto;
-        border-radius: 20px;
-        background-color: white;
-        padding: 2rem;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-        .orderID{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            button{
-                width: 160px;
-                height: 50px;
-                border: none;
-                font-size: 20px;
-                // color: #684d4d;
-                
-                font-weight: 500;
-                background-color: #e0e0e0;
-            }
-            img{
-                width: 150px;
-                height: 50px;
-            }
-        }
-        .products{
-            p{
-                font-size: 40px;
-                font-weight: bold;
-            }
-            .ProductsContainer{
-                .header{
-                    list-style-type: none;
-                    display: flex;
-                    justify-content: space-evenly;
-                    align-items: center;
-                    li{
-                        font-size: 1.1rem;
-                        color: #948b8b;
-                        font-weight: italic;
-                        width: 120px;
-                    }
-                }
-                .product{
-                    
-                        list-style-type: none;
-                        display: flex;
-                        justify-content: space-evenly;
-                        align-items: center;
-                        li{
-                            width: 120px;
-
-                        }
-                    
-                }
-            }
-        }
-        .shipment{
-            .shippingAddress{
-                font-size: 40px;
-                font-weight: bold;
-                margin: 2rem 0;
-            }
-            .shipmentDetails{
-                // display: flex;
-                // flex-wrap: wrap;
-                // flex-direction: column;
-                button{
-                       border: 1px solid #948b8b;
-                    width: 80px;
-                    height: 30px;
-                    cursor: pointer;
-                    // font-weight: bold;
-                    border-radius: 5px;
-                    margin-left: 30px;
-                    margin-left: auto 20px;
-                }
-                width: 50%;
-                .group{
-                    display: flex;
-                    align-items: center;
-                }
-                .detail{
-                    margin: .7rem .3rem;
-                    color: #948b8b;
-                    font-size: 1.1rem;
-                    span{
-                        color:black;
-                        font-weight:italic
-                    }
-                }
-            }
-        }
-        .payment{
-            margin: .3rem;
-                    color: #948b8b;
-                    font-size: 1.1rem;
-                    span{
-                        color: black;
-                        font-weight: italic;
-                    }
-        }
+.SingleOrder {
+  background-color: #e0e0e0;
+  width: 100%;
+  .receipt {
+    width: 60%;
+    margin: auto;
+    border-radius: 20px;
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    .orderID {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      button {
+        width: 160px;
+        height: 50px;
+        border: none;
+        font-size: 20px;
+        font-weight: 500;
+        background-color: #e0e0e0;
+      }
+      img {
+        width: 150px;
+        height: 50px;
+      }
     }
-    .back{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        button{
-            width: 150px;
-            height: 50px;
-            font-size: 1.2rem;
-          border: 1px solid #948b8b;
-          border-radius: 10px;
-          cursor: pointer;  
-                margin:2rem ;
-
-          &:hover{
-              background-color: #d5293f;
-              color: white;
+    .products {
+      p {
+        font-size: 40px;
+        font-weight: bold;
+      }
+      .ProductsContainer {
+        .header {
+          list-style-type: none;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          li {
+            font-size: 1.1rem;
+            color: #948b8b;
+            font-weight: italic;
+            width: 120px;
           }
-
         }
+        .product {
+          list-style-type: none;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          li {
+            width: 120px;
+          }
+        }
+      }
     }
+    .shipment {
+      .shippingAddress {
+        font-size: 40px;
+        font-weight: bold;
+        margin: 2rem 0;
+      }
+      .shipmentDetails {
+      
+        button {
+          border: 1px solid #948b8b;
+          width: 80px;
+          height: 30px;
+          cursor: pointer;
+          border-radius: 5px;
+          margin-left: 30px;
+          margin-left: auto 20px;
+        }
+        width: 50%;
+        .group {
+          display: flex;
+          align-items: center;
+        }
+        .detail {
+          margin: 0.7rem 0.3rem;
+          color: #948b8b;
+          font-size: 1.1rem;
+          span {
+            color: black;
+            font-weight: italic;
+          }
+        }
+      }
+    }
+    .payment {
+      margin: 0.3rem;
+      color: #948b8b;
+      font-size: 1.1rem;
+      span {
+        color: black;
+        font-weight: italic;
+      }
+    }
+  }
+  .back {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+      width: 150px;
+      height: 50px;
+      font-size: 1.2rem;
+      border: 1px solid #948b8b;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 2rem;
+
+      &:hover {
+        background-color: #d5293f;
+        color: white;
+      }
+    }
+  }
 }

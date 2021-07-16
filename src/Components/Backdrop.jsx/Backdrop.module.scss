@@ -5,11 +5,11 @@
   z-index: 1;
   left: 0;
   top: 0;
-  background-color: rgba($color: #000, $alpha: .5);
+  background-color: rgba($color: #000, $alpha: 0.5);
 }
 
-@media screen and (max-width:500px){
-  .Backdrop{
-    opacity: .5;
+@media screen and (max-width: 500px) {
+  .Backdrop {
+    opacity: 0.5;
   }
 }

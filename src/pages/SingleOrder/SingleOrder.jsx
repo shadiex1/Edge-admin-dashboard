@@ -1,77 +1,58 @@
 import React, { Component } from "react";
 import styles from "./SingleOrder.module.scss";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import { modifyShippment, fetchOrder } from "../../Data";
+import { fetchOrder } from "../../Data";
 import Menu from "../../Components/Menu/Menu";
-import axios from "axios"
-class SingleOrder extends Component{
-  state={
-    editPaymentClicked:false,
-    paymentStatus:null,
-    editShipmentClicked:false,
-    shipStatus:null,
-    order:null
-  }
+import axios from "axios";
+class SingleOrder extends Component {
+  state = {
+    editShipmentClicked: false,
+    shipStatus: null,
+    order: null,
+  };
 
-  componentDidMount(){
-  if (this.props.match.params && this.props.match.params.id) {
-    fetchOrder(this.props.match.params.id ).then(res=>this.setState({
-      order:res.data
-    }))
-    // console.log(this.props.match.params.id,"fdf")
-    // if (this.props.location.state) {
-    //   this.setState({
-    //     order:this.props.location.state
-    //   })
-    // console.log(this.props.location.state,"ass")
-    // }
-  } 
+  componentDidMount() {
+    if (this.props.match.params && this.props.match.params.id) {
+      fetchOrder(this.props.match.params.id).then((res) =>
+        this.setState({
+          order: res.data,
+        })
+      );
+    }
   }
-   editShipmentState = (id, state) => {
-         axios({
-           method: "post",
-           url: "http://18.221.156.111:3001/admin/order/state/upd",
-           headers: {},
-           data: {
-             ID: id,
-             shippmentState: state,
-           },
-         }).then(function (response) {
-           //handle success
-           if(response.data.status.engError){
-             alert(response.data.status.engError);
-           }else alert("shippment status updated successfully");
-         });
-       };
-  render(){
-    // let order=null
-    const {order}=this.state
-       
-      const editShipmentHandler=()=>{
-        this.setState({
-          editShipmentClicked:true
-        })
-      }
-      const editPaymentHandler=()=>{
-        this.setState({
-          editPaymentClicked:true
-        })
-      }
-      const setShipStatus=(e)=>{
+  editShipmentState = (id, state) => {
+    axios({
+      method: "post",
+      url: "http://18.221.156.111:3001/admin/order/state/upd",
+      headers: {},
+      data: {
+        ID: id,
+        shippmentState: state,
+      },
+    }).then(function (response) {
+      //handle success
+      if (response.data.status.engError) {
+        alert(response.data.status.engError);
+      } else alert("shippment status updated successfully");
+    });
+  };
+  render() {
+    const { order } = this.state;
 
-          this.setState({
-            shipStatus:e.target.value,
-            editShipmentClicked:false
-          })
-      }
-      const setPaymentStatus=(e)=>{
-         
-          this.setState({
-            paymentStatus:e.target.value,
-            editPaymentClicked:false
-          })
-      }
+    const editShipmentHandler = () => {
+      this.setState({
+        editShipmentClicked: true,
+      });
+    };
+
+    const setShipStatus = (e) => {
+      this.setState({
+        shipStatus: e.target.value,
+        editShipmentClicked: false,
+      });
+    };
+
     return (
       <div className={styles.SingleOrder}>
         <Menu />
@@ -169,7 +150,14 @@ class SingleOrder extends Component{
                       Edit
                     </button>
                     {this.state.shipStatus && (
-                      <button onClick={() => this.editShipmentState(order.ID,this.state.shipStatus)}>
+                      <button
+                        onClick={() =>
+                          this.editShipmentState(
+                            order.ID,
+                            this.state.shipStatus
+                          )
+                        }
+                      >
                         submit
                       </button>
                     )}
@@ -178,45 +166,14 @@ class SingleOrder extends Component{
                 </div>
               ) : null}
             </div>
-            {/* <div className={styles.payment}>
-                <p style={{
-                  fontSize:"40px",
-                  fontWeight:"bold",
-                  margin:"0",
-                  color:"black"
-                }}>Payment</p>
-                <p>Payment Method : <span>{order.paymentMethod}</span></p>
-                <p>Payment Status : {this.state.editPaymentClicked ?  <select
-        value={order.paymentStatus}
-        onChange={e => {
-          setPaymentStatus(e)
-        }}
-      >
-        <option value="">{this.state.paymentStatus}</option>
-        {this.props.paymentOptions.map((option, i) => (
-          <option key={i} value={option}>
-            {option}
-          </option>
-        ))}
-      </select> : <span>{this.state.paymentStatus ? this.state.paymentStatus:order.paymentStatus}</span>}  
-                <button onClick={()=>editPaymentHandler()} className={styles.edit}>Edit</button>
-                {this.state.paymentStatus && <button>submit</button>}
-
-                </p>
-              </div> */}
           </div>
-        )}       <div className={styles.back}>
-                         <button  onClick={()=>this.props.history.goBack()}>Back</button>
-
+        )}{" "}
+        <div className={styles.back}>
+          <button onClick={() => this.props.history.goBack()}>Back</button>
         </div>
-
       </div>
     );
   }
-    
 }
 
-export default withRouter(SingleOrder) 
-
-
-
+export default withRouter(SingleOrder);

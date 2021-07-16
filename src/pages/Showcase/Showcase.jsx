@@ -1,4 +1,4 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
 import styles from "./Showcase.module.scss";
 import Menu from "../../Components/Menu/Menu";
 import EditSliderImgs from "../../Components/EditSliderImgs/EditSliderImgs";
@@ -6,8 +6,8 @@ import EditNewProducts from "../../Components/EditNewProducts/EditNewProducts";
 import Loading from "../../Components/Loading/Loading";
 import { withRouter } from "react-router-dom";
 
-import { fetchNewProducts, modifyShowcase } from "../../Data";
-import axios from "axios"
+import { fetchNewProducts } from "../../Data";
+import axios from "axios";
 class Showcase extends Component {
   state = {
     imgs: [],
@@ -20,20 +20,18 @@ class Showcase extends Component {
   };
 
   componentDidMount() {
-    fetchNewProducts().then(
-      (fetchedData) =>
-        this.setState({
+    fetchNewProducts().then((fetchedData) =>
+      this.setState(
+        {
           imgs: fetchedData.data.slides,
           newProducts: fetchedData.data.newProducts,
           fetching: false,
-        },   ()=> this.pushNewProductsIDs()
-)
-      // console.log(fetchedData,"al data aheeeeeee")
+        },
+        () => this.pushNewProductsIDs()
+      )
     );
   }
-  // componentDidUpdate() {
-  //   console.log(this.state, "state al showcase");
-  // }
+
   pushNewProductsIDs = () => {
     const productsIDs = [];
     this.state.newProducts.forEach((product) =>
@@ -43,7 +41,6 @@ class Showcase extends Component {
   };
   uploadImg = (img) => {
     const formData = new FormData();
-    // console.log(img,"soraaa")
     formData.append("sampleFile", img, img.name);
     axios.post("http://18.221.156.111:3001/admin/mobile/upload", formData);
   };
@@ -53,40 +50,30 @@ class Showcase extends Component {
 
     imgs.forEach((item) => this.uploadImg(item));
     this.pushNewProductsIDs();
-    {
-      console.log(this.state, "state al show");
-    }
+
     this.setState({
       imgs: namesArr,
     });
 
-    // modifyShowcase({
-    //   // newProducts:this.state.newProducts,
-    //   slides:namesArr
-    // })
     axios({
       method: "post",
       url: "http://18.221.156.111:3001/admin/mobile/Home/upd",
       headers: {},
       data: {
-         newProducts:this.state.productsIDs,
+        newProducts: this.state.productsIDs,
 
         slides: namesArr,
       },
     }).then((response) => {
       //handle success
       if (response.data.status.engError) {
-        console.log(response.data.status.engError, this.state);
+        alert(response.data.status.engError);
       } else {
         alert("Showcase updated successfully");
       }
     });
   };
   submitNewProducts = (IDS) => {
-    // modifyShowcase({
-    //   newProducts: IDS,
-    //   slides: this.state.imgs
-    // });
     axios({
       method: "post",
       url: "http://18.221.156.111:3001/admin/mobile/Home/upd",
@@ -118,17 +105,6 @@ class Showcase extends Component {
     });
   };
 
-  //     deleteImgHandler=(img)=>{
-  //       const files=[...this.state.files]
-  //       const index = files.indexOf(img);
-  // if (index > -1) {
-  //   files.splice(index, 1)
-  //   this.setState({
-  //     files
-  //   })
-  // }
-
-  //     }
   render() {
     return (
       <div className={styles.Showcase}>
@@ -183,4 +159,4 @@ class Showcase extends Component {
   }
 }
 
-export default withRouter(Showcase) 
+export default withRouter(Showcase);

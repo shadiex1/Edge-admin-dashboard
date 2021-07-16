@@ -1,7 +1,7 @@
 import react, { Component } from "react";
 import styles from "./Filter.module.scss";
 import WarningPopup from "../../WarningPopup/WarningPopup";
-import {deleteFilter} from "../../../Data"
+import { deleteFilter } from "../../../Data";
 import { CloseIcon, EditIcon } from "../../svg";
 import { Link } from "react-router-dom";
 
@@ -10,10 +10,11 @@ class Filter extends Component {
     showPopup: false,
   };
   render() {
-    const { name, id,DeleteFilter } = this.props;
+    const { name, id, DeleteFilter } = this.props;
+    const { showPopup } = this.state;
     return (
       <div className={styles.container}>
-        {this.state.showPopup && (
+        {showPopup && (
           <WarningPopup
             accept={() =>
               deleteFilter(id) && this.setState({ showPopup: false })
@@ -31,7 +32,6 @@ class Filter extends Component {
           <Link
             to={{
               pathname: process.env.PUBLIC_URL + `/Edit/Filter/${id}`,
-              // state: { type: "Filter", id: id },
             }}
           >
             <span className={styles.editIcon}>

@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import styles from "./Menu.module.scss";
 import Logo from "../../assets/logo.png";
-import { Link} from "react-router-dom"
-import WarningPopup from "../WarningPopup/WarningPopup";
-class Menu extends Component{ 
-    state = {
-          showPopup: false,
-        };
-    render(){
-       
+import { Link } from "react-router-dom";
+const Menu =()=> {
+
     return (
       <div className={styles.Menu}>
         <div className={styles.logo}>
@@ -30,26 +25,9 @@ class Menu extends Component{
             <li className={styles.Link}>Showcase</li>
           </Link>
         </ul>
-        {/* <div onClick={()=>this.setState({
-            showPopup:true
-        })} className={styles.publish}>Publish</div> */}
-        {this.state.showPopup && <WarningPopup
-        accept={()=>this.setState({
-            showPopup:false
-        })}
-          cancel={() =>
-            this.setState({
-              showPopup: false,
-            })
-          }
-          show
-          header="Are you sure you want to submit all changes"
-        />}
-        
-        
       </div>
     );
-}
-}
+  }
 
-export default Menu
+
+export default Menu;

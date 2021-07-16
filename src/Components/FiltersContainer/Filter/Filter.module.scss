@@ -1,63 +1,63 @@
-.container{
-    position: relative;
-    min-width: 100px;
-    // height: 50px;
-    .icons{
-        display: flex;
-        position: absolute;
-        top: 0;
-        right: 13px;
-        justify-content: flex-end;
-        width: 100%;
+.container {
+  position: relative;
+  min-width: 100px;
+  .icons {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 13px;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  .closeIcon,
+  .editIcon {
+    display: none;
+    cursor: pointer;
+    svg {
+      width: 0.7rem;
     }
-    .closeIcon,.editIcon{
-      
-        display: none;
-        cursor: pointer;
-        svg {
-          width: .7rem;
+    &:hover {
+      svg {
+        path {
+          fill: #d5293f;
         }
-        &:hover {
-          svg {
-            path {
-              fill: #d5293f;
-            }
-          }
       }
     }
-    .closeIcon{
-        svg{
-            height: 1rem;
-        }
+  }
+  .closeIcon {
+    svg {
+      height: 1rem;
     }
-    .editIcon{
-        // top: 0;
-        // right: 30;
-        margin-right: .5rem;
-      
-        svg{  height: 1.1rem;
-            path{
-                fill: rgb(107, 107, 107);
-            }
-        }
-    }
-    &:hover{
-        .closeIcon,.editIcon{
-            display: block;
-        }
-    }
-}
-.Filter{
-    min-width: 100px;
-    background: #e0e0e0;
+  }
+  .editIcon {
+    // top: 0;
+    // right: 30;
+    margin-right: 0.5rem;
 
-     height: 50px;
-    margin: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-    font-weight: bold;
-    // color: white;
-    text-transform: capitalize;
+    svg {
+      height: 1.1rem;
+      path {
+        fill: rgb(107, 107, 107);
+      }
+    }
+  }
+  &:hover {
+    .closeIcon,
+    .editIcon {
+      display: block;
+    }
+  }
+}
+.Filter {
+  min-width: 100px;
+  background: #e0e0e0;
+
+  height: 50px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-weight: bold;
+  text-transform: capitalize;
 }

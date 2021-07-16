@@ -1,43 +1,41 @@
-.Categories{
-    // background: #e0e0e0;
-    // min-height: 100%;
-      a{
-               text-decoration: none;
-           }
-    .categoriesFilter{
-        display: flex;
-        justify-content: center;
-         
-            button{
-                font-size: 20px;
-                font-weight: bold;
-                margin: 50px;
-                width: 300px;
-                height: 110px;
-                border-radius: 50px;
-                cursor: pointer;
-                border: none;
-                &:hover{
-                  color: white;
-                  background-color: #d5293f;
-                }
-            }
-       
+.Categories {
+  a {
+    text-decoration: none;
+  }
+  .categoriesFilter {
+    display: flex;
+    justify-content: center;
+
+    button {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 50px;
+      width: 300px;
+      height: 110px;
+      border-radius: 50px;
+      cursor: pointer;
+      border: none;
+      &:hover {
+        color: white;
+        background-color: #d5293f;
+      }
     }
-    .add{
-        display: block;
-        border-radius: 20px;
-        border: none;
-        padding: 1rem 2rem;
-        color: #fff;
-        font-size: 1.45em;
-        font-weight: bold;
-        cursor: pointer;
-        margin: 1rem auto;  
-        transition: background 0.5s; background: #1de9b6;
-        border: 1px solid darken(#1de9b6, 5%);
-        &:hover {
-            background: lighten(#1de9b6, 15%);
-        }
+  }
+  .add {
+    display: block;
+    border-radius: 20px;
+    border: none;
+    padding: 1rem 2rem;
+    color: #fff;
+    font-size: 1.45em;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 1rem auto;
+    transition: background 0.5s;
+    background: #1de9b6;
+    border: 1px solid darken(#1de9b6, 5%);
+    &:hover {
+      background: lighten(#1de9b6, 15%);
     }
+  }
 }

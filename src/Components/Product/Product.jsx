@@ -1,55 +1,51 @@
 import React, { Component } from "react";
 import styles from "./Product.module.scss";
 import WarningPopup from "../WarningPopup/WarningPopup";
-import { CloseIcon,EditIcon } from "../../Components/svg";
-import { deleteProduct, fetchFilter } from "../../Data";
-import {Link,withRouter} from "react-router-dom"
+import { CloseIcon, EditIcon } from "../../Components/svg";
+import { fetchFilter } from "../../Data";
+import { Link, withRouter } from "react-router-dom";
 
-class Product extends Component{
-    state={
-        showPopup:false,
-        category:"",
-        filter:""
-    }
-    // if props = 1 category = men
-    componentDidMount(){
-      if (this.props.category == 1){
-        this.setState({
-          category:"Men"
-        })
-      }else if (this.props.category == 2){
-        this.setState({
-          category:"Women"
-        })
-      }else if (this.props.category==3){
-        this.setState({
-          category:"Kids"
-        })
-      }
-
-      fetchFilter(this.props.filter).then(filter=>
-        this.setState({
-          filter:filter.data.engName
-        })
-        )
-
-    }
-
-    DeleteProduct=(id)=>{
-      this.props.DeleteProduct(id);
+class Product extends Component {
+  state = {
+    showPopup: false,
+    category: "",
+    filter: "",
+  };
+  componentDidMount() {
+    if (this.props.category == 1) {
       this.setState({
-        showPopup:false
-      })
-                  // this.props.history.push(`${process.env.PUBLIC_URL}/Products`);
-
-          // window.location.reload();
-
+        category: "Men",
+      });
+    } else if (this.props.category == 2) {
+      this.setState({
+        category: "Women",
+      });
+    } else if (this.props.category == 3) {
+      this.setState({
+        category: "Kids",
+      });
     }
-    render(){
-        const {code}=this.props
+
+    fetchFilter(this.props.filter).then((filter) =>
+      this.setState({
+        filter: filter.data.engName,
+      })
+    );
+  }
+
+  DeleteProduct = (id) => {
+    this.props.DeleteProduct(id);
+    this.setState({
+      showPopup: false,
+    });
+  };
+  render() {
+    const { code, editable, deletable, img, englishName, arabicName, price } =
+      this.props;
+    const { showPopup, category, filter } = this.state;
     return (
       <div className={styles.Product}>
-        {this.state.showPopup && (
+        {showPopup && (
           <WarningPopup
             accept={() => this.DeleteProduct(code)}
             cancel={() =>
@@ -62,14 +58,10 @@ class Product extends Component{
           />
         )}
         <div className={styles.icons}>
-          {this.props.editable && (
+          {editable && (
             <Link
               to={{
-                pathname:
-                  process.env.PUBLIC_URL +
-                  `/Edit/Product/${code}`,
-
-                // state: { type: "Product", id: code },
+                pathname: process.env.PUBLIC_URL + `/Edit/Product/${code}`,
               }}
             >
               {" "}
@@ -78,7 +70,7 @@ class Product extends Component{
               </span>
             </Link>
           )}
-          {this.props.deletable && (
+          {deletable && (
             <span
               onClick={() =>
                 this.setState({
@@ -93,39 +85,37 @@ class Product extends Component{
         </div>
 
         <div className={styles.img}>
-          <img src={`http://18.221.156.111:3001/${this.props.img}`} />
+          <img src={`http://18.221.156.111:3001/${img}`} />
         </div>
 
         <div className={styles.details}>
           <p>
-            Product Code : <span>{this.props.code}</span>
+            Product Code : <span>{code}</span>
           </p>
           <div className={styles.group}>
             <p>
-              English Name : <span>{this.props.englishName}</span>
+              English Name : <span>{englishName}</span>
             </p>
             <p>
-              Arabic Name : <span>{this.props.arabicName}</span>
+              Arabic Name : <span>{arabicName}</span>
             </p>
           </div>
 
           <p>
-            Price : <span>{this.props.price}</span>
+            Price : <span>{price}</span>
           </p>
           <div className={styles.group}>
             <p>
-              Category : <span>{this.state.category}</span>
+              Category : <span>{category}</span>
             </p>
             <p>
-              Filter : <span>{this.state.filter}</span>
-              {/* {console.log(this.props, "al prod")} */}
+              Filter : <span>{filter}</span>
             </p>
           </div>
         </div>
       </div>
     );
-    }
-    
+  }
 }
 
-export default withRouter(Product); 
+export default withRouter(Product);

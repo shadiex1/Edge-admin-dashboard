@@ -1,36 +1,33 @@
-.header{
-    display: block;
-    font-size: 30px;
-    font-weight: bold;
-    width: 80%;
-    margin: 2rem auto;
+.header {
+  display: block;
+  font-size: 30px;
+  font-weight: bold;
+  width: 80%;
+  margin: 2rem auto;
 }
-.newProducts{
-    box-shadow: rgb(60, 64, 67) 0px 1px 4px 0px;
+.newProducts {
+  box-shadow: rgb(60, 64, 67) 0px 1px 4px 0px;
 
-
- padding: 20px;
-    width: 80%;
-    margin: auto;
-    .add{
-       display: flex;
-       justify-content: center;
-       button{
-           border: none;
-           width: 100px;
-           height: 40px;
-           margin-left: 20px;
-           cursor: pointer;
-           &:hover{
-               color: #fff;
-               background-color: #d5293f;
-           }
-       } 
-       .submit{
-       background: #8BC34A;
-               color: #fff;
-
+  padding: 20px;
+  width: 80%;
+  margin: auto;
+  .add {
+    display: flex;
+    justify-content: center;
+    button {
+      border: none;
+      width: 100px;
+      height: 40px;
+      margin-left: 20px;
+      cursor: pointer;
+      &:hover {
+        color: #fff;
+        background-color: #d5293f;
+      }
     }
+    .submit {
+      background: #8bc34a;
+      color: #fff;
     }
-   
+  }
 }

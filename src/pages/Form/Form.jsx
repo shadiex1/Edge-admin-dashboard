@@ -25,10 +25,10 @@ class Form extends Component {
     categories: [],
     edit: null,
     categoryName: null,
-    filterName:null,
+    filterName: null,
     editImg: false,
-    editWashings:true,
-    editSizes:true
+    editWashings: true,
+    editSizes: true,
   };
 
   componentDidMount() {
@@ -44,7 +44,6 @@ class Form extends Component {
         })
       )
       .then(this.editFormHandler);
-
   }
 
   fetchFiltersFromCategory = () => {
@@ -104,10 +103,6 @@ class Form extends Component {
       this.props.match.params.type == "Product"
     ) {
       const receivedID = this.props.match.params.id;
-      // let product = [...this.props.products].find(
-      //   (item) => item.code == receivedID
-      // );
-      console.log(this.props.match.params.type, "al id");
 
       fetchProduct(receivedID).then((product) =>
         this.setState(
@@ -116,8 +111,8 @@ class Form extends Component {
             eName: product.data.engName,
             aName: product.data.araName,
             category: product.data.categoryID,
-            categoryName:product.data.categoryName,
-            filterName:product.data.filterName,
+            categoryName: product.data.categoryName,
+            filterName: product.data.filterName,
             price: product.data.price,
             filter: product.data.filterID,
             img: product.data.imageURL,
@@ -130,7 +125,7 @@ class Form extends Component {
             edit: true,
             editImg: true,
             editWashings: false,
-            editSizes:false
+            editSizes: false,
           },
           () => {
             if (this.state.sizeType == "N") {
@@ -231,7 +226,9 @@ class Form extends Component {
             productID: this.state.id,
             engName: this.state.eName,
             araName: this.state.aName,
-            imageURL: this.state.img.name? this.state.img.name : this.state.img,
+            imageURL: this.state.img.name
+              ? this.state.img.name
+              : this.state.img,
             price: this.state.price,
             categoryID: this.state.category,
             filterID: this.state.filter,
@@ -358,9 +355,6 @@ class Form extends Component {
               </div>
               <div className={styles.img}>
                 <label for="img">{type} image:</label>
-                {/* {
-                        console.log(this.props)
-                    } */}
 
                 <input
                   type="file"
@@ -402,7 +396,7 @@ class Form extends Component {
               />
             </div>
 
-            {console.log(this.state,this.props, "al state")}
+            {console.log(this.state, this.props, "al state")}
           </div>
           <div className={styles.formGroup}>
             {type == "Product" && (
@@ -470,8 +464,8 @@ class Form extends Component {
               <div className={styles.formGroup}>
                 {this.state.sizeType && (
                   <div
-                     style={{
-                      width: this.state.editSizes&& "100%",
+                    style={{
+                      width: this.state.editSizes && "100%",
                     }}
                     className={styles.checkboxContainer}
                   >
@@ -497,22 +491,22 @@ class Form extends Component {
                             <span className={styles.check}></span>
                           </p>
                         ))}
-                    {} {!this.state.editSizes && (
-                  <button
-                    className={styles.reset}
-                    onClick={() =>
-                      this.setState({
-                        editSizes: true,
-                        sizes: [],
-                      })
-                    }
-                  >
-                    Reset
-                  </button>
-                )}
+                    {}{" "}
+                    {!this.state.editSizes && (
+                      <button
+                        className={styles.reset}
+                        onClick={() =>
+                          this.setState({
+                            editSizes: true,
+                            sizes: [],
+                          })
+                        }
+                      >
+                        Reset
+                      </button>
+                    )}
                   </div>
                 )}
-               
               </div>
               <div className={styles.formGroup}>
                 <div>

@@ -1,68 +1,62 @@
 import React, { Component } from "react";
 import styles from "./EditNewProducts.module.scss";
 import Product from "../Product/Product";
-import {fetchProduct} from "../../Data"
+import { fetchProduct } from "../../Data";
 
 class EditNewProducts extends Component {
   state = {
-    newProducts: [],
+    newProducts: this.props.newProducts,
     searchInput: "",
+    showSubmit: false,
   };
-  
-  componentDidMount() {
-    this.setState({
-      newProducts: this.props.newProducts,
-    });
-  }
- 
 
   createProductsFromIds = (id) => {
     let newProducts = [...this.state.newProducts];
     fetchProduct(id)
-      .then((product) => product.status.engError? alert(product.status.engError):newProducts.push(product.data))
-      .then((response) => {
-        console.log(response);
-        this.setState({ newProducts });
+      .then((product) =>
+        product.status.engError
+          ? alert(product.status.engError)
+          : newProducts.push(product.data)
+      )
+      .then(() => {
+        this.setState({ newProducts, showSubmit: true, searchInput: "" });
       });
-
   };
- 
+
   searchInputChangeHandler = (event) => {
     this.setState({ searchInput: event.target.value });
   };
-  submitProducts =()=>{
-      const products = [...this.state.newProducts]
-      const productsIDS=[]
-        products.forEach(product=>{
-            productsIDS.push(product.productID)
-        })
-        this.props.submit(productsIDS)
-  }
-  deleteProduct=(product)=>{
-    //   const array = [2, 5, 9];
-
-    //   console.log(array);
-const products=[...this.state.newProducts]
-      const index = products.indexOf(product);
-      if (index > -1) {
-        products.splice(index, 1);
-      }
-
-      // array = [2, 9]
-      this.setState({
-          newProducts:products
-      })
-      console.log(products); 
-  }
+  submitProducts = () => {
+    const products = [...this.state.newProducts];
+    const productsIDS = [];
+    products.forEach((product) => {
+      productsIDS.push(product.productID);
+    });
+    this.props.submit(productsIDS);
+    this.setState({
+      showSubmit: false,
+    });
+  };
+  deleteProduct = (product) => {
+    const products = [...this.state.newProducts];
+    const index = products.indexOf(product);
+    if (index > -1) {
+      products.splice(index, 1);
+    }
+    this.setState({
+      newProducts: products,
+    });
+  };
   render() {
+    const { newProducts, showSubmit,searchInput } = this.state;
     return (
       <React.Fragment>
         <p className={styles.header}>Showcase New Products</p>
 
         <div className={styles.newProducts}>
-          {this.state.newProducts ? (
+          {newProducts ? (
             <div className={styles.products}>
-              {this.state.newProducts.map((product) => (
+              {newProducts.map((product) => (
                 <Product
                   deletable
                   DeleteProduct={() => this.deleteProduct(product)}
@@ -88,16 +82,18 @@ const products=[...this.state.newProducts]
               type="text"
             />
             <button
-              onClick={() => this.createProductsFromIds(this.state.searchInput)}
+              onClick={() => this.createProductsFromIds(searchInput)}
             >
               ADD
             </button>
-            <button
-              onClick={() => this.submitProducts()}
-              className={styles.submit}
-            >
-              SUBMIT
-            </button>
+            {showSubmit && (
+              <button
+                onClick={() => this.submitProducts()}
+                className={styles.submit}
+              >
+                SUBMIT
+              </button>
+            )}
           </div>
         </div>
       </React.Fragment>
@@ -105,4 +101,4 @@ const products=[...this.state.newProducts]
   }
 }
 
-export default EditNewProducts
+export default EditNewProducts;

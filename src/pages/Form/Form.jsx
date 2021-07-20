@@ -61,7 +61,7 @@ class Form extends Component {
     ) {
       const receivedID = this.props.match.params.id;
       
-      let filter = this.state.allFilters.find((item) => item.ID === receivedID);
+      let filter = this.state.allFilters.find((item) => item.ID == receivedID);
       switch (filter.categoryID) {
         case 1:
           this.setState({

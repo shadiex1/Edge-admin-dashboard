@@ -5,7 +5,7 @@ import Backdrop from "../Backdrop.jsx/Backdrop";
 const WarningPopup = (props) => {
   return (
     <div className={styles.WarningPopup}>
-      <Backdrop show={props.show} />
+      <Backdrop clicked={props.cancel} show={props.show} />
       <div className={styles.warning}>
         <h2>{props.header}</h2>
         <div className={styles.btns}>

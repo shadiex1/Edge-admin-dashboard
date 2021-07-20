@@ -151,7 +151,7 @@ class Showcase extends Component {
                 changeSliderImgs={(imgs) => this.submitImgsHandler(imgs)}
                 imgs={this.state.imgs}
               />
-            )}
+            ) }
           </div>
         )}
       </div>

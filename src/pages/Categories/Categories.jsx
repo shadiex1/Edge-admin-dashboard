@@ -139,11 +139,13 @@ class Categories extends Component {
                   {this.state.categories[2].engName}
                 </button>
               </div>
-              {this.state.filters && (
+              {this.state.filters ? (
                 <FiltersContainer
                   DeleteFilter={(id) => this.props.DeleteFilter(id)}
                   filters={this.state.filters}
                 />
+              ) : (
+                <p className={styles.empty}>No filters available</p>
               )}
             </div>
           )

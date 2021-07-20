@@ -127,7 +127,7 @@ class Form extends Component {
             editSizes: false,
           },
           () => {
-            if (this.state.sizeType === "N" && this.state.category) {
+            if (this.state.sizeType == "N" && this.state.category) {
                fetchFilters(this.state.category).then((fetchedFilters) =>
                  this.setState({
                    availbleFilters: fetchedFilters.data.data,
@@ -139,7 +139,7 @@ class Form extends Component {
                fetchFilters(this.state.category).then((fetchedFilters) =>
                  this.setState({
                    availbleFilters: fetchedFilters.data.data,
-                   availableSizes: [34, 36, 38, 40, 42, 44, 46, 48],
+                   availableSizes: ["S", "M", "L", "XL", "XXL"],
                  })
                );
             }
@@ -163,17 +163,21 @@ class Form extends Component {
           availbleFilters: fetchedFilters.data.data,
         })
       );
-    } else if (e.target.name === "sizeType") {
-      if (e.target.value === "N") {
+    } else if (e.target.name == "sizeType") {
+      if (e.target.value == "N") {
         this.setState({
           availableSizes: [34, 36, 38, 40, 42, 44, 46, 48],
+          editSizes: true,
+          sizes: [],
         });
       } else {
         this.setState({
           availableSizes: ["S", "M", "L", "XL", "XXL"],
+          editSizes: true,
+          sizes: [],
         });
       }
-    } else if (e.target.name === "sizes") {
+    } else if (e.target.name == "sizes") {
       let value = Array.from(
         e.target.selectedOptions,
         (option) => option.value

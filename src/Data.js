@@ -1,6 +1,7 @@
 import axios from "axios";
 
-
+const ip = "" /// "http://18.221.156.111:3001
+// anakhily@yahoo.com localhost 
 export const fetchCategories = () => {
       return  axios
         .get("http://18.221.156.111:3001/admin/mobile/category/list")

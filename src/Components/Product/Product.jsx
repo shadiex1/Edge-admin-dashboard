@@ -33,11 +33,13 @@ class Product extends Component {
     );
   }
 
-  DeleteProduct = (id) => {
-    this.props.DeleteProduct(id);
+  DeleteProduct = () => { 
     this.setState({
       showPopup: false,
     });
+    this.props.DeleteProduct();
+    console.log("ra66")
+   
   };
   render() {
     const { code, editable, deletable, img, englishName, arabicName, price } =
@@ -47,7 +49,7 @@ class Product extends Component {
       <div className={styles.Product}>
         {showPopup && (
           <WarningPopup
-            accept={() => this.DeleteProduct(code)}
+            accept={() => this.DeleteProduct()}
             cancel={() =>
               this.setState({
                 showPopup: false,

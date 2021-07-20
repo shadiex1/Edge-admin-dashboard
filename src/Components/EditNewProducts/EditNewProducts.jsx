@@ -7,7 +7,6 @@ class EditNewProducts extends Component {
   state = {
     newProducts: this.props.newProducts,
     searchInput: "",
-    showSubmit: false,
   };
 
   createProductsFromIds = (id) => {
@@ -19,7 +18,7 @@ class EditNewProducts extends Component {
           : newProducts.push(product.data)
       )
       .then(() => {
-        this.setState({ newProducts, showSubmit: true, searchInput: "" });
+        this.setState({ newProducts, searchInput: "" });
       });
   };
 
@@ -48,15 +47,15 @@ class EditNewProducts extends Component {
     });
   };
   render() {
-    const { newProducts, showSubmit,searchInput } = this.state;
+    const { newProducts,searchInput } = this.state;
     return (
       <React.Fragment>
         <p className={styles.header}>Showcase New Products</p>
 
         <div className={styles.newProducts}>
-          {newProducts ? (
+          {newProducts.length ? (
             <div className={styles.products}>
-              {newProducts.map((product) => (
+              {newProducts.map((product,i) => (
                 <Product
                   deletable
                   DeleteProduct={() => this.deleteProduct(product)}
@@ -66,13 +65,13 @@ class EditNewProducts extends Component {
                   arabicName={product.araName}
                   price={product.price}
                   category={product.categoryID}
-                  key={product.productID}
+                  key={i}
                   filter={product.filterID}
                 />
               ))}
             </div>
           ) : (
-            <div>No Products Availble</div>
+            <div className={styles.empty}>No Products Availble</div>
           )}
 
           <div className={styles.add}>
@@ -86,14 +85,13 @@ class EditNewProducts extends Component {
             >
               ADD
             </button>
-            {showSubmit && (
               <button
                 onClick={() => this.submitProducts()}
                 className={styles.submit}
               >
                 SUBMIT
               </button>
-            )}
+           
           </div>
         </div>
       </React.Fragment>

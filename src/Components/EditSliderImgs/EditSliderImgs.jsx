@@ -27,34 +27,39 @@ class EditSliderImgs extends Component {
     return (
       <div>
         <p className={styles.header}>Current Slider</p>
-        <div className={styles.Carousel}>
-          <Carousel
-            heightMode="max"
-            autoplay
-            wrapAround
-            defaultControlsConfig={{
-              containerClassName: `${styles.container}`,
-              nextButtonText: ">",
-              prevButtonText: "<",
-              prevButtonClassName: `${styles.prev}`,
-              nextButtonClassName: `${styles.next}`,
-              pagingDotsClassName: `${styles.pagingDots}`,
-              pagingDotsContainerClassName: `${styles.pagingContainer}`,
-            }}
-          >
-            {imgs.map((img) => (
-              <div className={styles.carouselImg}>
-                <img src={`http://18.221.156.111:3001/${img}`} alt="" />
-              </div>
-            ))}
-          </Carousel>
-        </div>
+        {imgs ? (
+          <div className={styles.Carousel}>
+            <Carousel
+              heightMode="max"
+              autoplay
+              wrapAround
+              defaultControlsConfig={{
+                containerClassName: `${styles.container}`,
+                nextButtonText: ">",
+                prevButtonText: "<",
+                prevButtonClassName: `${styles.prev}`,
+                nextButtonClassName: `${styles.next}`,
+                pagingDotsClassName: `${styles.pagingDots}`,
+                pagingDotsContainerClassName: `${styles.pagingContainer}`,
+              }}
+            >
+              {imgs.map((img) => (
+                <div className={styles.carouselImg}>
+                  <img src={`http://18.221.156.111:3001/${img}`} alt="" />
+                </div>
+              ))}
+            </Carousel>
+          </div>
+        ) : (
+          <p className={styles.empty}>No slider images available</p>
+        )}
+
         <div className={styles.Upload}>
           <h2>Upload images</h2>
           <div className={styles.imgs}>
-            {files.map((img,i) => (
+            {files.map((img, i) => (
               <div key={i} className={styles.imgConatiner}>
-                <img src={URL.createObjectURL(img)} alt=""/>
+                <img src={URL.createObjectURL(img)} alt="" />
                 <span onClick={() => this.deleteImgHandler(img)}>
                   <CloseIcon />
                 </span>

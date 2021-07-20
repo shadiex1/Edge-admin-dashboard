@@ -13,6 +13,12 @@
   margin: auto;
   background-color: #fff;
   border-radius: 10px;
+  .empty {
+      margin: 2rem auto;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
   .add {
     display: flex;
     justify-content: center;

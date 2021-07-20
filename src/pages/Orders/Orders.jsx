@@ -25,8 +25,10 @@ class Orders extends Component {
         <Menu />
         {this.state.fetching ? (
           <Loading />
+        ) : this.state.orders ? (
+          <OrdersTable orders={this.state.orders} />
         ) : (
-          this.state.orders && <OrdersTable orders={this.state.orders} />
+          <p className={styles.empty}>No orders available</p>
         )}
       </div>
     );

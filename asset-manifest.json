@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/Edge-admin-dashboard/static/css/main.ad29147e.chunk.css",
-    "main.js": "/Edge-admin-dashboard/static/js/main.7bc2c0d9.chunk.js",
-    "main.js.map": "/Edge-admin-dashboard/static/js/main.7bc2c0d9.chunk.js.map",
+    "main.css": "/Edge-admin-dashboard/static/css/main.63727e0d.chunk.css",
+    "main.js": "/Edge-admin-dashboard/static/js/main.794a3560.chunk.js",
+    "main.js.map": "/Edge-admin-dashboard/static/js/main.794a3560.chunk.js.map",
     "runtime-main.js": "/Edge-admin-dashboard/static/js/runtime-main.59ee26d0.js",
     "runtime-main.js.map": "/Edge-admin-dashboard/static/js/runtime-main.59ee26d0.js.map",
-    "static/js/2.57dff18e.chunk.js": "/Edge-admin-dashboard/static/js/2.57dff18e.chunk.js",
-    "static/js/2.57dff18e.chunk.js.map": "/Edge-admin-dashboard/static/js/2.57dff18e.chunk.js.map",
+    "static/js/2.b090b520.chunk.js": "/Edge-admin-dashboard/static/js/2.b090b520.chunk.js",
+    "static/js/2.b090b520.chunk.js.map": "/Edge-admin-dashboard/static/js/2.b090b520.chunk.js.map",
     "static/js/3.462db39a.chunk.js": "/Edge-admin-dashboard/static/js/3.462db39a.chunk.js",
     "static/js/3.462db39a.chunk.js.map": "/Edge-admin-dashboard/static/js/3.462db39a.chunk.js.map",
     "index.html": "/Edge-admin-dashboard/index.html",
-    "static/css/main.ad29147e.chunk.css.map": "/Edge-admin-dashboard/static/css/main.ad29147e.chunk.css.map",
-    "static/js/2.57dff18e.chunk.js.LICENSE.txt": "/Edge-admin-dashboard/static/js/2.57dff18e.chunk.js.LICENSE.txt"
+    "static/css/main.63727e0d.chunk.css.map": "/Edge-admin-dashboard/static/css/main.63727e0d.chunk.css.map",
+    "static/js/2.b090b520.chunk.js.LICENSE.txt": "/Edge-admin-dashboard/static/js/2.b090b520.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.59ee26d0.js",
-    "static/js/2.57dff18e.chunk.js",
-    "static/css/main.ad29147e.chunk.css",
-    "static/js/main.7bc2c0d9.chunk.js"
+    "static/js/2.b090b520.chunk.js",
+    "static/css/main.63727e0d.chunk.css",
+    "static/js/main.794a3560.chunk.js"
   ]
 }

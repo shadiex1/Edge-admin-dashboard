@@ -70,7 +70,7 @@ class SingleOrder extends Component {
                   <li>English name</li>
                   <li>Arabic name</li>
                   <li>Quantity</li>
-                  <li>Washings</li>
+                  {/* <li>Washings</li> */}
                   <li>Measure</li>
                   <li>Price</li>
                 </ul>
@@ -81,7 +81,7 @@ class SingleOrder extends Component {
                         <li>{product.engName}</li>
                         <li>{product.araName}</li>
                         <li>{product.quantity}</li>
-                        <li>{product.washings}</li>
+                        {/* <li>{product.washings}</li> */}
                         <li>{product.size}</li>
                         <li>{product.price}</li>
                       </ul>

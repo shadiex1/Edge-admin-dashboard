@@ -11,7 +11,7 @@ class Form extends Component {
     aName: "",
     img: "",
     price: "",
-    washings: [],
+    washings: [1,2,3], /// to be removed 
     color: "",
     engDescription: "",
     araDescription: "",
@@ -27,7 +27,6 @@ class Form extends Component {
     categoryName: null,
     filterName: null,
     editImg: false,
-    editWashings: true,
     editSizes: true,
   };
 
@@ -115,7 +114,7 @@ class Form extends Component {
             price: product.data.price,
             filter: product.data.filterID,
             img: product.data.imageURL,
-            washings: product.data.details.washings,
+            // washings: product.data.details.washings,
             color: product.data.details.color,
             sizes: product.data.details.availableSizes,
             engDescription: product.data.details.engDesc,
@@ -123,7 +122,6 @@ class Form extends Component {
             sizeType: product.data.details.sizeType,
             edit: true,
             editImg: true,
-            editWashings: false,
             editSizes: false,
           },
           () => {
@@ -201,18 +199,18 @@ class Form extends Component {
 
     this.setState({ sizes: selected });
   }
-  washingsOnChange(item) {
-    let selected = this.state.washings;
-    let find = selected.indexOf(item);
+  // washingsOnChange(item) {
+  //   let selected = this.state.washings;
+  //   let find = selected.indexOf(item);
 
-    if (find > -1) {
-      selected.splice(find, 1);
-    } else {
-      selected.push(item);
-    }
+  //   if (find > -1) {
+  //     selected.splice(find, 1);
+  //   } else {
+  //     selected.push(item);
+  //   }
 
-    this.setState({ washings: selected });
-  }
+  //   this.setState({ washings: selected });
+  // }
 
   fileSelectedHandler = (e) => {
     this.setState({
@@ -414,11 +412,10 @@ class Form extends Component {
               </div>
 
             </div>
-            <div className={styles.formGroup}>
+            {/* <div className={styles.formGroup}>
               {type === "Product" && (
                 <div className={styles.checkboxContainer}>
                   <label for="washings">Washings : </label>
-                  {/* {this.state.washings ? } */}
                   {this.state.editWashings
                     ? this.props.washings.map((item, i) => {
                         return (
@@ -455,7 +452,7 @@ class Form extends Component {
                   )}
                 </div>
               )}
-            </div>
+            </div> */}  
             {type === "Product" && (
               <>
                 {" "}

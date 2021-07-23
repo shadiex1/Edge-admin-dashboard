@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import styles from "./Form.module.scss";
 import Menu from "../../Components/Menu/Menu";
 import { withRouter } from "react-router-dom";
-import { fetchFilters, fetchCategories, fetchProduct } from "../../Data";
+import { fetchFilters, fetchCategories, fetchProduct,ip } from "../../Data";
+
 import axios from "axios";
 class Form extends Component {
   state = {
@@ -11,8 +12,8 @@ class Form extends Component {
     aName: "",
     img: "",
     price: "",
-    washings: [1,2,3], /// to be removed 
-    color: "",
+    washings: [1, 2, 3], /// to be removed
+    color: "Blue", // to be romved 
     engDescription: "",
     araDescription: "",
     sizeType: "",
@@ -59,7 +60,7 @@ class Form extends Component {
       this.props.match.params.type === "Filter"
     ) {
       const receivedID = this.props.match.params.id;
-      
+
       let filter = this.state.allFilters.find((item) => item.ID == receivedID);
       switch (filter.categoryID) {
         case 1:
@@ -126,22 +127,29 @@ class Form extends Component {
           },
           () => {
             if (this.state.sizeType == "N" && this.state.category) {
-               fetchFilters(this.state.category).then((fetchedFilters) =>
-                 this.setState({
-                   availbleFilters: fetchedFilters.data.data,
-                   availableSizes: [34, 36, 38, 40, 42, 44, 46, 48],
-                 })
-               );
-             
+              fetchFilters(this.state.category).then((fetchedFilters) =>
+                this.setState({
+                  availbleFilters: fetchedFilters.data.data,
+                  availableSizes: [28, 30, 32, 34, 36, 38, 40, 42],
+                })
+              );
             } else {
-               fetchFilters(this.state.category).then((fetchedFilters) =>
-                 this.setState({
-                   availbleFilters: fetchedFilters.data.data,
-                   availableSizes: ["S", "M", "L", "XL", "XXL"],
-                 })
-               );
+              fetchFilters(this.state.category).then((fetchedFilters) =>
+                this.setState({
+                  availbleFilters: fetchedFilters.data.data,
+                  availableSizes: [
+                    "XS",
+                    "S",
+                    "M",
+                    "L",
+                    "XL",
+                    "XXL",
+                    "XXXL",
+                    "4XL",
+                  ],
+                })
+              );
             }
-            
           }
         )
       );
@@ -149,13 +157,7 @@ class Form extends Component {
   };
 
   handleChange = (e) => {
-    if (e.target.name === "category") { 
-      // const filters = [...this.state.allFilters].filter(
-      //   (item) => item.categoryID == parseInt(e.target.value)
-      // );
-      // this.setState({
-      //   availbleFilters: filters,
-      // });
+    if (e.target.name === "category") {
       fetchFilters(e.target.value).then((fetchedFilters) =>
         this.setState({
           availbleFilters: fetchedFilters.data.data,
@@ -164,13 +166,13 @@ class Form extends Component {
     } else if (e.target.name == "sizeType") {
       if (e.target.value == "N") {
         this.setState({
-          availableSizes: [34, 36, 38, 40, 42, 44, 46, 48],
+          availableSizes: [28,30,32, 34,36, 38, 40, 42],
           editSizes: true,
           sizes: [],
         });
       } else {
         this.setState({
-          availableSizes: ["S", "M", "L", "XL", "XXL"],
+          availableSizes: ["XS","S", "M", "L", "XL", "XXL","XXXL","4XL"],
           editSizes: true,
           sizes: [],
         });
@@ -225,7 +227,7 @@ class Form extends Component {
 
     formData.append("sampleFile", this.state.img, this.state.img.name);
 
-    axios.post("http://18.221.156.111:3001/admin/mobile/upload", formData);
+    axios.post(`${ip}/admin/mobile/upload`, formData);
   };
 
   submit = () => {
@@ -234,7 +236,7 @@ class Form extends Component {
         ///edit
         axios({
           method: "post",
-          url: "http://18.221.156.111:3001/admin/mobile/product/upd",
+          url: `${ip}/admin/mobile/product/upd`,
           headers: {},
           data: {
             productID: this.state.id,
@@ -270,7 +272,7 @@ class Form extends Component {
       } else {
         axios({
           method: "post",
-          url: "http://18.221.156.111:3001/admin/mobile/product/add",
+          url: `${ip}/admin/mobile/product/add`,
           headers: {},
           data: {
             productID: this.state.id,
@@ -306,7 +308,7 @@ class Form extends Component {
       if (this.state.edit) {
         axios({
           method: "post",
-          url: "http://18.221.156.111:3001/admin/mobile/filter/upd",
+          url: `${ip}/admin/mobile/filter/upd`,
           headers: {},
           data: {
             ID: this.state.id,
@@ -326,7 +328,7 @@ class Form extends Component {
       } else {
         axios({
           method: "post",
-          url: "http://18.221.156.111:3001/admin/mobile/filter/add",
+          url: `${ip}/admin/mobile/filter/add`,
           headers: {},
           data: {
             engName: this.state.eName,
@@ -378,7 +380,7 @@ class Form extends Component {
                     onChange={this.fileSelectedHandler}
                   />
                   {this.state.editImg ? (
-                    <img src={`http://18.221.156.111:3001/${this.state.img}`} alt="" />
+                    <img src={`${ip}/${this.state.img}`} alt="" />
                   ) : (
                     this.state.img && (
                       <img src={URL.createObjectURL(this.state.img)} alt="" />
@@ -410,7 +412,6 @@ class Form extends Component {
                   value={this.state.aName}
                 />
               </div>
-
             </div>
             {/* <div className={styles.formGroup}>
               {type === "Product" && (
@@ -452,7 +453,7 @@ class Form extends Component {
                   )}
                 </div>
               )}
-            </div> */}  
+            </div> */}
             {type === "Product" && (
               <>
                 {" "}
@@ -532,7 +533,7 @@ class Form extends Component {
                       value={this.state.price}
                     />
                   </div>
-                  <div>
+                  {/* <div>
                     <label for="color">Color : </label>
 
                     <select
@@ -548,7 +549,7 @@ class Form extends Component {
                         </option>
                       ))}
                     </select>
-                  </div>
+                  </div> */}
                 </div>
                 <div className={styles.formGroup}>
                   <div>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styles from "./SingleOrder.module.scss";
 import { withRouter } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import { fetchOrder } from "../../Data";
+import { fetchOrder,ip } from "../../Data";
 import Menu from "../../Components/Menu/Menu";
 import axios from "axios";
 class SingleOrder extends Component {
@@ -24,7 +24,7 @@ class SingleOrder extends Component {
   editShipmentState = (id, state) => {
     axios({
       method: "post",
-      url: "http://18.221.156.111:3001/admin/order/state/upd",
+      url: `${ip}/admin/order/state/upd`,
       headers: {},
       data: {
         ID: id,

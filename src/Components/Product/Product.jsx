@@ -4,6 +4,7 @@ import WarningPopup from "../WarningPopup/WarningPopup";
 import { CloseIcon, EditIcon } from "../../Components/svg";
 import { fetchFilter } from "../../Data";
 import { Link, withRouter } from "react-router-dom";
+import { ip } from "../../Data";
 
 class Product extends Component {
   state = {
@@ -87,7 +88,7 @@ class Product extends Component {
         </div>
 
         <div className={styles.img}>
-          <img src={`http://18.221.156.111:3001/${img}`} alt=""/>
+          <img src={`${ip}/${img}`} alt=""/>
         </div>
 
         <div className={styles.details}>

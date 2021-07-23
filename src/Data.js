@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const ip = "http://18.221.156.111:3001";
+ export const ip = "http://18.221.156.111:3001";
 
 
 export const fetchCategories = () => {
@@ -148,7 +148,7 @@ export const modifyShowcase = (showcaseOBJ) => {
     console.log(response);
   });
 };
-export const fetchOrders = (productID) => {
+export const fetchOrders = () => {
   return axios.get(`${ip}/admin/order/list`).then((response) => response.data);
 };
 

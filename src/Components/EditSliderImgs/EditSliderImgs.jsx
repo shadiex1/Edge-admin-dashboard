@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from "./EditSliderImgs.module.scss";
 import Carousel from "nuka-carousel";
+import {ip} from "../../Data"
 import { CloseIcon } from "../../Components/svg";
 
 class EditSliderImgs extends Component {
@@ -45,7 +46,7 @@ class EditSliderImgs extends Component {
             >
               {imgs.map((img) => (
                 <div className={styles.carouselImg}>
-                  <img src={`http://18.221.156.111:3001/${img}`} alt="" />
+                  <img src={`${ip}/${img}`} alt="" />
                 </div>
               ))}
             </Carousel>

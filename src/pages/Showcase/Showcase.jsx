@@ -4,6 +4,7 @@ import Menu from "../../Components/Menu/Menu";
 import EditSliderImgs from "../../Components/EditSliderImgs/EditSliderImgs";
 import EditNewProducts from "../../Components/EditNewProducts/EditNewProducts";
 import Loading from "../../Components/Loading/Loading";
+import {ip} from "../../Data"
 import { withRouter } from "react-router-dom";
 
 import { fetchNewProducts } from "../../Data";
@@ -42,7 +43,7 @@ class Showcase extends Component {
   uploadImg = (img) => {
     const formData = new FormData();
     formData.append("sampleFile", img, img.name);
-    axios.post("http://18.221.156.111:3001/admin/mobile/upload", formData);
+    axios.post(`${ip}/admin/mobile/upload`, formData);
   };
   submitImgsHandler = (imgs) => {
     const namesArr = [];
@@ -57,7 +58,7 @@ class Showcase extends Component {
 
     axios({
       method: "post",
-      url: "http://18.221.156.111:3001/admin/mobile/Home/upd",
+      url: `${ip}/admin/mobile/Home/upd`,
       headers: {},
       data: {
         newProducts: this.state.productsIDs,
@@ -76,7 +77,7 @@ class Showcase extends Component {
   submitNewProducts = (IDS) => {
     axios({
       method: "post",
-      url: "http://18.221.156.111:3001/admin/mobile/Home/upd",
+      url: `${ip}/admin/mobile/Home/upd`,
       headers: {},
       data: {
         newProducts: IDS,

@@ -112,7 +112,6 @@ class SingleOrder extends Component {
                   </div>
                   <div className={styles.detail}>
                     City : <span>{order.governorate}</span>
-                    {console.log(order)}
                   </div>
                   <div className={styles.detail}>
                     Address : <span>{order.shippmentDetails.address}</span>

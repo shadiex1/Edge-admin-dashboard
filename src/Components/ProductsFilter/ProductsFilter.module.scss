@@ -1,0 +1,61 @@
+.banner{
+  width: 100%;
+  background-color:#d5293f ;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  margin: 1rem 0;
+  h1 {
+    font-size: 3.5rem;
+    color: white;
+    text-align: center;
+  }
+}
+.ProductsFilter {
+  width: 73%;
+  margin: auto;
+  
+  .filters {
+    display: flex;
+    justify-content: center;
+    .title{
+      display: inline-block;
+      background-color: #d5293f;
+      color: white;
+      width: 120px;
+      height: 35px;
+      // border-radius: 10px;
+      text-align: center;
+    }
+    .filter {
+      margin: 1rem;
+      font-size: 1.3rem;
+      margin-left: 1rem;
+      select {
+        height: 35px;
+        width: 120px;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}
+@media screen and (max-width:700px){
+.ProductsFilter{
+  width: 100%;
+  .filters{
+    flex-direction: column;
+    align-items: center;
+    .filter{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      select{
+        margin: .5rem 0 0 1rem;
+      }
+    }
+  }
+}
+}

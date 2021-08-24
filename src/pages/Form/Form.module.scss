@@ -1,0 +1,134 @@
+.FormContainer{
+    background-color: #e0e0e0; 
+   min-height: 100vh;
+}
+.Form {
+  width: 80%;
+  margin: auto;
+  @media screen and (max-width:800px){
+   width: 90%;
+  }
+  h1 {
+    font-size: 50px;
+    text-align: center;
+  }
+  .formGroups {
+         border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    background-color: white;
+    .formGroup {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      .checkContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .check {
+          display: inline-block;
+          width: 30px;
+          background-color: rgb(0, 117, 255);
+          height: 30px;
+          margin-left: 20px;
+          border-radius: 2px;
+        }
+      }
+
+      .checkboxContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 60%;
+        flex-wrap: wrap;
+        .reset {
+          border: 1px solid #948b8b;
+          width: 80px;
+          height: 35px;
+          cursor: pointer;
+          border-radius: 5px;
+        }
+        label {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          justify-content: center;
+
+          input {
+            width: 40px;
+          }
+        }
+      }
+      .img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        label {
+          width: 30%;
+        }
+        input {
+          width: 30%;
+          border: none;
+        }
+        img {
+          width: 120px;
+          height: 120px;
+          object-fit: contain;
+          display: block;
+          border-radius: 50%;
+        }
+      }
+      div {
+        margin: 1rem;
+        width: 100%;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        // font-weight: bold;
+        // color: #948b8b;
+      }
+      input,
+      select {
+        height: 30px;
+        margin-left: 0.3rem;
+        width: 80%;
+        border: 1px solid #948b8b;
+        // width: 100%;
+      }
+      input:disabled {
+        background: lemonchiffon;
+        font-weight: bold;
+        color: black;
+        text-align: center;
+      }
+    }
+  }
+  .btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0 0 0 ; 
+    .submit{
+        background-color: #d5293f;
+        color: white;
+      }
+    button {
+      display: inline-block;
+      width: 150px;
+      height: 60px;
+      margin: 0 2rem;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+     
+    }
+  }
+}

@@ -1,0 +1,78 @@
+.OrdersTable {
+  width: 100%;
+padding-top: 1rem;
+  table {
+    border-spacing: 0;
+    border: 1px solid black;
+    width: 80%;
+    background-color: white;
+    margin: auto;
+    tr {
+      :last-child {
+        td {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    th,
+    td {
+      margin: 0.5rem;
+      border-bottom: 1px solid black;
+      border-right: 1px solid black;
+      text-align: center;
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.1rem;
+      }
+      span {
+        height: 30px;
+        margin-right: 0.3rem;
+        // width: 100%;
+        // display: flex;
+        // align-items: center;
+        input {
+          // margin-left: .5rem;
+          width: 70%;
+        }
+      }
+    }
+   
+
+    td {
+      span {
+        width: 100%;
+      }
+      input {
+        font-size: 1rem;
+        width: 100%;
+        margin: 0;
+        border: 0;
+      }
+    }
+  }
+
+  .paginationContainer {
+    width: 100%;
+    .pagination {
+      padding: 0.5rem;
+      margin: auto;
+      width: 73%;
+    }
+  }
+  .details {
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    text-align: center;
+    text-transform: capitalize;
+    color: #000;
+    font-weight: bold;
+    &:hover {
+      background-color: #d5293f;
+      color: #fff;
+    }
+  }
+}

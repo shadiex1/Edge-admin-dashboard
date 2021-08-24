@@ -1,0 +1,28 @@
+.FiltersContainer{
+    background: #fff;
+  border-radius: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 300px;
+  margin: 1rem auto;
+  position: relative;
+  width: 60%;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  padding: 20px;
+  overflow: auto;
+     border-radius: 20px;
+
+ .empty{
+            margin: 2rem auto;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+        }
+}
+
+@media screen and (max-width:800px){
+  .FiltersContainer{
+      width: 80%;
+  }
+  }

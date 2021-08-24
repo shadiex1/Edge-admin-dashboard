@@ -1,0 +1,45 @@
+.header {
+  display: block;
+  font-size: 30px;
+  font-weight: bold;
+  width: 80%;
+  margin: 2rem auto;
+}
+.newProducts {
+  box-shadow: rgb(60, 64, 67) 0px 1px 4px 0px;
+
+  padding: 20px;
+  width: 80%;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  .empty {
+      margin: 2rem auto;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  .add {
+    display: flex;
+    justify-content: center;
+    input{
+      width: 200px;
+      font-size: 1.2rem;
+    }
+    button {
+      border: none;
+      width: 200px;
+      height: 60px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-left: 20px;
+      cursor: pointer;
+      border-radius: 10px;
+     
+    }
+    .submit {
+      background: #d5293f;
+      color: #fff;
+    }
+  }
+}

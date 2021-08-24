@@ -85,7 +85,10 @@ class Categories extends Component {
   render() {
     return (
       <div className={styles.Categories}>
-        <Menu />
+       
+        <Menu /> 
+         <div className={styles.banner}>                <h1>Categories</h1>
+</div>
         {this.state.fetching ? (
           <Loading />
         ) : (
@@ -150,6 +153,8 @@ class Categories extends Component {
             </div>
           )
         )}
+             <div className={styles.addContainer}>
+
         <Link
           to={{
             pathname: process.env.PUBLIC_URL + `/Add/Filter`,
@@ -157,6 +162,7 @@ class Categories extends Component {
         >
           <button className={styles.add}>Add Filter</button>
         </Link>
+        </div>
       </div>
     );
   }

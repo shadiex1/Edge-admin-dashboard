@@ -110,7 +110,8 @@ class Showcase extends Component {
     return (
       <div className={styles.Showcase}>
         <Menu />
-
+        <div className={styles.banner}>                <h1>Showcase</h1>
+</div>
         <div className={styles.OrderFilter}>
           <button
             style={

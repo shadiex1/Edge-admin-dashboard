@@ -1,6 +1,21 @@
 .Categories {
-       background-color: #e0e0e0; 
+       background-color: #f5f5f5; 
    min-height: 100vh;
+   .banner{
+    width: 100%;
+    background-color:#d5293f ;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+    margin-bottom: 1rem;
+    h1 {
+      font-size: 3.5rem;
+      color: white;
+      text-align: center;
+    }
+  }
   a {
     text-decoration: none;
   }
@@ -13,18 +28,20 @@
       font-size: 20px;
       font-weight: bold;
       margin: 50px ;
-      width: 300px;
-      height: 110px;
+      width: 200px;
+      height: 80px;
       border-radius: 50px;
       cursor: pointer;
       border: none;
       &:hover {
-        color: white;
-        background-color: #d5293f;
+        // color: white;
+        background-color: #FAF8FF;
       }
     }
   }
-  .add {
+  .addContainer{
+    height: 6rem;
+    .add {
     display: block;
     border-radius: 20px;
     border: none;
@@ -35,16 +52,29 @@
     cursor: pointer;
     margin: 2rem auto 0 auto;
     transition: background 0.5s;
-    background: #1de9b6;
-    border: 1px solid darken(#1de9b6, 5%);
+    background: #d5293f;
+    border: 1px solid darken(#d5293f, 5%);
     &:hover {
-      background: lighten(#1de9b6, 15%);
+      background: lighten(#d5293f, 15%);
     }
   }
+  }
+  
   .empty {
       margin: 2rem auto;
       text-align: center;
       font-size: 1.5rem;
       font-weight: bold;
     }
+}
+@media screen and (max-width:800px){
+  .Categories{
+.categoriesFilter{
+ flex-wrap: wrap;
+ margin-top: 20px;
+ button{
+   margin: 20px;
+ }
+}
+}
 }

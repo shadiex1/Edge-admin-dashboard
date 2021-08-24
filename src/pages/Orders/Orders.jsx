@@ -23,6 +23,8 @@ class Orders extends Component {
     return (
       <div className={styles.Orders}>
         <Menu />
+        <div className={styles.banner}>                <h1>Orders</h1>
+</div>
         {this.state.fetching ? (
           <Loading />
         ) : this.state.orders ? (

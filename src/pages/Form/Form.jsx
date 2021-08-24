@@ -620,7 +620,7 @@ class Form extends Component {
             </div>
           </div>
           <div className={styles.btns}>
-            <button onClick={() => this.submit()}>Accept</button>
+            <button className={styles.submit} onClick={() => this.submit()}>Accept</button>
             <button onClick={() => this.props.history.goBack()}>Cancel</button>
           </div>
         </div>

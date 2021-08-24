@@ -1,8 +1,10 @@
 .Products {
     // width: 80%;
     margin: auto;
-    background-color: #e0e0e0;
-    min-height: 100vh;
+    background-color: #f5f5f5
+    ;
+    // min-height: 100vh;
+    height: 100%;
     .productsContainer {
         width: 80%;
         margin: auto;
@@ -16,7 +18,10 @@
             font-weight: bold;
         }
     }
-    a {
+    .addContainer{
+        height: 6rem;
+     
+a {
         text-decoration: none;
     }
     .add {
@@ -28,13 +33,24 @@
         font-size: 1.45em;
         font-weight: bold;
         cursor: pointer;
-        margin: 2rem auto 0 auto;
+        margin: 2rem auto ;
         transition: background 0.5s;
-        background: #1de9b6;
-        border: 1px solid darken(#1de9b6, 5%);
-        box-shadow: 3px 3px 0px 2px rgba(#1de9b6, 0.2);
+        background: #d5293f;
+        border: 1px solid darken(#d5293f, 5%);
+        box-shadow: 3px 3px 0px 2px rgba(#d5293f, 0.2);
         &:hover {
-            background: lighten(#1de9b6, 15%);
+            background: lighten(#d5293f, 15%);
         }
     }
+    }
+    
 }
+
+@media screen and (max-width:700px){
+    .Products{
+        .productsContainer{
+    width: 100%;
+}
+    }
+
+  }

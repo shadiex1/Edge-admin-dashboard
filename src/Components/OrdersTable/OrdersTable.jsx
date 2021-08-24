@@ -253,6 +253,7 @@ const OrdersTable = (props) => {
 
     return (
       <>
+      <div style={{overflowX:"auto"}}>
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
@@ -382,6 +383,7 @@ const OrdersTable = (props) => {
             </select>
           </div>
         </div>
+        </div>
       </>
     );
   }
@@ -397,61 +399,50 @@ const OrdersTable = (props) => {
     () => [
       {
         Header: "Date",
-        columns: [
-          {
-            Header: "Date",
-            accessor: "formatedDate",
-          },
-        ],
+        accessor:"formatedDate"
+    
       },
       {
-        Header: "Price",
-        columns: [
-          {
-            Header: "Product price",
-            accessor: "productsPrice",
-            Filter: NumberRangeColumnFilter,
-            filter: "between",
-          },
-          {
-            Header: "Shipment price",
-            accessor: "shippmentPrice",
-            Filter: NumberRangeColumnFilter,
-            filter: "between",
-          },
-          {
-            Header: "Total price",
-            accessor: "totalPrice",
-            Filter: NumberRangeColumnFilter,
-            filter: "between",
-          },
-        ],
+        Header: "Products price",
+        accessor: "productsPrice",
+        Filter: NumberRangeColumnFilter,
+        filter: "between",
+        
+        
       },
       {
-        Header: "Status",
-        columns: [
-          {
-            Header: "Shipment",
-            accessor: "shippmentState",
-            Filter: SelectColumnFilter,
-            filter: "includes",
-          },
-        ],
+        Header: "Shipment price",
+        accessor: "shippmentPrice",
+        Filter: NumberRangeColumnFilter,
+        filter: "between",
+       
+      },
+      {
+        Header: "Total price (EP)",
+        accessor: "totalPrice",
+        Filter: NumberRangeColumnFilter,
+        filter: "between",
+        
+      },
+      {
+        Header: "Shipment status",
+        accessor: "shippmentState",
+        Filter: SelectColumnFilter,
+        filter: "includes",
+        
       },
       {
         Header: "Governorate",
-        columns: [
-          {
-            Header: "Governorate",
-            accessor: "governorate",
-            Filter: SelectColumnFilter,
-            filter: "includes",
-          },
-        ],
+        accessor: "governorate",
+        Filter: SelectColumnFilter,
+        filter: "includes",
+        
       },
       {
         // Make an expander cell
-        Header: () => null, // No header
+        Header: "Order details", 
+        // Header: () => null, // No header
+
         id: "expander", // It needs an ID
 
         Cell: ({ row }) =>
@@ -470,6 +461,7 @@ const OrdersTable = (props) => {
                 },
               }}
             >
+              
               <span>details</span>
             </Link>
           ) : null,

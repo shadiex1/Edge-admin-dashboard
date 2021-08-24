@@ -50,7 +50,7 @@ class EditNewProducts extends Component {
     const { newProducts,searchInput } = this.state;
     return (
       <React.Fragment>
-        <p className={styles.header}>Showcase New Products</p>
+        {/* <p className={styles.header}>Showcase New Products</p> */}
 
         <div className={styles.newProducts}>
           {newProducts.length ? (
@@ -83,13 +83,13 @@ class EditNewProducts extends Component {
             <button
               onClick={() => this.createProductsFromIds(searchInput)}
             >
-              ADD
+              Add
             </button>
               <button
                 onClick={() => this.submitProducts()}
                 className={styles.submit}
               >
-                SUBMIT
+                Submit
               </button>
            
           </div>

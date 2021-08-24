@@ -128,13 +128,15 @@ class Products extends Component {
           </div>
         )}
      
-        <Link
+     <div className={styles.addContainer}>
+         <Link
           to={{
             pathname: process.env.PUBLIC_URL + `/Add/Product`,
           }}
         >
           <button className={styles.add}>Add Product</button>
         </Link>
+     </div>
       </div>
     );
   }

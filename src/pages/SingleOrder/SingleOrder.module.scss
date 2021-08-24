@@ -1,5 +1,5 @@
 .SingleOrder {
-  background-color: #e0e0e0;
+  background-color: #f5f5f5;
   width: 100%;
   .receipt {
     width: 60%;
@@ -117,4 +117,15 @@
       }
     }
   }
+}
+
+@media screen and (max-width:700px){
+  .SingleOrder{
+    .receipt{
+      margin-top: 2rem;
+  width: 90%;
+  }
+  }
+  
+
 }

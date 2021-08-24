@@ -1,7 +1,6 @@
 .OrdersTable {
   width: 100%;
-  padding: 1rem;
-
+padding-top: 1rem;
   table {
     border-spacing: 0;
     border: 1px solid black;
@@ -21,7 +20,7 @@
       margin: 0.5rem;
       border-bottom: 1px solid black;
       border-right: 1px solid black;
-
+      text-align: center;
       div {
         display: flex;
         justify-content: center;

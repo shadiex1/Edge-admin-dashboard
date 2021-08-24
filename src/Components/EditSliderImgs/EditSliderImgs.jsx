@@ -27,7 +27,7 @@ class EditSliderImgs extends Component {
     const { imgs, changeSliderImgs } = this.props;
     return (
       <div>
-        <p className={styles.header}>Current Slider</p>
+        {/* <p className={styles.header}>Current Slider</p> */}
         {imgs ? (
           <div className={styles.Carousel}>
             <Carousel

@@ -12,10 +12,14 @@ class ProductsFilter extends Component{
         const {category,filter}=this.state
         const { changeFilter, categories, filters } = this.props;
         return(
+          <React.Fragment>
+
+          <div className={styles.banner}>                <h1>Products</h1>
+</div>
             <div className={styles.ProductsFilter}>
-                <h1>Products</h1>
+
                 <div className={styles.filters}>
-                    <div className={styles.filter}>category <select
+                    <div className={styles.filter}> <span className={styles.title}>Category</span> <select
         value={category}
         onChange={e => {
             this.setState({
@@ -33,7 +37,7 @@ class ProductsFilter extends Component{
           </option>
         ))}
       </select></div>
-      {category &&<div className={styles.filter}>Filter <select
+      {category &&<div className={styles.filter}> <span className={styles.title}>Filter</span> <select
         value={filter ? filter:"All"}
         onChange={e => {
             this.setState({
@@ -53,6 +57,8 @@ class ProductsFilter extends Component{
                     
                 </div>
             </div>
+            </React.Fragment>
+
         )
     }
 }

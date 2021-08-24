@@ -5,6 +5,9 @@
 .Form {
   width: 80%;
   margin: auto;
+  @media screen and (max-width:800px){
+   width: 90%;
+  }
   h1 {
     font-size: 50px;
     text-align: center;
@@ -112,7 +115,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2rem 0 0 0 ;
+    margin: 2rem 0 0 0 ; 
+    .submit{
+        background-color: #d5293f;
+        color: white;
+      }
     button {
       display: inline-block;
       width: 150px;
@@ -121,6 +128,7 @@
       border: none;
       font-weight: bold;
       cursor: pointer;
+     
     }
   }
 }

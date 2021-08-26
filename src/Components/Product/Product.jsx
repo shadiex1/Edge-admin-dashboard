@@ -107,8 +107,14 @@ class Product extends Component {
           <p>
             Price : <span>{price}</span>
           </p>
-          <p>English description: <span>{engDesc}</span></p>
+          <div className={styles.description}>
+                      <p>English description: <span>{engDesc}</span></p>
+
+          </div>
+          <div className={styles.description}>
           <p>Arabic description: <span>{araDesc}</span></p>
+
+          </div>
           <div className={styles.group}>
             <p>
               Category : <span>{category}</span>

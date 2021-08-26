@@ -71,6 +71,11 @@
   }
   .details {
     width: 60%;
+    .description{
+      overflow: auto;
+      height: 60px;
+    }
+
     p {
       color: #948b8b;
       font-weight: bold;
@@ -87,8 +92,9 @@
 }
 @media screen and (max-width:700px){
   .Product{
-  height: 400px;
-  
+  height: 450px;
+  // overflow-y: auto;
+
   .icons{
     left: 90%;
     top: 20px;

@@ -43,7 +43,7 @@ class Product extends Component {
    
   };
   render() {
-    const { code, editable, deletable, img, englishName, arabicName, price } =
+    const { code, editable, deletable, img, englishName, arabicName, price ,engDesc,araDesc} =
       this.props;
     const { showPopup, category, filter } = this.state;
     return (
@@ -107,6 +107,8 @@ class Product extends Component {
           <p>
             Price : <span>{price}</span>
           </p>
+          <p>English description: <span>{engDesc}</span></p>
+          <p>Arabic description: <span>{araDesc}</span></p>
           <div className={styles.group}>
             <p>
               Category : <span>{category}</span>

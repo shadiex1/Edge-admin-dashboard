@@ -112,6 +112,8 @@ class Products extends Component {
                   DeleteProduct={() => deleteProduct(item.productID)}
                   editable
                   deletable
+                  engDesc={item.details.engDesc}
+                  araDesc={item.details.araDesc}
                   filter={item.filterID}
                   category={item.categoryID}
                   img={item.imageURL}

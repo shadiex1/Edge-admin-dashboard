@@ -105,7 +105,7 @@ class Product extends Component {
           </div>
 
           <p>
-            Price : <span>{price}</span>
+            Price : <span>{price} EGP</span>
           </p>
           <div className={styles.description}>
                       <p>English description: <span>{engDesc}</span></p>

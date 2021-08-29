@@ -418,7 +418,7 @@ const OrdersTable = (props) => {
        
       },
       {
-        Header: "Total price (EP)",
+        Header: "Total price (EGP)",
         accessor: "totalPrice",
         Filter: NumberRangeColumnFilter,
         filter: "between",

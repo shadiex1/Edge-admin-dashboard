@@ -57,6 +57,8 @@ class EditNewProducts extends Component {
             <div className={styles.products}>
               {newProducts.map((product,i) => (
                 <Product
+                engDesc={product.details.engDesc}
+                araDesc={product.details.araDesc}
                   deletable
                   DeleteProduct={() => this.deleteProduct(product)}
                   code={product.productID}

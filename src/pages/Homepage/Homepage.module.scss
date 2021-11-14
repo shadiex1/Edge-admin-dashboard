@@ -10,7 +10,12 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
+   
+    img{
+      display: block;
+      width: 80%;
+      margin: auto;
+  }
     .categories {
       display: flex;
       align-items: center;

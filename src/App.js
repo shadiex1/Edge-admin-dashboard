@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-
+import LogIn from "./pages/LogIn/LogIn";
 import Homepage from "./pages/Homepage/Homepage";
 import Orders from "./pages/Orders/Orders";
 import SingleOrder from "./pages/SingleOrder/SingleOrder";
@@ -22,12 +22,20 @@ class App extends Component {
       "Received",
       "Rejected",
     ],
+
+    loggedIn:false
+
   };
 
+  checkUserLogin=(username,password)=>{
+    this.setState({
+      loggedIn:true
+    })
+  }
   render() {
     return (
       <React.Fragment>
-        <Route
+        {this.state.loggedIn ?<> <Route
           exact
           path={process.env.PUBLIC_URL + "/"}
           component={() => <Homepage />}
@@ -82,7 +90,12 @@ class App extends Component {
               washings={this.state.washings}
             />
           )}
-        />
+        /></>:  <Route
+          exact
+          path={process.env.PUBLIC_URL + "/"}
+          component={() => <LogIn onSubmit={()=>this.checkUserLogin()} />}
+        />}
+       
       </React.Fragment>
     );
   }
